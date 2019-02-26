@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+    </ion-buttons>
+    <ion-title>Entspannungsübungen
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h5 text-center>
+    Übungen helfen, die Migräneattacken <br /> wesentlich abzumildern</h5>
+
+  <ion-card>
+    <ion-card-header text-center (click)="showText()">
+      <h1 style="font-weight: bold; white-space: pre-line;">Progressive Muskelrelaxation</h1>
+    </ion-card-header>
+    <ion-card-content *ngIf="selectedCard">
+      <h2 style="font-weight: bold">Einleitung:</h2>
+      <h5 style="font-weight: bold">Anspannen der Muskulatur:</h5>
+      Achten sie dabei darauf, dass sie nur diese eine Muskelpartie
+      anspannen. Vermeiden sie ein Verkrampfen der Muskulatur und überschreiten sie nicht die
+      Schmerzgrenze. Es genügt völlig, wenn sie die Anspannung deutlich spüren und gleichmäßig
+      beibehalten können.
+      <h5 style="font-weight: bold">Festhalten der Spannung:</h5>
+      Achten sie in dieser Phase auf die Empfindungen, die mit der Anspannung
+      verbunden sind und atmen sie in ihrem Rhythmus weiter.
+      <h5 style="font-weight: bold">Loslassen der Spannung:</h5>
+      Lassen sie zusammen mit dem Ausatmen los.
+      <h5 style="font-weight: bold">Nachspüren:</h5>
+      Achten sie nach dem Loslassen sorgfältig auf die Empfindungen, die mit der
+      Entspannung verbunden sind, im Gegensatz zu den vorhergehenden Spannungsempfindungen. Lassen
+      sie sich Zeit für dieses Nachspüren.
+      <br />
+      <br />
+      Sie können diese Abfolge des Anspannens und Loslassens beliebig oft durchführen, bis sie mit der
+      spürbaren Wirkung zufrieden sind.
+      <br /><br />
+
+      <h2 style="font-weight: bold">Wo und wann Übung durchführen ?</h2>
+      Schaffen Sie sich zum Entspannen eine ruhige Atmosphäre, einen Ort zum Wohlfühlen, an dem Sie
+      ungestört sind. Achten Sie auf eine angenehme Raumtemperatur und Lichtverhältnisse. Ihre
+      Bekleidung sollte so bequem wie möglich sein. Lassen Sie es sich richtig gut gehen! Das ist das
+      Wichtigste! Die Übungen können im Sitzen oder Liegen durchgeführt werden. Ruhige und angenehme
+      Musik im Hintergrund kann hilfreich sein, um die Entspannung zu vertiefen.<br />
+      Wenn Sie nicht gerade nach der Übung einschlafen wollen, führen Sie am Ende eine intensive
+      Rücknahme durch, um den Kreislauf anzuregen und wieder fit für den Tag zu sein.
+      <br /><br />
+      Bei akuter Krankheit (z.B. Erkältung oder Migräneanfall) sollte nicht geübt werden.
+      <br />
+      <br />
+
+      <h2 style="font-weight: bold">Anleitung:</h2>
+      <h5 style="font-weight: bold">Hände und Arme</h5>
+      1. Dominante Hand- und Unterarmmuskulatur: Faust ballen <br />
+      2. Dominante Oberarmmuskulatur: Ellenbogen anwinkeln und Bizeps anspannen<br />
+      3. Nicht dominante Hand- und Unterarmmuskulatur: Faust ballen<br />
+      4. Nicht dominante Oberarmmuskulatur: Ellenbogen anwinkeln und Bizeps anspannen
+      Gesicht<br />
+      5. Muskeln der oberen Gesichtspartie: Augenbrauen hochziehen (Alternative: Stirnrunzeln)<br />
+      6. Muskeln der mittleren Gesichtspartie: Augen zusammenkneifen und Nase rümpfen<br />
+      7. Muskeln der unteren Gesichtspartie: Zähne zusammen, Mundwinkel nach hinten ziehen und
+      Zunge gegen den Gaumen Rumpfbereich<br />
+      8. Nackenmuskulatur: Kinn zur Brust ziehen (Alternative: Kopf nach hinten gegen die Unterlage
+      drücken)<br />
+      9. Brust-, Schulter- und Rückenmuskulatur: Schultern nach oben ziehen und Schulterblätter
+      hinten zusammendrücken<br />
+      10. Bauchmuskeln: Bauchmuskeln anspannen (Alternative: Bauchmuskeln einziehen oder
+      rausstrecken) <br />
+      11. Beine <br /> Dominante Oberschenkelmuskulatur: Bein durchstrecken (Alternativ: Bein anheben)<br />
+      12. Dominante Unterschenkelmuskulatur: Zehen zu sich heranziehen (Alternative im Sitzen:
+      Ferse anheben)<br />
+      13. Dominante Fußmuskulatur: Fuß nach innen drehen, Zehen beugen (Alternative: Bild: Einen
+      Ball greifen)<br />
+      14. Nicht dominante Oberschenkelmuskulatur: Bein durchstrecken (Alternativ: Bein anheben)<br />
+      15. Nicht dominante Unterschenkelmuskulatur: Zehen zu sich heranziehen (Alternative im Sitzen:
+      Ferse anheben)<br />
+      16. Nicht dominante Fußmuskulatur: Fuß nach innen drehen, Zehen beugen (Alternative: Bild:
+      Einen Ball greifen)<br /><br />
+      Rücknahme: Arme und Beine beugen und strecken!<br />
+      Tief durchatmen!<br />
+      Augen öffnen!
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header text-center (click)="showText2()">
+      <h1 style="font-weight: bold">Entspannungsübung 2</h1>
+    </ion-card-header>
+    <ion-card-content *ngIf="selectedCard2">
+      The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header text-center (click)="showText3()">
+      <h1 style="font-weight: bold">Entspannungsübung 3</h1>
+    </ion-card-header>
+    <ion-card-content *ngIf="selectedCard3">
+      The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+    </ion-card-content>
+  </ion-card>
+</ion-content>

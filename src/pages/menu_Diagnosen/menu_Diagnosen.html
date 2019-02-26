@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+    </ion-buttons>
+    <ion-title>Meine Diagnosen
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-card>
+      <ion-card-header text-center>
+        <h1 style="font-weight: bold; color:white">Meine Diagnosen</h1>
+      </ion-card-header>
+      <ion-item>
+        <ion-label>Datum der Diagnose</ion-label>
+        <ion-datetime displayFormat="MMM DD, YYYY" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="date"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Diagnose</ion-label>
+        <ion-select okText="Bestätigen" cancelText="Abbrechen" (ionChange)="onChangeDiagnoses()" [(ngModel)]="diagnosen">
+          <ion-option>Migräne mit Aura</ion-option>
+          <ion-option>Migräne ohne Aura</ion-option>
+          <ion-option>Typische Aura mit Migränekopfschmerz</ion-option>
+          <ion-option>Typische Aura mit Kopfschmerzen, die nicht einer Migräne entsprechen</ion-option>
+          <ion-option>Typische Aura ohne Kopfschmerz</ion-option>
+          <ion-option>Familiäre hemiplegische Migräne (FHM)</ion-option>
+          <ion-option>Sporadische hemiplegische Migräne</ion-option>
+          <ion-option>Andere</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="selectedOther" no-lines>
+        <ion-input placeholder="Andere Diagnosen" [(ngModel)]="otherDiagnose"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <div text-center>
+    <button ion-button round color="secondary" (click)="presentAlert()">
+      Hinzufügen
+    </button>
+    </div>
+
+  </ion-list>
+</ion-content>

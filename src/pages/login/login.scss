@@ -1,0 +1,86 @@
+page-login {
+  ion-content {
+    background: linear-gradient(120deg, rgb(105, 209, 201), rgb(70, 124, 255));
+  }
+
+  ion-img {
+    background-color: transparent;
+    contain: none;
+  }
+
+  #midataLogoWrapper {
+    position: fixed;
+    display: inline-block;
+    top: 0;
+    height: 12vw;
+    width: 100%;
+    padding: 0px;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 83%,rgba(255,255,255,0) 100%);
+  }
+
+  #blockHeader{
+    display: inline-block;
+    height: 12vw;
+  }
+
+  .helper {
+    display: inline-block;
+    height: 90%;
+    vertical-align: middle;
+  }
+
+  #logoMidata {
+    width: 40%;
+    vertical-align: middle;
+  }
+
+  ion-slides {
+    position: relative;
+    height: 50vh;
+    width: 100%;
+  }
+
+  .slide-zoom {
+    height: 100%;
+  }
+
+  .slide-title {
+    margin-top: 2.8rem;
+    text-align: center;
+    color: white;
+    font-size: 4vh;
+  }
+
+  .slide-image {
+    height: 40%;
+    width: 50%;
+    margin: 18px 0;
+  }
+
+  .wrapper {
+    height: 3em;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 3vh;
+    vertical-align: middle;
+    line-height: 3em;
+  }
+
+  .default {
+    font-weight: bold;
+  }
+
+  #btnZone {
+    width: 100%;
+    position: fixed;
+    bottom: 5%;
+  }
+
+  ion-img.img-midata {
+    width: 35% !important;
+  }
+}

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+    </ion-buttons>
+    <ion-title>Erinnerung
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header text center>
+      <h1 text-center style="font-weight: bold; color: white">Tägliche Erinnerung <br /> festlegen</h1>
+    </ion-card-header>
+
+    <ion-item no-lines>
+      <ion-label>Erinnerung</ion-label>
+      <ion-toggle [(ngModel)]="reminder"></ion-toggle>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label>Zeit</ion-label>
+      <ion-datetime displayFormat="HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="myTime"></ion-datetime>
+    </ion-item>
+  </ion-card>
+
+  <div text-center>
+    <button ion-button round color="secondary" type="submit">
+      Sichern
+    </button>
+  </div>
+
+</ion-content>

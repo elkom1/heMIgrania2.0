@@ -1,0 +1,87 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+    </ion-buttons>
+    <ion-title>heMIgrania</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="group">
+
+    <ion-card>
+      <ion-card-header text-center>
+        <h1 style="font-weight: bold; color: white">Schlafrhythmus</h1>
+      </ion-card-header>
+      <ion-item no-lines>
+        <ion-label>Einschlafzeit</ion-label>
+        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="sleepTime" name="sleepTime" formControlName="sleepTime"></ion-datetime>
+      </ion-item>
+      <ion-item no-lines>
+        <ion-label>Aufwachzeit</ion-label>
+        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="awakeTime" name="awakeTime" formControlName="awakeTime"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label style="font-weight: bold; font-size: 20px">Schlafqualität</ion-label>
+        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="sleepQuality" name="sleepQuality"
+          formControlName="sleepQuality">
+          <ion-icon small range-left name="md-sad"></ion-icon>
+          <ion-icon range-right name="md-happy"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header text-center>
+        <h1 style="font-weight: bold; color: white">Essverhalten</h1>
+      </ion-card-header>
+      <ion-item>
+        <ion-label>Bitte Essverhalten angeben</ion-label>
+        <ion-select okText="Bestätigen" cancelText="Abbrechen" popover [(ngModel)]="eatingHabit" name="eatingHabit"
+          formControlName="eatingHabit">
+          <ion-option>Regelmässig gegessen</ion-option>
+          <ion-option>Unregelmässig gegessen</ion-option>
+          <ion-option>Unbestimmtes Essverhalten</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header text-center>
+        <h1 style="font-weight: bold; color: white">Entspannungsübungen</h1>
+      </ion-card-header>
+      <ion-item>
+        <ion-label>Gemachte Übungen</ion-label>
+        <ion-select okText="Bestätigen" cancelText="Abbrechen" multiple="true" [(ngModel)]="exercises" name="exercises"
+          formControlName="exercises">
+          <ion-option>übung 1</ion-option>
+          <ion-option>übung 2</ion-option>
+          <ion-option>übung 3</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header text-center>
+        <h1 style="font-weight: bold; color: white">Datum der Eingabe</h1>
+      </ion-card-header>
+      <ion-item>
+        <ion-label>Bitte Datum angeben</ion-label>
+        <ion-datetime displayFormat="MMM DD, YYYY" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="date" name="date" formControlName="date"></ion-datetime>
+      </ion-item>
+    </ion-card>
+
+    <div text-center>
+      <button ion-button round large color="secondary" (click)="showCheckbox()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </div>
+
+  </form>
+</ion-content>

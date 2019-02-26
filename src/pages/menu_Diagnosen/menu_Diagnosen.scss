@@ -1,0 +1,29 @@
+page-menu_Diagnosen {
+
+  // .alert-md .alert-radio-label {
+  //     overflow: hidden;
+  //     -webkit-box-flex: 1;
+  //     -webkit-flex: 1;
+  //     -ms-flex: 1;
+  //     flex: 1;
+  //     text-overflow: ellipsis;
+  //     white-space: pre-line;
+  //     color: initial;
+  //     padding: 12px 20px;
+  // }
+  .alert-ios .alert-radio-label {
+    white-space: pre-line;
+  }
+
+  .alert-md .alert-radio-label {
+    white-space: pre-line;
+  }
+
+  .alert-wp .alert-radio-label {
+    white-space: pre-line;
+  }
+
+  .card {
+    background-color: #4261eb
+  }
+}

@@ -1,0 +1,31 @@
+<ion-content>
+  <div id="midataLogoWrapper">
+      <span class="helper"></span>
+      <ion-img class="img-midata" alt="MIDATA logo" src="assets/imgs/logo-midata-full.png" id="logoMidata" (click)="visitMidata()"></ion-img>
+  </div>
+  <div id="blockHeader">
+  </div>
+  <ion-slides pager>
+    <ion-slide>
+      <h2 class="slide-title">Willkommen zu heMIgrania</h2>
+      <img class="img-centered" src="assets/imgs/icon.png" alt="heMIgrania">
+    </ion-slide>
+
+    <ion-slide>
+      <h2 class="slide-title">Was können wir für Sie tun?</h2>
+    </ion-slide>
+
+    <ion-slide>
+      <h2 class="slide-title">Tipps!</h2>
+    </ion-slide>
+</ion-slides>
+
+  <div id="btnZone">
+    <div class="wrapper default" id="btnLogin" (click)="login()">
+        Login
+    </div>
+    <div class="wrapper" id="btnRegister" (click)="register()">
+        Registrieren
+    </div>
+  </div>
+</ion-content>
