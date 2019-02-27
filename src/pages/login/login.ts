@@ -21,9 +21,9 @@ export class LoginPage {
       private platform: Platform) {
   }
 
-  register(){
-    this.inAppBrowser.create('https://test.midata.coop/#/portal/registration');
-  }
+  // register(){
+  //   this.inAppBrowser.create('https://test.midata.coop/#/portal/registration');
+  // }
 
   visitMidata(){
     this.inAppBrowser.create('https://midata.coop');
