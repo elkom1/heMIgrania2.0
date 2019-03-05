@@ -1,10 +1,11 @@
 import {
-  Component
+  Component, group
 } from '@angular/core';
 import {
   NavController,
   DateTime,
-  Form
+  Form,
+  Config
 } from 'ionic-angular';
 
 import {
@@ -34,6 +35,7 @@ import {
 import {
   endTimeRange
 } from '@angular/core/src/profile/wtf_impl';
+import { getLocaleDateTimeFormat, getLocaleTimeFormat } from '@angular/common';
 
 
 @Component({
@@ -49,8 +51,8 @@ export class NewAttackPage {
   painAreal: string;
   painType: string;
   otherPainType: string;
-  fromDateTime: DateTime;
-  untilDateTime: DateTime;
+  fromDateTime: string;
+  untilDateTime: string;
   intensity: number = 0;
   medicament: string;
   menge: number = 0;
@@ -103,29 +105,29 @@ export class NewAttackPage {
     //Here we can intialize all of the attributes which are selected and altered
     this.group = new FormGroup({
       menge: new FormControl(''),
-      symptome: new FormControl(''),
-      otherSymptom: new FormControl(''),
-      painAreal: new FormControl(''),
-      painType: new FormControl(''),
-      otherPainType: new FormControl(''),
-      fromDateTime: new FormControl(''),
-      untilDateTime: new FormControl(''),
-      intensity: new FormControl(''),
+      symptome: new FormControl('', [Validators.required]),
+      otherSymptom: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      painAreal: new FormControl('', [Validators.required]),
+      painType: new FormControl('', [Validators.required]),
+      otherPainType: new FormControl('', [Validators.required]),
+      fromDateTime: new FormControl('', [Validators.required]),
+      untilDateTime: new FormControl('', [Validators.required]),
+      intensity: new FormControl('', [Validators.required]),
       medicament: new FormControl(''),
       medEffect: new FormControl(''),
-      situation: new FormControl(''),
-      intensityWateryEye: new FormControl(''),
-      intensityRedEye: new FormControl(''),
-      intensityNasenLaufen: new FormControl(''),
-      intensityNasenVerstopfung: new FormControl(''),
-      intensityFlimmerSehen: new FormControl(''),
-      intensityPhonophobia: new FormControl(''),
-      intensityPhotophobia: new FormControl(''),
-      intensityTouchSensation: new FormControl(''),
-      intensitySpeechDisorder: new FormControl(''),
-      intensitySmellSensitivity: new FormControl(''),
-      intensityVomiting: new FormControl(''),
-      intensityNausea: new FormControl(''),
+      situation: new FormControl('', [Validators.required]),
+      intensityWateryEye: new FormControl('', [Validators.required]),
+      intensityRedEye: new FormControl('', [Validators.required]),
+      intensityNasenLaufen: new FormControl('', [Validators.required]),
+      intensityNasenVerstopfung: new FormControl('', [Validators.required]),
+      intensityFlimmerSehen: new FormControl('', [Validators.required]),
+      intensityPhonophobia: new FormControl('', [Validators.required]),
+      intensityPhotophobia: new FormControl('', [Validators.required]),
+      intensityTouchSensation: new FormControl('', [Validators.required]),
+      intensitySpeechDisorder: new FormControl('', [Validators.required]),
+      intensitySmellSensitivity: new FormControl('', [Validators.required]),
+      intensityVomiting: new FormControl('', [Validators.required]),
+      intensityNausea: new FormControl('', [Validators.required]),
 
     })
     this.symptome = [];
@@ -138,6 +140,8 @@ export class NewAttackPage {
   ngAfterViewInit() {
     this.situation = "migräneanfall";
     this.menge = 1;
+    this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString(); 
+    this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
   }
 
   //-------------------------------------START ONCHANGE METHODS FOR "OTHER SELECTION"------------------------
@@ -283,6 +287,8 @@ export class NewAttackPage {
       this.medicament = null;
       this.menge = 1;
       this.medEffect = null;
+      this.fromDateTime = new Date().toISOString(); 
+      this.untilDateTime = new Date().toISOString(); 
     }
   }
   //-------------------------------------END METHODS FOR MEDICATION SEARCH-------------------------------
