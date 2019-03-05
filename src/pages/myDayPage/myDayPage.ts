@@ -40,12 +40,11 @@ export class MyDayPage {
 
   group: FormGroup;
 
-  sleepTime: DateTime;
-  awakeTime: DateTime;
+  sleepTime: string;
+  awakeTime: string;
   sleepQuality: number = 0;
   eatingHabit: string;
-  exercises: string[];
-  date: Date;
+  date: string;
 
   tabsPage: TabsPage;
   private midataService: MidataService;
@@ -53,16 +52,20 @@ export class MyDayPage {
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService) {
     //Here we can intialize all of the attributes which are selected and altered
     this.group = new FormGroup({
-      sleepTime: new FormControl(''),
-      awakeTime: new FormControl(''),
-      sleepQuality: new FormControl(''),
-      eatingHabit: new FormControl(''),
-      exercises: new FormControl(''),
-      date: new FormControl(''),
+      sleepTime: new FormControl('', [Validators.required]),
+      awakeTime: new FormControl('', [Validators.required]),
+      sleepQuality: new FormControl('', [Validators.required]),
+      eatingHabit: new FormControl('', [Validators.required]),
+      date: new FormControl('', [Validators.required]),
     })
     this.midataService = midataService;
   }
 
+  ngAfterViewInit() {
+    this.sleepTime = new Date(new Date().getTime() - 82800000).toISOString();
+    this.awakeTime = new Date(new Date().getTime() - 3600000).toISOString();
+    this.date = new Date(new Date().getTime()).toISOString(); 
+  }
 
   showCheckbox() {
     let alert = this.alertCtrl.create();
@@ -182,7 +185,10 @@ export class MyDayPage {
       _dateTime: new Date().toISOString()
     }, codingStuff2, category2);
 
-    if (this.eatingHabit != null) {
+    // let asdf = undefined;
+    // if (typeof asdf === "undefined")
+
+    if (!this.eatingHabit) {
       if (this.eatingHabit.match("Regelmässig gegessen")) {
         entry2.addProperty("valueCodeableConcept", {
           coding: [{
@@ -230,118 +236,11 @@ export class MyDayPage {
     }
     //========================= END JSON FOR THE OBSERVATION "Eating Habit"================================
 
-    //========================= START JSON FOR THE OBSERVATION "Relaxation Exercises"================================
-    let codingStuff3 = {
-      coding: [{
-        system: 'http://snomed.info/sct',
-        code: '418138009',
-        display: 'Relaxation Exercises' // muss noch registriert werden 
-      }]
-    }
-
-    let category3 = {
-      coding: [{
-        system: 'http://hl7.org/fhir/observation-category',
-        code: 'survey',
-        display: 'Survey'
-      }],
-    }
-
-    //Observation1: Exercise 1 
-    if (this.exercises.find(val => val == "übung 1") != null) {
-      let entry3 = new Observation({
-        _dateTime: new Date().toISOString()
-      }, codingStuff3, category3);
-
-      entry3.addProperty("valueCodeableConcept", {
-        coding: [{
-          system: "",
-          code: "",
-          display: 'Exercise 1'
-        }]
-      });
-
-      if (this.date != null) {
-        entry3.addComponent({
-          code: {
-            coding: [{
-              display: "Date of entry"
-            }]
-          },
-          valueDateTime: "" + this.date
-        })
-      }
-
-      let bundle3 = new Bundle("transaction");
-      bundle3.addEntry("POST", entry3.resourceType, entry3);
-      this.midataService.save(bundle3);
-    }
-    //Observation2: Exercise 2
-    if (this.exercises.find(val => val == "übung 2") != null) {
-      let entry3_1 = new Observation({
-        _dateTime: new Date().toISOString()
-      }, codingStuff3, category3);
-
-      entry3_1.addProperty("valueCodeableConcept", {
-        coding: [{
-          system: "",
-          code: "",
-          display: 'Exercise 2'
-        }]
-      });
-
-      if (this.date != null) {
-        entry3_1.addComponent({
-          code: {
-            coding: [{
-              display: "Date of entry"
-            }]
-          },
-          valueDateTime: "" + this.date
-        })
-      }
-
-      let bundle3_1 = new Bundle("transaction");
-      bundle3_1.addEntry("POST", entry3_1.resourceType, entry3_1);
-      this.midataService.save(bundle3_1);
-    }
-    //Observation3: Exercise 3
-    if (this.exercises.find(val => val == "übung 3") != null) {
-      let entry3_2 = new Observation({
-        _dateTime: new Date().toISOString()
-      }, codingStuff3, category3);
-
-      entry3_2.addProperty("valueCodeableConcept", {
-        coding: [{
-          system: "",
-          code: "",
-          display: 'Exercise 3'
-        }]
-      });
-
-      if (this.date != null) {
-        entry3_2.addComponent({
-          code: {
-            coding: [{
-              display: "Date of entry"
-            }]
-          },
-          valueDateTime: "" + this.date
-        })
-      }
-
-      let bundle3_2 = new Bundle("transaction");
-      bundle3_2.addEntry("POST", entry3_2.resourceType, entry3_2);
-      this.midataService.save(bundle3_2);
-    }
-    //========================= END JSON FOR THE OBSERVATION "Relaxation Exercises"================================
-
     //update the input fields 
     (this.sleepTime != null) ? this.sleepTime = null: null;
     (this.awakeTime != null) ? this.awakeTime = null: null;
     (this.sleepQuality != null) ? this.sleepQuality = null: null;
     (this.eatingHabit != null) ? this.eatingHabit = null: null;
-    (this.exercises != null) ? this.exercises = null: null;
     (this.date != null) ? this.date = null: null;
 
   }
