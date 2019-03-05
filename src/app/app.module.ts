@@ -7,6 +7,7 @@ import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { Network } from '@ionic-native/network';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 import { MyDayPage } from '../pages/myDayPage/myDayPage';
@@ -80,7 +81,7 @@ import { MidataService} from "../services/midataService";
     Network,
     MidataService,
     BarcodeScanner,
-
+    LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
