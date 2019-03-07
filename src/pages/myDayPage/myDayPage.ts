@@ -33,6 +33,9 @@ import {
 import {
   LoginPage
 } from '../login/login';
+import {
+  MenuPage
+} from '../menu/menu';
 
 
 @Component({
@@ -51,6 +54,7 @@ export class MyDayPage {
   date: string;
 
   tabsPage: TabsPage;
+  menuPage: MenuPage;
   private midataService: MidataService;
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private platform: Platform) {
@@ -270,6 +274,14 @@ export class MyDayPage {
           console.log('Checkbox data:', data);
           if (data == "value1") {
             this.navCtrl.push(LoginPage)
+            //   this.menuPage.openPage(this.menuPage.pages[0])
+            let elements = document.querySelectorAll(".tabbar");
+
+            if (elements != null) {
+              Object.keys(elements).map((key) => {
+                elements[key].style.display = 'none';
+              });
+            }
           }
         }
       });

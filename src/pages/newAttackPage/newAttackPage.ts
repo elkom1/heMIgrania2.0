@@ -1398,6 +1398,13 @@ export class NewAttackPage {
           console.log('Checkbox data:', data);
           if (data == "value1") {
             this.navCtrl.push(LoginPage)
+            let elements = document.querySelectorAll(".tabbar");
+
+            if (elements != null) {
+              Object.keys(elements).map((key) => {
+                elements[key].style.display = 'none';
+              });
+            }
           }
         }
       });

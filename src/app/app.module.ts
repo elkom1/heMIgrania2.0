@@ -31,6 +31,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { LoginPage } from "../pages/login/login";
 import { LogoutPage } from "../pages/logout/logout";
 import { MidataService} from "../services/midataService";
+import { MenuService } from '../services/menuService';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { MidataService} from "../services/midataService";
     MidataService,
     BarcodeScanner,
     LocalNotifications,
+    MenuService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
