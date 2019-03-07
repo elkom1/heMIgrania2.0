@@ -20,8 +20,6 @@ export class Reminder {
     private alertCtrl: AlertController) {
   }
 
-  
-
   toggleLocalNotificatoin() {
     if (this.reminder && typeof this.myTime !== 'undefined') {
       let time = this.myTime.split(":");
@@ -31,7 +29,7 @@ export class Reminder {
       console.log(date.getTime());
       this.localNotifications.schedule({
         id: 1,
-        text: 'first test notification',
+        text: 'Vergiss nicht deine tägliche Erfassung einzutragen',
         trigger: {
           firstAt: date,
           every: ELocalNotificationTriggerUnit.DAY, //MINUTE hat funktioniert 
