@@ -57,6 +57,8 @@ export class MyDayPage {
   menuPage: MenuPage;
   private midataService: MidataService;
 
+  tabBarElement: any;
+
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private platform: Platform) {
     //Here we can intialize all of the attributes which are selected and altered
     this.group = new FormGroup({
@@ -67,12 +69,17 @@ export class MyDayPage {
       date: new FormControl('', [Validators.required]),
     })
     this.midataService = midataService;
+    this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
 
   ngAfterViewInit() {
     this.sleepTime = new Date(new Date().getTime() - 82800000).toISOString();
     this.awakeTime = new Date(new Date().getTime() - 3600000).toISOString();
     this.date = new Date(new Date().getTime()).toISOString();
+  }
+
+  ionViewWillEnter() {
+    this.tabBarElement.style.display = 'flex';
   }
 
   showCheckbox() {
@@ -253,6 +260,10 @@ export class MyDayPage {
       (this.sleepQuality != null) ? this.sleepQuality = null: null;
       (this.eatingHabit != null) ? this.eatingHabit = null: null;
       (this.date != null) ? this.date = null: null;
+      this.sleepTime = new Date(new Date().getTime() - 82800000).toISOString();
+      this.awakeTime = new Date(new Date().getTime() - 3600000).toISOString();
+      this.date = new Date(new Date().getTime()).toISOString();
+
 
 
     } else {

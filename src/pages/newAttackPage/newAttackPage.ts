@@ -104,6 +104,8 @@ export class NewAttackPage {
   private midataService: MidataService;
 
   encodeText: string = '';
+
+  tabBarElement: any;
   //-------------------------------------END INITIALIZE ITEMS -------------------------------------------------
 
 
@@ -141,6 +143,7 @@ export class NewAttackPage {
 
     this.midataService = midataService;
     this.initializeItems();
+    this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
   //-------------------------------------END CONSTRUCTOR ----------------------------------------------------
 
@@ -149,6 +152,10 @@ export class NewAttackPage {
     this.menge = 1;
     this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
     this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
+  }
+
+  ionViewWillEnter() {
+    this.tabBarElement.style.display = 'flex';
   }
 
   //-------------------------------------START ONCHANGE METHODS FOR "OTHER SELECTION"------------------------
@@ -1378,6 +1385,8 @@ export class NewAttackPage {
       this.selectedSmellSensitivity = false;
       this.selectedVomiting = false;
       this.selectedNausea = false;
+      this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
+      this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
 
     } else {
 
