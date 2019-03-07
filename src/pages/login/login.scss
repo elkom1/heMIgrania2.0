@@ -8,6 +8,13 @@ page-login {
     contain: none;
   }
 
+  img.img-centered {
+    margin: auto; 
+    align-items: center;
+    display: block;
+    width: 70% !important;
+  }
+  
   #midataLogoWrapper {
     position: fixed;
     display: inline-block;
