@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController, Platform } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { MidataService } from '../../services/midataService';
+import { TabsPage } from '../tabs/tabs';
+import { HomePage } from '../home/home';
 
 
 
@@ -40,6 +42,10 @@ export class LoginPage {
       }
     });
     });
+  }
+
+  goHome() {
+    this.navCtrl.popToRoot(); 
   }
 
   login() {
