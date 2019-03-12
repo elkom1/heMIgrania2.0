@@ -3,7 +3,7 @@ import {
   ViewChild
 } from "@angular/core";
 import {
-  NavController, App
+  NavController, App, Nav
 } from "ionic-angular";
 import {
   PageInterface,
@@ -33,51 +33,55 @@ import {
 import {
   LogoutPage
 } from "../pages/logout/logout";
+import { TabsPage } from "../pages/tabs/tabs";
 
 @Injectable()
 export class MenuService {
-  private navCtrl: NavController;
+  // Basic root for our content view
+  rootPage = TabsPage;
 
-  constructor(private app: App) {
-    this.navCtrl = app.getActiveNav();
+  // Reference to the app's root nav
+  @ViewChild(Nav) nav: Nav;
+
+  constructor() {
   }
 
-  openPage(page: PageInterface) {
-    let params = {};
-    // The index is equal to the order of our tabs inside tabs.ts
-    if (page.index) {
-      params = {
-        tabIndex: page.index
-      };
-    }
-    // The active child nav is our Tabs Navigation
-    if (this.navCtrl.getActiveChildNavs()[0] && page.index != undefined) {
-      this.navCtrl.getActiveChildNavs()[0].select(page.index);
-    } else {
-      // Tabs are not active, so reset the root page 
-      // In this case: moving to or from SpecialPage
-      this.navCtrl.push(page.tabComponent, params);
-      this.isActive(this.navCtrl.getActiveChildNav())
-    }
-  }
+  // openPage(page: PageInterface) {
+  //   let params = {};
+  //   // The index is equal to the order of our tabs inside tabs.ts
+  //   if (page.index) {
+  //     params = {
+  //       tabIndex: page.index
+  //     };
+  //   }
+  //   // The active child nav is our Tabs Navigation
+  //   if (this.nav.getActiveChildNavs()[0] && page.index != undefined) {
+  //     this.nav.getActiveChildNavs()[0].select(page.index);
+  //   } else {
+  //     // Tabs are not active, so reset the root page 
+  //     // In this case: moving to or from SpecialPage
+  //     this.nav.push(page.tabComponent, params);
+  //     this.isActive(this.nav.getActiveChildNav())
+  //   }
+  // }
 
-  isActive(page: PageInterface) {
-    // Again the Tabs Navigation
-    let childNav = this.navCtrl.getActiveChildNavs()[0];
+//   isActive(page: PageInterface) {
+//     // Again the Tabs Navigation
+//     let childNav = this.nav.getActiveChildNavs()[0];
 
-    if (childNav = undefined) {
-      if (childNav.getSelected() === page.tabComponent) {
-        return 'primary';
-      }
-      return;
-    }
-    // Fallback needed when there is no active childnav (tabs not active)
-    if (this.navCtrl.getActive() && this.navCtrl.getActive().name === page.pageName) {
-      return 'primary';
-    }
-    return;
-  }
-}
+//     if (childNav = undefined) {
+//       if (childNav.getSelected() === page.tabComponent) {
+//         return 'primary';
+//       }
+//       return;
+//     }
+//     // Fallback needed when there is no active childnav (tabs not active)
+//     if (this.nav.getActive() && this.nav.getActive().name === page.pageName) {
+//       return 'primary';
+//     }
+//     return;
+//   }
+ }
 
 export const MENUPAGES: PageInterface[] = [{
     title: 'MIDATA Benutzerkonto',
