@@ -4,7 +4,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { MidataService } from '../../services/midataService';
 import { TabsPage } from '../tabs/tabs';
 import { HomePage } from '../home/home';
-
+import {
+  AlertController
+} from 'ionic-angular';
 
 
 @IonicPage()
@@ -20,7 +22,8 @@ export class LoginPage {
       private loadingCtrl: LoadingController,
       private inAppBrowser: InAppBrowser,
       private midataService: MidataService,
-      private platform: Platform) {
+      private platform: Platform,
+      private alertCtrl: AlertController) {
   }
 
   // register(){
@@ -36,6 +39,11 @@ export class LoginPage {
       this.midataService.openSession().then(success => {
       if (success) {
         this.navCtrl.popToRoot(); 
+
+        let alert = this.alertCtrl.create();
+          alert.setTitle("Du bist bereits angemeldet");
+          alert.addButton('Ok'); 
+          alert.present(); 
       }
       else {
         console.warn('bii baa buu wubba lubba dubb dubb');
@@ -57,6 +65,10 @@ export class LoginPage {
 
     this.midataService.authenticate()
       .then((success: boolean) => {  
+        let alert = this.alertCtrl.create();
+          alert.setTitle("Anmeldung war erfolgreich");
+          alert.addButton('Ok'); 
+          alert.present(); 
       return this.navCtrl.popToRoot(); 
     })
       .then(() => {
