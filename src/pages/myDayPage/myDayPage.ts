@@ -61,13 +61,7 @@ export class MyDayPage {
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private platform: Platform) {
     //Here we can intialize all of the attributes which are selected and altered
-    this.group = new FormGroup({
-      sleepTime: new FormControl('', [Validators.required]),
-      awakeTime: new FormControl('', [Validators.required]),
-      sleepQuality: new FormControl('', [Validators.required]),
-      eatingHabit: new FormControl('', [Validators.required]),
-      date: new FormControl('', [Validators.required]),
-    })
+    
     this.midataService = midataService;
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
@@ -78,15 +72,28 @@ export class MyDayPage {
     this.date = new Date(new Date().getTime()).toISOString();
   }
 
+  ngOnInit(){
+    this.group = new FormGroup({
+      sleepTime: new FormControl('', [Validators.required]),
+      awakeTime: new FormControl('', [Validators.required]),
+      sleepQuality: new FormControl('', [Validators.required]),
+      eatingHabit: new FormControl('', [Validators.required]),
+      date: new FormControl('', [Validators.required])
+    })
+  }
+
   ionViewWillEnter() {
     this.tabBarElement.style.display = 'flex';
   }
 
   showCheckbox() {
 
-    if (this.midataService.loggedIn()) {
+    if(this.group.get('eatingHabit').hasError('required')){
+      console.log("Error on eatingHabit!")
+    }
+    else if (this.midataService.loggedIn()) {
 
-      let alert = this.alertCtrl.create();
+      let alert = this.alertCtrl.create({cssClass: 'reset'});
       alert.setTitle('Hattest du sonstige Beschwerden ?');
 
       alert.addInput({
@@ -114,12 +121,15 @@ export class MyDayPage {
           console.log('Checkbox data:', data);
           if (data == "value1") {
             this.navCtrl.push(HomePage)
+           // this.navCtrl.parent.select(0);
           }
           if (data == "value2") {
             this.navCtrl.push(NewAttackPage) //navigate the tab does not function
+           // this.navCtrl.parent.select(2);
           }
           if (data == "value3") {
             this.navCtrl.push(HomePage)
+           // this.navCtrl.parent.select(0);
           }
         }
       });
@@ -269,21 +279,13 @@ export class MyDayPage {
     } else {
 
       let alert2 = this.alertCtrl.create();
-      alert2.setTitle('Bittel melde dich in MIDATA an');
-
-      alert2.addInput({
-        type: 'radio',
-        label: 'Anmelden',
-        checked: true,
-        value: 'value1'
-      });
+      alert2.setTitle('Bitte melde dich in MIDATA an');
 
       alert2.addButton('Abbrechen');
       alert2.addButton({
         text: 'Bestätigen',
         handler: data => {
           console.log('Checkbox data:', data);
-          if (data == "value1") {
             this.navCtrl.push(LoginPage)
             //   this.menuPage.openPage(this.menuPage.pages[0])
             let elements = document.querySelectorAll(".tabbar");
@@ -292,8 +294,7 @@ export class MyDayPage {
               Object.keys(elements).map((key) => {
                 elements[key].style.display = 'none';
               });
-            }
-          }
+            } 
         }
       });
       alert2.present();

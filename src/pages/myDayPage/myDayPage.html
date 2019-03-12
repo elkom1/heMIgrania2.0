@@ -12,7 +12,7 @@
 
 <ion-content>
 
-  <form [formGroup]="group">
+  <form [formGroup]="group" (ngSubmit)="showCheckbox()">
 
     <ion-card>
       <ion-card-header text-center>
@@ -63,7 +63,7 @@
     </ion-card>
 
     <div text-center>
-      <button ion-button round large color="secondary" (click)="showCheckbox()">
+      <button ion-button round large color="secondary" type="submit">
         <ion-icon name="checkmark"></ion-icon>
       </button>
     </div>
