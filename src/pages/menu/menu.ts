@@ -25,8 +25,7 @@ import {
 } from '@angular/core';
 import {
   NavController,
-  Nav,
-  Tab
+  Nav
 } from 'ionic-angular';
 import {
   LogoutPage

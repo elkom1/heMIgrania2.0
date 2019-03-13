@@ -3,7 +3,7 @@ import {
   ViewChild
 } from "@angular/core";
 import {
-  NavController, App, Nav
+  Nav
 } from "ionic-angular";
 import {
   PageInterface,

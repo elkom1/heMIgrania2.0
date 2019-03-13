@@ -2,9 +2,7 @@ import {
   Component
 } from '@angular/core';
 import {
-  NavController,
-  DateTime,
-  Platform
+  NavController
 } from 'ionic-angular';
 import {
   AlertController
@@ -59,7 +57,7 @@ export class MyDayPage {
 
   tabBarElement: any;
 
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private platform: Platform) {
+  constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService) {
     //Here we can intialize all of the attributes which are selected and altered
     
     this.midataService = midataService;

@@ -2,7 +2,6 @@ import {
   Component
 } from '@angular/core';
 import {
-  IonicPage,
   NavController,
   LoadingController,
   Platform
@@ -11,17 +10,8 @@ import {
   InAppBrowser
 } from '@ionic-native/in-app-browser';
 import {
-  MenuPage
-} from '../../pages/menu/menu';
-import {
   MidataService
 } from '../../services/midataService';
-import {
-  NativeStorage
-} from '@ionic-native/native-storage';
-import {
-  LoginPage
-} from '../login/login';
 import {
   AlertController
 } from 'ionic-angular';
@@ -36,8 +26,6 @@ export class LogoutPage {
 
   constructor(
     public navCtrl: NavController,
-    private loadingCtrl: LoadingController,
-    private inAppBrowser: InAppBrowser,
     private midataService: MidataService,
     private platform: Platform,
     private alertCtrl: AlertController) {}

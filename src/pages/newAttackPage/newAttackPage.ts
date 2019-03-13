@@ -1,12 +1,8 @@
 import {
-  Component,
-  group
+  Component
 } from '@angular/core';
 import {
-  NavController,
-  DateTime,
-  Form,
-  Config
+  NavController
 } from 'ionic-angular';
 
 import {
@@ -16,8 +12,7 @@ import {
 import {
   FormGroup,
   Validators,
-  FormControl,
-  ɵc
+  FormControl
 } from '@angular/forms';
 import {
   MidataService
@@ -35,17 +30,8 @@ import {
   medicationTaken
 } from 'Midata/dist/src/resources/MedicationStatement';
 import {
-  endTimeRange
-} from '@angular/core/src/profile/wtf_impl';
-import {
-  getLocaleDateTimeFormat,
-  getLocaleTimeFormat
-} from '@angular/common';
-import {
   LoginPage
 } from '../login/login';
-import { Symptome } from '../../models/symptome.model';
-import { CssSelector } from '@angular/core/src/render3/interfaces';
 
 
 @Component({

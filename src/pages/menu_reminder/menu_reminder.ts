@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications';
-import {
-  AlertController
-} from 'ionic-angular';
-
 
 @Component({
   selector: 'page-menu_reminder',
@@ -16,8 +12,7 @@ export class Reminder {
   myTime: string; 
 
   constructor(public navCtrl: NavController,
-    public localNotifications: LocalNotifications,
-    private alertCtrl: AlertController) {
+    public localNotifications: LocalNotifications) {
   }
 
   toggleLocalNotificatoin() {

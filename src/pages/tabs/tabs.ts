@@ -3,7 +3,6 @@ import {
 } from '@angular/core';
 
 import {
-  IonicPage,
   NavController,
   NavParams
 } from 'ionic-angular';
@@ -22,9 +21,6 @@ import {
   NativePageTransitions,
   NativeTransitionOptions
 } from '@ionic-native/native-page-transitions';
-import {
-  EntspannungsUebungen
-} from '../menu_entspannungsUebungen/menu_entspannungsUebungen';
 
 
 @Component({

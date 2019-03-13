@@ -5,13 +5,8 @@ import {
   NavController
 } from 'ionic-angular';
 import {
-  Tutorial
-} from './../menu_tutorial/menu_tutorial';
-
-import {
   MidataService
 } from '../../services/midataService';
-import { LoginPage } from '../login/login';
 
 
 @Component({
