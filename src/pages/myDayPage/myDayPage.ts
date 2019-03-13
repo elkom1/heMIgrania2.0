@@ -88,10 +88,7 @@ export class MyDayPage {
 
   showCheckbox() {
 
-    if(this.group.get('eatingHabit').hasError('required')){
-      console.log("Error on eatingHabit!")
-    }
-    else if (this.midataService.loggedIn()) {
+   if (this.midataService.loggedIn()) {
 
       let alert = this.alertCtrl.create({cssClass: 'reset'});
       alert.setTitle('Hattest du sonstige Beschwerden ?');

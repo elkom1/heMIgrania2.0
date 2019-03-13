@@ -16,7 +16,8 @@ import {
 import {
   FormGroup,
   Validators,
-  FormControl
+  FormControl,
+  ɵc
 } from '@angular/forms';
 import {
   MidataService
@@ -43,6 +44,8 @@ import {
 import {
   LoginPage
 } from '../login/login';
+import { Symptome } from '../../models/symptome.model';
+import { CssSelector } from '@angular/core/src/render3/interfaces';
 
 
 @Component({
@@ -64,6 +67,8 @@ export class NewAttackPage {
   medicament: string;
   menge: number = 0;
   medEffect: string;
+  
+  required = false; 
 
   intensityWateryEye: number = 0;
   intensityRedEye: number = 0;
@@ -114,7 +119,7 @@ export class NewAttackPage {
     //Here we can intialize all of the attributes which are selected and altered
     this.group = new FormGroup({
       menge: new FormControl(''),
-      symptome: new FormControl('', [Validators.required]),
+      symptome: new FormControl('', [Validators.required, Validators.minLength(1)]),
       otherSymptom: new FormControl('', [Validators.required, Validators.minLength(4)]),
       painAreal: new FormControl('', [Validators.required]),
       painType: new FormControl('', [Validators.required]),
@@ -336,7 +341,11 @@ export class NewAttackPage {
 
   //-------------------------------- START PERSISTENCE IN MIDATA OF ALL THE INPUT FIELDS---------------------------------------------------------
   presentAlert() {
-    if (this.midataService.loggedIn()) {
+    if(this.group.get('symptome').hasError('required')){
+      console.log("Error: Selektiere minimum eine Auffälligkeit")
+     return this.alertCtrl.create({message: "Bitte gib mindestens eine Auffälligkeit an", buttons: ['OK']}).present()
+    }
+    else if (this.midataService.loggedIn()) {
 
       let alert = this.alertCtrl.create({
         message: 'Deine Daten wurden erfasst',

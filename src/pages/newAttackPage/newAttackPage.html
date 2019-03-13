@@ -42,8 +42,8 @@
       </ion-card-header>
       <ion-item no-lines>
         <ion-label>Auffälligkeiten angeben</ion-label>
-        <ion-select okText="Bestätigen" cancelText="Abbrechen" multiple="true" (ionChange)="onChangeSymptoms()" [(ngModel)]="symptome"
-          name="symptome" formControlName="symptome">
+        <ion-select okText="Bestätigen" cancelText="Abbrechen" multiple="true" (ionChange)="onChangeSymptoms()"
+          [(ngModel)]="symptome" name="symptome" formControlName="symptome">
           <ion-option>Kopfschmerzen</ion-option>
           <ion-option>Tränende Augen</ion-option>
           <ion-option>Gerötete Augen</ion-option>
@@ -63,10 +63,12 @@
           <ion-option>Leseschwäche</ion-option>
           <ion-option>Andere</ion-option>
         </ion-select>
+       
       </ion-item>
       <ion-item *ngIf="selectedOther" no-lines>
         <ion-input placeholder="Andere Auffälligkeiten" [(ngModel)]="otherSymptom" name="otherSymptom" formControlName="otherSymptom"></ion-input>
       </ion-item>
+
     </ion-card>
 
     <ion-card *ngIf="selectedHeadache">
@@ -84,8 +86,8 @@
 
       <ion-item *ngIf="selectedHeadache" no-lines>
         <ion-label>Schmerzart</ion-label>
-        <ion-select okText="Bestätigen" cancelText="Abbrechen" (ionChange)="onChangePainType()" [(ngModel)]="painType" name="painType"
-          formControlName="painType">
+        <ion-select okText="Bestätigen" cancelText="Abbrechen" (ionChange)="onChangePainType()" [(ngModel)]="painType"
+          name="painType" formControlName="painType">
           <ion-option>Dumpf drückender Schmerz</ion-option>
           <ion-option>Stechender Schmerz</ion-option>
           <ion-option>Pochender Schmerz</ion-option>
@@ -136,7 +138,7 @@
       </ion-item>
     </ion-card>
 
-    
+
     <ion-card *ngIf="selectedNasenLaufen">
       <ion-card-header text-center>
         <h1 style="font-weight: bold; color: white">Nasenlaufen</h1>
@@ -159,8 +161,8 @@
 
       <ion-item no-lines>
         <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityNasenVerstopfung" name="intensityNasenVerstopfung"
-          formControlName="intensityNasenVerstopfung">
+        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityNasenVerstopfung"
+          name="intensityNasenVerstopfung" formControlName="intensityNasenVerstopfung">
           <ion-icon small range-left name="md-happy"></ion-icon>
           <ion-icon range-right name="md-sad"></ion-icon>
         </ion-range>
@@ -249,8 +251,8 @@
 
       <ion-item no-lines>
         <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensitySmellSensitivity" name="intensitySmellSensitivity"
-          formControlName="intensitySmellSensitivity">
+        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensitySmellSensitivity"
+          name="intensitySmellSensitivity" formControlName="intensitySmellSensitivity">
           <ion-icon small range-left name="md-happy"></ion-icon>
           <ion-icon range-right name="md-sad"></ion-icon>
         </ion-range>
@@ -293,12 +295,13 @@
       </ion-card-header>
       <ion-item no-lines>
         <ion-label>Von</ion-label>
-        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="fromDateTime" name="fromDateTime" formControlName="fromDateTime"></ion-datetime>
+        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="fromDateTime"
+          name="fromDateTime" formControlName="fromDateTime"></ion-datetime>
       </ion-item>
       <ion-item no-lines>
         <ion-label>Bis</ion-label>
-        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="untilDateTime" name="untilDateTime"
-          formControlName="untilDateTime"></ion-datetime>
+        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="untilDateTime"
+          name="untilDateTime" formControlName="untilDateTime"></ion-datetime>
       </ion-item>
     </ion-card>
 
@@ -335,7 +338,8 @@
           <div class="Column">
             <ion-item no-lines>
               <ion-label>Hat es gewirkt ?</ion-label>
-              <ion-select okText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="medEffect" name="medEffect" formControlName="medEffect">
+              <ion-select okText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="medEffect" name="medEffect"
+                formControlName="medEffect">
                 <ion-option>Ja</ion-option>
                 <ion-option>Nein</ion-option>
                 <ion-option>Hat sich verschlimmert</ion-option>
