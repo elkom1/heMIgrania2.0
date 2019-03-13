@@ -39,7 +39,7 @@ export class MidataService {
       });
 
       // TODO: Change platform
-      this.midata = new Midata('https://test.midata.coop', 'migrEn', 'metal taste buzz bonus toy volume');
+      this.midata = new Midata('https://test.midata.coop', 'heMIgrania', 'metal taste buzz bonus toy volume');
 
       platform.ready().then(() => {
         if (this.network.type === "none") {
