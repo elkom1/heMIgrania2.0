@@ -45,25 +45,31 @@ export class LogoutPage {
 
   ngAfterViewInit() {
     this.platform.ready().then(() => {
-      this.midataService.logout().then(success => {
-        if (success) {
-          this.navCtrl.popToRoot(); 
+      if (this.midataService.loggedIn()) {
+        this.midataService.logout();
+        this.navCtrl.popToRoot(); 
 
-          let alert = this.alertCtrl.create();
-          alert.setTitle("Abmeldung war erfolgreich");
-          alert.addButton('Ok'); 
-          alert.present(); 
-        } else {
-          console.warn('bii baa buu wubba lubba dubb dubb');
-        }
-      });
-    });
+        let alert = this.alertCtrl.create();
+        alert.setTitle("Abmeldung war erfolgreich");
+        alert.addButton('Ok'); 
+        alert.present(); 
+      } else {
+        this.navCtrl.popToRoot(); 
+
+        let alert = this.alertCtrl.create();
+        alert.setTitle("Du bist bereits abgemeldet");
+        alert.addButton('Ok'); 
+        alert.present(); 
+
+        console.warn('bii baa buu wubba lubba dubb dubb');
+      }
+  });
   }
 
   logout() {
     this.platform.ready().then(() => {
-      this.midataService.logout().then(success => {
-        if (success) {
+        if (this.midataService.loggedIn()) {
+          this.midataService.logout();
           this.navCtrl.popToRoot(); 
 
           let alert = this.alertCtrl.create();
@@ -71,9 +77,15 @@ export class LogoutPage {
           alert.addButton('Ok'); 
           alert.present(); 
         } else {
+          this.navCtrl.popToRoot(); 
+
+          let alert = this.alertCtrl.create();
+          alert.setTitle("Du bist bereits abgemeldet");
+          alert.addButton('Ok'); 
+          alert.present(); 
+
           console.warn('bii baa buu wubba lubba dubb dubb');
         }
-      });
     });
   }
 
