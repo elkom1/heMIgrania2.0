@@ -66,6 +66,7 @@ export class MyDayPage {
 
   ngAfterViewInit() {
     this.sleepTime = new Date(new Date().getTime() - 82800000).toISOString();
+   // this.sleepTime = new Date(new Date().getDay()-1 + new Date().setTime(22)).toISOString()
     this.awakeTime = new Date(new Date().getTime() - 3600000).toISOString();
     this.date = new Date(new Date().getTime()).toISOString();
   }
@@ -191,7 +192,7 @@ export class MyDayPage {
       let codingStuff2 = {
         coding: [{
           system: 'http://snomed.info/sct',
-          code: '364645004',
+          code: '418138009', //code von patient condition finding ... muss noch registriert werden 
           display: 'Eating feeding / drinking observable'
         }]
       }
@@ -211,7 +212,7 @@ export class MyDayPage {
       // let asdf = undefined;
       // if (typeof asdf === "undefined")
 
-      if (!this.eatingHabit) {
+      if (this.eatingHabit != null) {
         if (this.eatingHabit.match("Regelmässig gegessen")) {
           entry2.addProperty("valueCodeableConcept", {
             coding: [{
