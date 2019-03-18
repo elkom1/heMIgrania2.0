@@ -36,8 +36,6 @@ import {
 } from '../menu/menu';
 
 import { MatomoTracker } from 'ngx-matomo';
-import { log } from 'util';
-import { format } from 'path';
 
 
 @Component({
