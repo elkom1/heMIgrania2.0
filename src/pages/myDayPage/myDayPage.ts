@@ -1,5 +1,5 @@
 import {
-  Component
+  Component, ModuleWithComponentFactories
 } from '@angular/core';
 import {
   NavController
@@ -35,6 +35,10 @@ import {
   MenuPage
 } from '../menu/menu';
 
+import { MatomoTracker } from 'ngx-matomo';
+import { log } from 'util';
+import { format } from 'path';
+
 
 @Component({
   selector: 'page-myDay',
@@ -57,7 +61,7 @@ export class MyDayPage {
 
   tabBarElement: any;
 
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService) {
+  constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private matomoTracker: MatomoTracker) {
     //Here we can intialize all of the attributes which are selected and altered
     
     this.midataService = midataService;
@@ -65,7 +69,9 @@ export class MyDayPage {
   }
 
   ngAfterViewInit() {
-    this.sleepTime = new Date(new Date().getTime() - 82800000).toISOString();
+    let today = new Date();
+    this.sleepTime = new Date(today.setDate(today.getDate() - 1) && today.getTime()).toISOString();
+    //this.sleepTime = new Date(this.sleepTime.substring(0, 11) && this.sleepTime.replace(this.sleepTime.substring(13,17), "22:00")).toISOString();
    // this.sleepTime = new Date(new Date().getDay()-1 + new Date().setTime(22)).toISOString()
     this.awakeTime = new Date(new Date().getTime() - 3600000).toISOString();
     this.date = new Date(new Date().getTime()).toISOString();
@@ -86,7 +92,8 @@ export class MyDayPage {
   }
 
   showCheckbox() {
-
+    this.matomoTracker.trackEvent('category', 'action', 'name');
+    console.log(this.matomoTracker.trackPageView())
    if (this.midataService.loggedIn()) {
 
       let alert = this.alertCtrl.create({cssClass: 'reset'});
