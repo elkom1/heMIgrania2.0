@@ -35,8 +35,6 @@ import {
   MenuPage
 } from '../menu/menu';
 
-import { MatomoTracker } from 'ngx-matomo';
-
 
 @Component({
   selector: 'page-myDay',
@@ -59,7 +57,7 @@ export class MyDayPage {
 
   tabBarElement: any;
 
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private matomoTracker: MatomoTracker) {
+  constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService) {
     //Here we can intialize all of the attributes which are selected and altered
     
     this.midataService = midataService;
@@ -90,8 +88,6 @@ export class MyDayPage {
   }
 
   showCheckbox() {
-    this.matomoTracker.trackEvent('category', 'action', 'name');
-    console.log(this.matomoTracker.trackPageView())
    if (this.midataService.loggedIn()) {
 
       let alert = this.alertCtrl.create({cssClass: 'reset'});

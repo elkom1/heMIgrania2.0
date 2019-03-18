@@ -55,7 +55,6 @@
     "ionic2-super-tabs": "^5.1.1",
     "ionicons": "3.0.0",
     "midata": "git+https://github.com/i4mi/midata.js.git#efa921515ae5242a712fe46722ba1a8950440a1a",
-    "ngx-matomo": "^0.1.2",
     "phonegap-plugin-barcodescanner": "^8.0.1",
     "readable-stream": "^2.3.6",
     "rxjs": "5.5.11",

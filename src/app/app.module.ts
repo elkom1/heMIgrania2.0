@@ -33,8 +33,6 @@ import { LogoutPage } from "../pages/logout/logout";
 import { MidataService} from "../services/midataService";
 import { MenuService } from '../services/menuService';
 
-import { MatomoModule } from 'ngx-matomo';
-
 
 @NgModule({
   declarations: [
@@ -56,8 +54,7 @@ import { MatomoModule } from 'ngx-matomo';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-    MatomoModule,
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

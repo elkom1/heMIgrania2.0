@@ -8,8 +8,6 @@ import {
   MidataService
 } from '../../services/midataService';
 
-import { MatomoTracker } from 'ngx-matomo';
-
 
 @Component({
   selector: 'page-home',
@@ -19,14 +17,10 @@ export class HomePage {
 
   private midataService: MidataService;
 
-  constructor(public navCtrl: NavController, midataService: MidataService, private matomoTracker: MatomoTracker) {
+  constructor(public navCtrl: NavController, midataService: MidataService) {
     this.midataService = midataService;
   }
 
-  ngOnInit() {
-    this.matomoTracker.setUserId('UserId');
-    this.matomoTracker.setDocumentTitle('ngx-Matomo Test');
-  }
 
 
 }
