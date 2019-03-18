@@ -20,6 +20,7 @@ export class MyApp {
       statusBar.styleDefault();
 
       //piwik initialise 
+      
 
       splashScreen.hide();
     });

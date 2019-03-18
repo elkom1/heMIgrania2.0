@@ -34,7 +34,6 @@
     "@ionic/pro": "2.0.3",
     "@ionic/storage": "2.2.0",
     "@types/node": "^10.12.18",
-    "com.storefront.cordova.piwik": "git+https://github.com/kriserickson/cordova-piwik-plugin.git",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
     "cordova-android": "7.1.4",
     "cordova-ios": "4.5.5",
@@ -83,8 +82,7 @@
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
       "cordova-plugin-x-toast": {},
-      "cordova-plugin-local-notification": {},
-      "com.storefront.cordova.piwik": {}
+      "cordova-plugin-local-notification": {}
     },
     "platforms": [
       "android",
