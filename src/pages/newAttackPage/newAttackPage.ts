@@ -302,21 +302,20 @@ export class NewAttackPage {
       let alert2 = this.alertCtrl.create();
       alert2.setTitle('Bittel melde dich in MIDATA an');
 
-      alert2.addInput({
-        type: 'radio',
-        label: 'Anmelden',
-        checked: true,
-        value: 'value1'
-      });
-
       alert2.addButton('Abbrechen');
       alert2.addButton({
         text: 'Bestätigen',
         handler: data => {
           console.log('Checkbox data:', data);
-          if (data == "value1") {
             this.navCtrl.push(LoginPage)
-          }
+
+            let elements = document.querySelectorAll(".tabbar");
+
+            if (elements != null) {
+              Object.keys(elements).map((key) => {
+                elements[key].style.display = 'none';
+              });
+            }
         }
       });
       alert2.present();
