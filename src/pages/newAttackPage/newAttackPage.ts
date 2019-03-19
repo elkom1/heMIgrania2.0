@@ -343,8 +343,8 @@ export class NewAttackPage {
         let coding1 = {
           coding: [{
             system: 'http://snomed.info/sct',
-            code: '418138009',
-            display: 'General finding of observation of patient' //General finding of observation of patient .. muss registriert werden
+            code: '118222006',
+            display: 'General finding of observation of patient' 
           }]
         }
 
@@ -388,8 +388,8 @@ export class NewAttackPage {
         let codingStuff = {
           coding: [{
             system: 'http://snomed.info/sct',
-            code: '418138009',
-            display: 'Headache Character' //Headache Character registrieren auf MIDATA 
+            code: '162306000',
+            display: 'Headache Character' 
           }]
         }
 
@@ -510,8 +510,8 @@ export class NewAttackPage {
       let codingStuff4 = {
         coding: [{
           system: 'http://snomed.info/sct',
-          code: '418138009',
-          display: 'Clinical finding present' //"Clinical finding present" .. registrieren noch 
+          code: '373573001',
+          display: 'Clinical finding present' 
         }]
       }
 
@@ -724,8 +724,8 @@ export class NewAttackPage {
         let codingStuff4_5 = {
           coding: [{
             system: 'http://snomed.info/sct',
-            code: '418138009',
-            display: 'Nausea and Vomiting Status' //noch registrieren auf MIDATA 
+            code: '405166007',
+            display: 'Nausea and Vomiting Status' 
           }]
         }
 
@@ -781,8 +781,8 @@ export class NewAttackPage {
         let codingStuff5 = {
           coding: [{
             system: 'http://snomed.info/sct',
-            code: '418138009',
-            display: 'Visual function' //"Visual function .. registrieren noch 
+            code: '281004000',
+            display: 'Visual function' 
           }]
         }
 
@@ -838,8 +838,8 @@ export class NewAttackPage {
         let codingStuff6 = {
           coding: [{
             system: 'http://snomed.info/sct',
-            code: '418138009',
-            display: 'General reaction to light' //"General reaction to light .. registrieren noch 
+            code: '246613004',
+            display: 'General reaction to light' 
           }]
         }
 
@@ -893,8 +893,8 @@ export class NewAttackPage {
       let codingStuff7 = {
         coding: [{
           system: 'http://snomed.info/sct',
-          code: '418138009',
-          display: 'Emotion' //"Emotion .. registrieren noch 
+          code: '285854004',
+          display: 'Emotion' 
         }]
       }
 
@@ -978,8 +978,8 @@ export class NewAttackPage {
         let codingStuff8 = {
           coding: [{
             system: 'http://snomed.info/sct',
-            code: '418138009',
-            display: 'Altered sensation of skin' //"Altered sensation of skin .. registrieren noch 
+            code: '247325003',
+            display: 'Altered sensation of skin' 
           }]
         }
 
@@ -1035,8 +1035,8 @@ export class NewAttackPage {
         let codingStuff9 = {
           coding: [{
             system: 'http://snomed.info/sct',
-            code: '418138009',
-            display: 'Speech observable' //"Speech observable .. registrieren noch 
+            code: '363918005',
+            display: 'Speech observable' 
           }]
         }
 
@@ -1092,8 +1092,8 @@ export class NewAttackPage {
         let codingStuff10 = {
           coding: [{
             system: 'http://snomed.info/sct',
-            code: '418138009',
-            display: 'Sense of smell, function' //"Sense of smell .. registrieren noch 
+            code: '397686008',
+            display: 'Sense of smell, function' 
           }]
         }
 
@@ -1147,8 +1147,8 @@ export class NewAttackPage {
       let codingStuff11 = {
         coding: [{
           system: 'http://snomed.info/sct',
-          code: '418138009',
-          display: 'Mental state, behavior' //"Mental state, behavior .. registrieren noch 
+          code: '363870007',
+          display: 'Mental state, behavior / psychosocial function observable' 
         }]
       }
 
@@ -1220,8 +1220,8 @@ export class NewAttackPage {
         let codingStuff12 = {
           coding: [{
             system: 'http://snomed.info/sct',
-            code: '418138009',
-            display: 'Female reproductive function' //"Female reproductive function .. registrieren noch 
+            code: '66523006',
+            display: 'Female reproductive function'  
           }]
         }
 
