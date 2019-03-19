@@ -193,7 +193,7 @@ export class MyDayPage {
       let codingStuff2 = {
         coding: [{
           system: 'http://snomed.info/sct',
-          code: '364645004', //code von patient condition finding ... muss noch registriert werden 
+          code: '364645004', 
           display: 'Eating feeding / drinking observable'
         }]
       }
