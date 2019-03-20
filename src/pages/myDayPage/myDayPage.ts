@@ -57,6 +57,9 @@ export class MyDayPage {
 
   tabBarElement: any;
 
+  selectedCard: Boolean = false;
+  selectedCard2: Boolean = false;
+
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService) {
     //Here we can intialize all of the attributes which are selected and altered
     
@@ -85,6 +88,22 @@ export class MyDayPage {
 
   ionViewWillEnter() {
     this.tabBarElement.style.display = 'flex';
+  }
+
+  showText() {
+    if (this.selectedCard == false) {
+      this.selectedCard = true;
+    } else {
+      this.selectedCard = false;
+    }
+  }
+
+  showText2() {
+    if (this.selectedCard2 == false) {
+      this.selectedCard2 = true;
+    } else {
+      this.selectedCard2 = false;
+    }
   }
 
   showCheckbox() {

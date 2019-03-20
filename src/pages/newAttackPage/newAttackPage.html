@@ -15,8 +15,8 @@
   <form [formGroup]="group">
 
     <ion-card>
-      <ion-card-header text-center>
-        <h1 style="font-weight: bold; color: white">Was erfasst du gerade ?</h1>
+      <ion-card-header>
+        <h1 style="font-weight: bold; color: white"><ion-icon name="md-help"></ion-icon>   Was erfasst du gerade ?</h1>
       </ion-card-header>
       <ion-list radio-group [(ngModel)]="situation" name="situation" formControlName="situation">
         <div class="Row">
@@ -37,37 +37,40 @@
     </ion-card>
 
     <ion-card>
-      <ion-card-header text-center>
-        <h1 style="font-weight: bold; color: white">Auffälligkeiten</h1>
+      <ion-card-header (click)="showText()">
+        <h1 style="font-weight: bold; color: white"><ion-icon name="md-bulb"></ion-icon>   Auffälligkeiten</h1>
       </ion-card-header>
-      <ion-item no-lines>
-        <ion-label>Auffälligkeiten angeben</ion-label>
-        <ion-select okText="Bestätigen" cancelText="Abbrechen" multiple="true" (ionChange)="onChangeSymptoms()"
-          [(ngModel)]="symptome" name="symptome" formControlName="symptome">
-          <ion-option>Kopfschmerzen</ion-option>
-          <ion-option>Tränende Augen</ion-option>
-          <ion-option>Gerötete Augen</ion-option>
-          <ion-option>Nasenlaufen</ion-option>
-          <ion-option>Nasenverstopfung</ion-option>
-          <ion-option>Flimmersehen</ion-option>
-          <ion-option>Lichtempfindlichkeit</ion-option>
-          <ion-option>Lärmempfindlichkeit</ion-option>
-          <ion-option>Gefühlsstörung</ion-option>
-          <ion-option>Sprachstörung</ion-option>
-          <ion-option>Geruchsempfindlichkeit</ion-option>
-          <ion-option>Erbrechen</ion-option>
-          <ion-option>Übelkeit</ion-option>
-          <ion-option>Stress</ion-option>
-          <ion-option>Erholung</ion-option>
-          <ion-option>Menstruation</ion-option>
-          <ion-option>Leseschwäche</ion-option>
-          <ion-option>Andere</ion-option>
-        </ion-select>
-       
-      </ion-item>
-      <ion-item *ngIf="selectedOther" no-lines>
-        <ion-input placeholder="Andere Auffälligkeiten" [(ngModel)]="otherSymptom" name="otherSymptom" formControlName="otherSymptom"></ion-input>
-      </ion-item>
+      <ion-card-content *ngIf="selectedCard">
+        <ion-item no-lines>
+          <ion-label>Auffälligkeiten angeben</ion-label>
+          <ion-select okText="Bestätigen" cancelText="Abbrechen" multiple="true" (ionChange)="onChangeSymptoms()"
+            [(ngModel)]="symptome" name="symptome" formControlName="symptome">
+            <ion-option>Kopfschmerzen</ion-option>
+            <ion-option>Tränende Augen</ion-option>
+            <ion-option>Gerötete Augen</ion-option>
+            <ion-option>Nasenlaufen</ion-option>
+            <ion-option>Nasenverstopfung</ion-option>
+            <ion-option>Flimmersehen</ion-option>
+            <ion-option>Lichtempfindlichkeit</ion-option>
+            <ion-option>Lärmempfindlichkeit</ion-option>
+            <ion-option>Gefühlsstörung</ion-option>
+            <ion-option>Sprachstörung</ion-option>
+            <ion-option>Geruchsempfindlichkeit</ion-option>
+            <ion-option>Erbrechen</ion-option>
+            <ion-option>Übelkeit</ion-option>
+            <ion-option>Stress</ion-option>
+            <ion-option>Erholung</ion-option>
+            <ion-option>Menstruation</ion-option>
+            <ion-option>Leseschwäche</ion-option>
+            <ion-option>Andere</ion-option>
+          </ion-select>
+
+        </ion-item>
+        <ion-item *ngIf="selectedOther" no-lines>
+          <ion-input placeholder="Andere Auffälligkeiten" [(ngModel)]="otherSymptom" name="otherSymptom"
+            formControlName="otherSymptom"></ion-input>
+        </ion-item>
+      </ion-card-content>
 
     </ion-card>
 
@@ -290,26 +293,28 @@
     </ion-card>
 
     <ion-card>
-      <ion-card-header text-center>
-        <h1 style="font-weight: bold; color: white">Dauer des Schmerzes</h1>
+      <ion-card-header (click)="showText2()">
+        <h1 style="font-weight: bold; color: white"><ion-icon name="time"></ion-icon>   Dauer des Schmerzes</h1>
       </ion-card-header>
-      <ion-item no-lines>
-        <ion-label>Von</ion-label>
-        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="fromDateTime"
-          name="fromDateTime" formControlName="fromDateTime"></ion-datetime>
-      </ion-item>
-      <ion-item no-lines>
-        <ion-label>Bis</ion-label>
-        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="untilDateTime"
-          name="untilDateTime" formControlName="untilDateTime"></ion-datetime>
-      </ion-item>
+      <ion-card-content *ngIf="selectedCard2">
+        <ion-item no-lines>
+          <ion-label>Von</ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="fromDateTime"
+            name="fromDateTime" formControlName="fromDateTime"></ion-datetime>
+        </ion-item>
+        <ion-item no-lines>
+          <ion-label>Bis</ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="untilDateTime"
+            name="untilDateTime" formControlName="untilDateTime"></ion-datetime>
+        </ion-item>
+      </ion-card-content>
     </ion-card>
 
     <ion-card>
-      <ion-card-header text-center>
-        <h1 style="font-weight: bold; color: white">Medikamente</h1>
+      <ion-card-header (click)="showText3()">
+        <h1 style="font-weight: bold; color: white"><ion-icon name="medkit"></ion-icon>   Medikamente</h1>
       </ion-card-header>
-      <ion-card-content style="background-color: white">
+      <ion-card-content style="background-color: white" *ngIf="selectedCard3">
         <div class="Row">
           <div class="Column">
             <button ion-button color="light">

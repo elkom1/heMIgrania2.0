@@ -97,6 +97,10 @@ export class NewAttackPage {
   encodeText: string = '';
 
   tabBarElement: any;
+
+  selectedCard: Boolean = false;
+  selectedCard2: Boolean = false;
+  selectedCard3: Boolean = false;
   //-------------------------------------END INITIALIZE ITEMS -------------------------------------------------
 
 
@@ -175,6 +179,30 @@ export class NewAttackPage {
   }
   //-------------------------------------END ONCHANGE METHODS FOR "OTHER SELECTION"------------------------
 
+  showText() {
+    if (this.selectedCard == false) {
+      this.selectedCard = true;
+    } else {
+      this.selectedCard = false;
+    }
+  }
+
+  showText2() {
+    if (this.selectedCard2 == false) {
+      this.selectedCard2 = true;
+    } else {
+      this.selectedCard2 = false;
+    }
+  }
+
+  showText3() {
+    if (this.selectedCard3 == false) {
+      this.selectedCard3 = true;
+    } else {
+      this.selectedCard3 = false;
+    }
+  }
+  
   //-------------------------------------START METHODS FOR MEDICATION SEARCH-------------------------------
   initializeItems() {
     this.items = [

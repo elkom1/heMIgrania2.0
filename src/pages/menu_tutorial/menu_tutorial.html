@@ -13,10 +13,10 @@
 <ion-content padding>
 
   <ion-card>
-    <ion-card-header text-center>
-      <h4 style="font-weight: bold">Was sehe ich auf der Startseite?</h4>
+    <ion-card-header text-center (click)="showText()">
+      <h4 style="font-weight: bold; color: white">Was sehe ich auf der Startseite?</h4>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content *ngIf="selectedCard">
       Die Übersicht ist da, damit du schnell und einfach einen Überblick zu deinen erfassten Werten erhältst. Im ersten
       Wert siehst du, wie viele Migräneattacken du letzten Monat hattest. Im Zweiten Wert siehst du, die letzten Tage
       infolge, in denen du keine Migräne hattest. Im dritten Wert siehst du, wie viel Migräneattacken du im laufenden
@@ -24,10 +24,10 @@
   </ion-card>
 
   <ion-card>
-    <ion-card-header text-center>
-      <h4 style="font-weight: bold">Was kann ich im Bereich "Mein Tag" <br/> machen?</h4>
+    <ion-card-header text-center (click)="showText2()">
+      <h4 style="font-weight: bold; color: white">Was kann ich im Bereich "Mein Tag" <br/> machen?</h4>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content *ngIf="selectedCard2">
       Dieser Bereich dient dir für deine tägliche Erfassung. Damit der Arzt eine passende Diagnose stellen kann,
       braucht er deine täglichen Aufzeichnungen im Bezug zu deinem Schlaf- und Essverhalten. Indem du auch deine
       gemachten Übungen aufzeichnest, kann der Arzt sehen, ob dir bestimmte Übungen besonders helfen. Es ist sehr
@@ -37,10 +37,10 @@
   </ion-card>
 
   <ion-card>
-    <ion-card-header text-center>
-      <h4 style="font-weight: bold">Was kann ich im Bereich "Neuer Eintrag" <br/> machen?</h4>
+    <ion-card-header text-center (click)="showText3()">
+      <h4 style="font-weight: bold; color: white">Was kann ich im Bereich "Neuer Eintrag" <br/> machen?</h4>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content *ngIf="selectedCard3">
       Hier zeichnest du deine Migräneanfälle auf. Jedes Mal, wenn du einen neuen Anfall hattest, kannst du ihn in
       diesem Bereich erfassen. Für deinen Arzt sind verschiedene Angaben interessant. In dieser App wurden
       Informationstypen festgelegt. Diese sind:
@@ -60,10 +60,10 @@
   </ion-card>
 
   <ion-card>
-    <ion-card-header text-center>
-      <h4 style="font-weight: bold"> Was kann ich auf der Menüliste <br/> sehen?</h4>
+    <ion-card-header text-center (click)="showText4()">
+      <h4 style="font-weight: bold; color: white"> Was kann ich auf der Menüliste <br/> sehen?</h4>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content *ngIf="selectedCard4">
       Hier kannst du weitere Features von heMIgrania nutzen. Spezielle Features sind:
       <br />
       Du kannst auf deinen "MIDATA-Account" zugreifen, um beispielsweise deinem Arzt einen Zugriff auf deine Daten zu
@@ -75,16 +75,6 @@
 
     </ion-card-content>
   </ion-card>
-
-
-
-
-
-
-
-
-
-
 
 
 
