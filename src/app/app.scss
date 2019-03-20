@@ -14,11 +14,58 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-.alert-ios .alert-radio-label{ white-space: pre-line;}
-.alert-md .alert-radio-label{ white-space: pre-line;}
-.alert-wp .alert-radio-label{ white-space: pre-line;}
+.alert-ios .alert-radio-label {
+  white-space: pre-line;
+}
+
+.alert-md .alert-radio-label {
+  white-space: pre-line;
+}
+
+.alert-wp .alert-radio-label {
+  white-space: pre-line;
+}
+
+//Content style 
+.content {
+  background: linear-gradient(120deg, rgba(239, 245, 245, 0.986), rgb(245, 240, 240));
+}
+
+//tabbar style 
+.tabs-md .tabbar {
+  background: linear-gradient(120deg, rgba(239, 245, 245, 0.986), rgb(245, 240, 240));
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+  font-weight: bold;
+}
+
+//toolbar style
+.toolbar-background {
+  background: linear-gradient(120deg, rgb(105, 209, 201), rgb(40, 131, 63));
+}
+
+.toolbar-title-md {
+  color: white;
+  white-space: normal;
+}
+
+//Button Style
+.button {
+    background: linear-gradient(120deg, rgb(105, 209, 201), rgb(40, 131, 63));
+}
 
 
-  
+//card style 
+.card {
+  background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));
+  border-radius: 20px;
+}
 
+ion-card-content {
+  background-color: white;
+}
 
+.movie-card {
+  background: white;
+}
