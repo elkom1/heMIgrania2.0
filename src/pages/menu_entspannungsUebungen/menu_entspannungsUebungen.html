@@ -10,15 +10,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <h5 style="text-align: center">
+<ion-content padding> 
+  <h5 style="text-align: center;">
     Gemäss Nachforschungen der Deutschen Migräne- und Kopfschmerzgesellschaft tragen Entspannungsübungen
     wesentlich dazu bei, die Migräneintervalle zu verlängern und die Intensität der Migräneattacken abzumildern
   </h5>
 
   <ion-card>
     <ion-card-header text-center (click)="showText()">
-      <h1 style="font-weight: bold; white-space: pre-line;">Progressive Muskelrelaxation</h1>
+      <h1 style="font-weight: bold; white-space: pre-line; color: white;">Progressive Muskelrelaxation</h1>
     </ion-card-header>
     <ion-card-content *ngIf="selectedCard">
       <h2 style="font-weight: bold">Einleitung:</h2>
@@ -91,7 +91,7 @@
 
   <ion-card>
     <ion-card-header text-center (click)="showText2()">
-      <h1 style="font-weight: bold">Entspannungsübung 2</h1>
+      <h1 style="font-weight: bold; color: white">Entspannungsübung 2</h1>
     </ion-card-header>
     <ion-card-content *ngIf="selectedCard2">
       In Bearbeitung...
@@ -100,7 +100,7 @@
 
   <ion-card>
     <ion-card-header text-center (click)="showText3()">
-      <h1 style="font-weight: bold">Entspannungsübung 3</h1>
+      <h1 style="font-weight: bold; color: white">Entspannungsübung 3</h1>
     </ion-card-header>
     <ion-card-content *ngIf="selectedCard3">
       In Bearbeitung...
