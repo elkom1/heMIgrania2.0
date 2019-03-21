@@ -24,6 +24,7 @@ export class Reminder {
       console.log(date.getTime());
       this.localNotifications.schedule({
         id: 1,
+        icon: 'assets/imgs/icon.png',
         text: 'Vergiss nicht deine tägliche Erfassung einzutragen',
         trigger: {
           firstAt: date,
