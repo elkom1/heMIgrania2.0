@@ -5,6 +5,7 @@ import { MidataService } from '../../services/midataService';
 import {
   AlertController
 } from 'ionic-angular';
+import { MatomoTracker } from 'ngx-matomo';
 
 
 @IonicPage()
@@ -21,7 +22,8 @@ export class LoginPage {
       private inAppBrowser: InAppBrowser,
       private midataService: MidataService,
       private platform: Platform,
-      private alertCtrl: AlertController) {
+      private alertCtrl: AlertController,
+      private matomoTracker: MatomoTracker) {
   }
 
   // register(){
@@ -38,6 +40,8 @@ export class LoginPage {
       if (success) {
         this.navCtrl.popToRoot(); 
 
+        this.matomoTracker.setUserId(this.midataService.getUser.toString())
+        
         let alert = this.alertCtrl.create();
           alert.setTitle("Du bist bereits angemeldet");
           alert.addButton('Ok'); 

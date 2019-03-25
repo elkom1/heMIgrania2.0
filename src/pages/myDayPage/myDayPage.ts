@@ -1,5 +1,5 @@
 import {
-  Component, ModuleWithComponentFactories
+  Component
 } from '@angular/core';
 import {
   NavController
@@ -35,7 +35,6 @@ import {
   MenuPage
 } from '../menu/menu';
 import { MatomoTracker } from 'ngx-matomo';
-import { log } from 'util';
 
 
 @Component({
@@ -84,6 +83,9 @@ export class MyDayPage {
     this.awakeTime = time2.toISOString();
 
     this.date = new Date(new Date().getTime()).toISOString();
+
+    // console.log(this.midataService.getUser().email)
+    
   }
 
   ngOnInit(){
@@ -95,11 +97,16 @@ export class MyDayPage {
       date: new FormControl('', [Validators.required])
     })
 
-    this.matomoTracker.setUserId('UserID');
-    this.matomoTracker.setDocumentTitle('ngx-Matomo Test');
+    if(this.midataService.loggedIn()) {
+    this.matomoTracker.setUserId(this.midataService.getUser().email);
+    this.matomoTracker.setDocumentTitle('ngx-Matomo Test22');
 
-    console.log(this.matomoTracker.setUserId('UserID'))
-    console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test'))
+    console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
+    console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test22'))
+    }
+
+    this.matomoTracker.trackPageView("Mein Tag View besucht"); 
+
   }
 
   ionViewWillEnter() {

@@ -32,6 +32,7 @@ import {
 import {
   LoginPage
 } from '../login/login';
+import { MatomoTracker } from 'ngx-matomo';
 
 
 @Component({
@@ -105,7 +106,7 @@ export class NewAttackPage {
 
 
   //-------------------------------------START CONSTRUCTOR ----------------------------------------------------
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private scanner: BarcodeScanner) {
+  constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private scanner: BarcodeScanner, private matomoTracker: MatomoTracker) {
     //Here we can intialize all of the attributes which are selected and altered
     this.group = new FormGroup({
       menge: new FormControl(''),
@@ -147,6 +148,18 @@ export class NewAttackPage {
     this.menge = 1;
     this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
     this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
+  }
+
+  ngOnInit() {
+    if(this.midataService.loggedIn()) {
+    this.matomoTracker.setUserId(this.midataService.getUser().email);
+    this.matomoTracker.setDocumentTitle('ngx-Matomo Test22');
+
+    console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
+    console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test22'))
+    }
+    this.matomoTracker.trackPageView; 
+
   }
 
   ionViewWillEnter() {
