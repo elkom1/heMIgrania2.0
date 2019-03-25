@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MenuPage } from '../pages/menu/menu';
 
+import { MatomoInjector } from 'ngx-matomo';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -13,14 +15,14 @@ export class MyApp {
 
  rootPage:any = MenuPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private matomoInjector: MatomoInjector) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
 
       //piwik initialise 
-      
+      this.matomoInjector.init('//147.87.117.65/', 2);
 
       splashScreen.hide();
     });

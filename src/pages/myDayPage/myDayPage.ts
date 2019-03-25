@@ -34,6 +34,8 @@ import {
 import {
   MenuPage
 } from '../menu/menu';
+import { MatomoTracker } from 'ngx-matomo';
+import { log } from 'util';
 
 
 @Component({
@@ -60,7 +62,7 @@ export class MyDayPage {
   selectedCard: Boolean = false;
   selectedCard2: Boolean = false;
 
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService) {
+  constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private matomoTracker: MatomoTracker) {
     //Here we can intialize all of the attributes which are selected and altered
     
     this.midataService = midataService;
@@ -68,11 +70,19 @@ export class MyDayPage {
   }
 
   ngAfterViewInit() {
-    let today = new Date();
-    this.sleepTime = new Date(today.setDate(today.getDate() - 1) && today.getTime()).toISOString();
-    //this.sleepTime = new Date(this.sleepTime.substring(0, 11) && this.sleepTime.replace(this.sleepTime.substring(13,17), "22:00")).toISOString();
-   // this.sleepTime = new Date(new Date().getDay()-1 + new Date().setTime(22)).toISOString()
-    this.awakeTime = new Date(new Date().getTime() - 3600000).toISOString();
+   //inititalize sleeptime with a default value of last night 22:00 
+    let time = new Date(); 
+    time.setDate(time.getDate() - 1); 
+    time.setHours(23); 
+    time.setMinutes(0); 
+    this.sleepTime = time.toISOString(); 
+    
+    //Initialize awake time in todays date at 08:00 
+    let time2 = new Date(); 
+    time2.setHours(9); 
+    time2.setMinutes(0); 
+    this.awakeTime = time2.toISOString();
+
     this.date = new Date(new Date().getTime()).toISOString();
   }
 
@@ -84,6 +94,12 @@ export class MyDayPage {
       eatingHabit: new FormControl('', [Validators.required]),
       date: new FormControl('', [Validators.required])
     })
+
+    this.matomoTracker.setUserId('UserID');
+    this.matomoTracker.setDocumentTitle('ngx-Matomo Test');
+
+    console.log(this.matomoTracker.setUserId('UserID'))
+    console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test'))
   }
 
   ionViewWillEnter() {
@@ -107,6 +123,10 @@ export class MyDayPage {
   }
 
   showCheckbox() {
+
+    this.matomoTracker.trackEvent('trackEvent', 'Documentary', 'Play');
+    console.log(this.matomoTracker.trackPageView)
+
    if (this.midataService.loggedIn()) {
 
       let alert = this.alertCtrl.create({cssClass: 'reset'});
