@@ -27,12 +27,13 @@ export class HomePage {
     // this.matomoTracker.setUserId('UserID');
     // this.matomoTracker.setDocumentTitle('ngx-Matomo Test');
 
-    console.log("Musab   " + this.matomoTracker.setTrackerUrl)
+    if(this.midataService.loggedIn()) {
+    this.matomoTracker.setUserId(this.midataService.getUser().email);
+    this.matomoTracker.setDocumentTitle('ngx-Matomo Test22');
 
-    console.log(this.matomoTracker.setUserId('UserID'))
-    console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test'))
-    console.log(this.matomoTracker.trackPageView)
-
+    console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
+    console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test22'))
+    }
     this.matomoTracker.trackPageView; 
   }
 

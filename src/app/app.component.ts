@@ -22,7 +22,7 @@ export class MyApp {
       statusBar.styleDefault();
 
       //piwik initialise 
-      this.matomoInjector.init('//147.87.117.65/', 2);
+      this.matomoInjector.init('//analytics.i4mi.bfh.ch/', 2);
 
       splashScreen.hide();
     });

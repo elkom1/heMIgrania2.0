@@ -40,7 +40,7 @@ export class LoginPage {
       if (success) {
         this.navCtrl.popToRoot(); 
 
-        this.matomoTracker.setUserId(this.midataService.getUser.toString())
+        // this.matomoTracker.setUserId(this.midataService.getUser.toString())
         
         let alert = this.alertCtrl.create();
           alert.setTitle("Du bist bereits angemeldet");
