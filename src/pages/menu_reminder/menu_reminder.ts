@@ -28,7 +28,7 @@ export class Reminder {
         text: 'Vergiss nicht deine tägliche Erfassung einzutragen',
         trigger: {
           firstAt: date,
-          every: ELocalNotificationTriggerUnit.DAY, //MINUTE hat funktioniert 
+          every: ELocalNotificationTriggerUnit.DAY,  
           count: 500
         }
       });
