@@ -34,7 +34,9 @@ import {
 import {
   MenuPage
 } from '../menu/menu';
-import { MatomoTracker } from 'ngx-matomo';
+import {
+  MatomoTracker
+} from 'ngx-matomo';
 
 
 @Component({
@@ -63,32 +65,32 @@ export class MyDayPage {
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private matomoTracker: MatomoTracker) {
     //Here we can intialize all of the attributes which are selected and altered
-    
+
     this.midataService = midataService;
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
 
   ngAfterViewInit() {
-   //inititalize sleeptime with a default value of last night 22:00 
-    let time = new Date(); 
-    time.setDate(time.getDate() - 1); 
-    time.setHours(23); 
-    time.setMinutes(0); 
-    this.sleepTime = time.toISOString(); 
-    
+    //inititalize sleeptime with a default value of last night 22:00 
+    let time = new Date();
+    time.setDate(time.getDate() - 1);
+    time.setHours(23);
+    time.setMinutes(0);
+    this.sleepTime = time.toISOString();
+
     //Initialize awake time in todays date at 08:00 
-    let time2 = new Date(); 
-    time2.setHours(9); 
-    time2.setMinutes(0); 
+    let time2 = new Date();
+    time2.setHours(9);
+    time2.setMinutes(0);
     this.awakeTime = time2.toISOString();
 
     this.date = new Date(new Date().getTime()).toISOString();
 
     // console.log(this.midataService.getUser().email)
-    
+
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.group = new FormGroup({
       sleepTime: new FormControl('', [Validators.required]),
       awakeTime: new FormControl('', [Validators.required]),
@@ -97,15 +99,15 @@ export class MyDayPage {
       date: new FormControl('', [Validators.required])
     })
 
-    if(this.midataService.loggedIn()) {
-    this.matomoTracker.setUserId(this.midataService.getUser().email);
-    this.matomoTracker.setDocumentTitle('ngx-Matomo Test22');
+    if (this.midataService.loggedIn()) {
+      this.matomoTracker.setUserId(this.midataService.getUser().email);
+      this.matomoTracker.setDocumentTitle('ngx-Matomo Test22');
 
-    console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
-    console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test22'))
+      console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
+      console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test22'))
     }
 
-    this.matomoTracker.trackPageView("Mein Tag View besucht"); 
+    this.matomoTracker.trackPageView("Mein Tag View besucht");
 
   }
 
@@ -134,9 +136,11 @@ export class MyDayPage {
     this.matomoTracker.trackEvent('trackEvent', 'Documentary', 'Play');
     console.log(this.matomoTracker.trackPageView)
 
-   if (this.midataService.loggedIn()) {
+    if (this.midataService.loggedIn()) {
 
-      let alert = this.alertCtrl.create({cssClass: 'reset'});
+      let alert = this.alertCtrl.create({
+        cssClass: 'reset'
+      });
       alert.setTitle('Hattest du sonstige Beschwerden ?');
 
       alert.addInput({
@@ -164,15 +168,15 @@ export class MyDayPage {
           console.log('Checkbox data:', data);
           if (data == "value1") {
             this.navCtrl.push(HomePage)
-           // this.navCtrl.parent.select(0);
+            // this.navCtrl.parent.select(0);
           }
           if (data == "value2") {
             this.navCtrl.push(NewAttackPage) //navigate the tab does not function
-           // this.navCtrl.parent.select(2);
+            // this.navCtrl.parent.select(2);
           }
           if (data == "value3") {
             this.navCtrl.push(HomePage)
-           // this.navCtrl.parent.select(0);
+            // this.navCtrl.parent.select(0);
           }
         }
       });
@@ -239,7 +243,7 @@ export class MyDayPage {
       let codingStuff2 = {
         coding: [{
           system: 'http://snomed.info/sct',
-          code: '364645004', 
+          code: '364645004',
           display: 'Eating feeding / drinking observable'
         }]
       }
@@ -329,18 +333,32 @@ export class MyDayPage {
         text: 'Bestätigen',
         handler: data => {
           console.log('Checkbox data:', data);
-            this.navCtrl.push(LoginPage)
-            //   this.menuPage.openPage(this.menuPage.pages[0])
-            let elements = document.querySelectorAll(".tabbar");
+          this.navCtrl.push(LoginPage)
+          //   this.menuPage.openPage(this.menuPage.pages[0])
+          let elements = document.querySelectorAll(".tabbar");
 
-            if (elements != null) {
-              Object.keys(elements).map((key) => {
-                elements[key].style.display = 'none';
-              });
-            } 
+          if (elements != null) {
+            Object.keys(elements).map((key) => {
+              elements[key].style.display = 'none';
+            });
+          }
         }
       });
       alert2.present();
+    }
+  }
+
+  /*
+  swipe function
+  2 = nach rechts swipen
+  4 = nach links swipen
+  parent.selecht(x): 0 = Home, 1 = Mein Tag, 2 = Neuer Eintrag 
+  */
+  swipe(event) {
+    if (event.direction === 2) { // 2 = nach rechts swipen
+      this.navCtrl.parent.select(2);
+    } else if (event.direction === 4) { // 4 = nach links swipen
+      this.navCtrl.parent.select(0);
     }
   }
 }
