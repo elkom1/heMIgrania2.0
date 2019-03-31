@@ -151,15 +151,20 @@ export class NewAttackPage {
   }
 
   ngOnInit() {
-    if(this.midataService.loggedIn()) {
-    this.matomoTracker.setUserId(this.midataService.getUser().email);
-    this.matomoTracker.setDocumentTitle('ngx-Matomo Test22');
+    //set user ID and document title 
+    if (this.midataService.loggedIn()) {
+      this.matomoTracker.setUserId(this.midataService.getUser().email);
+      this.matomoTracker.setDocumentTitle('ngx-Matomo Test33');
 
-    console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
-    console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test22'))
+      console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
+      console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test33'))
+    } else {
+      this.matomoTracker.setUserId("UserXY");
+      this.matomoTracker.setDocumentTitle('ngx-Matomo Test33');
     }
-    this.matomoTracker.trackPageView; 
-
+    //Tracking Page view 
+    this.matomoTracker.trackPageView("Neuer Eintrag View besucht");
+    this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Neuer Eintrag View besucht")
   }
 
   ionViewWillEnter() {
@@ -531,7 +536,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
@@ -589,7 +594,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
@@ -628,7 +633,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
@@ -667,7 +672,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
@@ -706,7 +711,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
@@ -744,7 +749,7 @@ export class NewAttackPage {
             code: {
               coding: [{
                 system: "http://snomed.info/sct",
-                code: "425401001",
+                code: "406127006",
                 display: "Pain intensity rating scale"
               }]
             },
@@ -801,7 +806,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
@@ -858,7 +863,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
@@ -915,7 +920,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
@@ -972,7 +977,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
@@ -1055,7 +1060,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
@@ -1112,7 +1117,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
@@ -1169,7 +1174,7 @@ export class NewAttackPage {
           code: {
             coding: [{
               system: "http://snomed.info/sct",
-              code: "425401001",
+              code: "406127006",
               display: "Pain intensity rating scale"
             }]
           },
