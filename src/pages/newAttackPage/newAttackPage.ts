@@ -33,6 +33,7 @@ import {
   LoginPage
 } from '../login/login';
 import { MatomoTracker } from 'ngx-matomo';
+import { empty } from 'rxjs/Observer';
 
 
 @Component({
@@ -154,17 +155,15 @@ export class NewAttackPage {
     //set user ID and document title 
     if (this.midataService.loggedIn()) {
       this.matomoTracker.setUserId(this.midataService.getUser().email);
-      this.matomoTracker.setDocumentTitle('ngx-Matomo Test33');
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
 
       console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
       console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test33'))
     } else {
-      this.matomoTracker.setUserId("UserXY");
-      this.matomoTracker.setDocumentTitle('ngx-Matomo Test33');
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
     }
     //Tracking Page view 
     this.matomoTracker.trackPageView("Neuer Eintrag View besucht");
-    this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Neuer Eintrag View besucht")
   }
 
   ionViewWillEnter() {
@@ -265,12 +264,20 @@ export class NewAttackPage {
 
   scan() {
     this.scanner.scan().then((data) => {
+      if(data.cancelled) {
+        let scannerAlert = this.alertCtrl.create({
+          message: data.text + "Scan nicht erfolgreich" + "<br/>" + "Bitte versuche es nochmal",
+          buttons: ['OK']
+        });
+        scannerAlert.present();
+      } else {
       let scannerAlert = this.alertCtrl.create({
         message: data.text + "<br/>" + "Scan war erfolgreich",
         buttons: ['OK']
       });
       scannerAlert.present();
       (this.medicament == null || this.medicament != null) ? this.medicament = data.text: ""
+    }
     }).catch(err => {
       console.log('Error', err);
     });
