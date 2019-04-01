@@ -83,9 +83,14 @@ export class LoginPage {
 
   goHome() {
     this.navCtrl.popToRoot();
+    //tracking event 
+    this.matomoTracker.trackEvent("Page: Login", "Zurück zur Startseite ohne Anmeldung")
   }
 
   login() {
+    //tracking event 
+    this.matomoTracker.trackEvent("Page: Login", "Anmelden Button klick")
+
     let loading = this.loadingCtrl.create({
       content: 'Bitte warten...'
     });
