@@ -200,6 +200,8 @@ export class NewAttackPage {
   showText() {
     if (this.selectedCard == false) {
       this.selectedCard = true;
+      //tracking event
+      this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 1 klick: Auffälligkeiten")
     } else {
       this.selectedCard = false;
     }
@@ -208,6 +210,8 @@ export class NewAttackPage {
   showText2() {
     if (this.selectedCard2 == false) {
       this.selectedCard2 = true;
+      //tracking event
+      this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 2 klick: Dauer des Schmerzes")
     } else {
       this.selectedCard2 = false;
     }
@@ -216,6 +220,8 @@ export class NewAttackPage {
   showText3() {
     if (this.selectedCard3 == false) {
       this.selectedCard3 = true;
+      //tracking event
+      this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 3 klick: Medikamente")
     } else {
       this.selectedCard3 = false;
     }
@@ -238,6 +244,8 @@ export class NewAttackPage {
     this.medicament = item;
     //hide 
     this.items.splice(item)
+    //tracking event
+    this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Ein Medikamente aus der Liste ausgewählt")
   }
   getItems(ev: any) {
     // Reset items back to all of the items
@@ -301,15 +309,23 @@ export class NewAttackPage {
     if (this.midataService.loggedIn()) {
 
       let addMedAlert = this.alertCtrl.create({
-        message: (this.medicament != null && this.menge >= 1) ? this.medicament + "<br/>" + "wurde gespeichert" + "<br/>" + "<br/>" + "Du kannst noch weitere Medikamente hinzufügen" + //track event add medicament success 
-          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Add Medicament success") : "Du hast noch kein Medikament erfasst" + //track event add medicament failed 
-          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Add Medicament failed "),
-        buttons: ['OK']
+        message: (this.medicament != null && this.menge >= 1) ? this.medicament + "<br/>" + "wurde gespeichert" + "<br/>" + "<br/>" + "Du kannst noch weitere Medikamente hinzufügen" : "Du hast noch kein Medikament erfasst"
       });
+      addMedAlert.addButton({
+        text: "Ok",
+        handler: () => {
+          //track events
+          (this.medicament != null && this.menge >= 1) ? this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Add Medicament persistence success"):
+            this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Add Medicament persistence failed (keine Medikamente erfasst!)")
+        }
+      })
       addMedAlert.present();
 
       //========================= START JSON FOR THE MEDICATION STATEMENT================================
       if (this.medicament != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Medikament im Suchfeld erfasst ")
+
         let code = {
           coding: [{
             system: 'http://midata.coop	',
@@ -333,6 +349,9 @@ export class NewAttackPage {
         let medEntry = new MedicationStatement(new Date(), code, medStatus, cat, {}, medTaken);
 
         if (this.medEffect != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Wirkung des Medikaments klick")
+
           let dosage = [{
             resourceType: "Dosage",
             doseQuantity: {
@@ -397,7 +416,7 @@ export class NewAttackPage {
   presentAlert() {
 
     //track event
-    this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Add Medicament Button geklickt");
+    this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Save Button klick");
 
     if (this.group.get('symptome').hasError('required')) {
       console.log("Error: Selektiere minimum eine Auffälligkeit")
@@ -405,7 +424,13 @@ export class NewAttackPage {
         message: "Bitte gib mindestens eine Auffälligkeit an",
         buttons: ['OK']
       }).present()
-    } else if (this.midataService.loggedIn()) {
+    }
+
+    //Start methods for persistence the hole form when logged in 
+    else if (this.midataService.loggedIn()) {
+
+      //tracking event
+      this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Complete Save Success")
 
       let alert = this.alertCtrl.create({
         message: 'Deine Daten wurden erfasst',
@@ -415,6 +440,9 @@ export class NewAttackPage {
 
       // //========================= START JSON ADD SITUATION COMPONENTS===========================================
       if (this.situation.match("migräneanfall")) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Was erfasst du gerade?")
+
         let coding1 = {
           coding: [{
             system: 'http://snomed.info/sct',
@@ -436,6 +464,9 @@ export class NewAttackPage {
         }, coding1, category1);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry1.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -453,12 +484,17 @@ export class NewAttackPage {
         let bundle1 = new Bundle("transaction");
         bundle1.addEntry("POST", entry1.resourceType, entry1);
         this.midataService.save(bundle1);
+      } else if (this.situation.match("unwohlsein")) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Was erfasst du gerade?")
       }
       //========================= END JSON ADD SITUATION COMPONENTS=============================================
 
 
       //========================= START JSON FOR THE OBSERVATION "Headache Charachter"================================
       if (this.symptome.find(val => val == "Kopfschmerzen") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let codingStuff = {
           coding: [{
@@ -481,6 +517,9 @@ export class NewAttackPage {
         }, codingStuff, category);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -488,6 +527,9 @@ export class NewAttackPage {
         }
 
         if (this.painAreal != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzareal ausgewählt")
+
           if (this.painAreal.match("Kopf rechtsseitig")) {
             entry.addProperty("bodySite", {
               coding: [{
@@ -520,6 +562,9 @@ export class NewAttackPage {
         }
 
         if (this.painType != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzart ausgewählt")
+
           if (this.painType.match("Dumpf drückender Schmerz")) {
             entry.addProperty("valueCodeableConcept", {
               coding: [{
@@ -600,11 +645,17 @@ export class NewAttackPage {
 
       //Observation1: Tränende Augen
       if (this.symptome.find(val => val == "Tränende Augen") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
+
         let entry4 = new Observation({
           _dateTime: new Date().toISOString()
         }, codingStuff4, category4);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry4.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -639,11 +690,17 @@ export class NewAttackPage {
       //--------------------------------------------------------------------------------------
       //Observation2: Gerötete Augen
       if (this.symptome.find(val => val == "Gerötete Augen") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
+
         let entry4_1 = new Observation({
           _dateTime: new Date().toISOString()
         }, codingStuff4, category4);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry4_1.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -678,11 +735,17 @@ export class NewAttackPage {
       //-----------------------------------------------------------------------------------------
       //Observation3: Nasenlaufen
       if (this.symptome.find(val => val == "Nasenlaufen") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
+
         let entry4_2 = new Observation({
           _dateTime: new Date().toISOString()
         }, codingStuff4, category4);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry4_2.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -717,11 +780,17 @@ export class NewAttackPage {
       //--------------------------------------------------------------------------------------
       //Observation4: Nasenverstopfung
       if (this.symptome.find(val => val == "Nasenverstopfung") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
+
         let entry4_3 = new Observation({
           _dateTime: new Date().toISOString()
         }, codingStuff4, category4);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry4_3.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -756,11 +825,17 @@ export class NewAttackPage {
       //-----------------------------------------------------------------------------------------
       //Observation5: Übelkeit
       if (this.symptome.find(val => val == "Übelkeit") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
+
         let entry4_4 = new Observation({
           _dateTime: new Date().toISOString()
         }, codingStuff4, category4);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry4_4.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -796,6 +871,9 @@ export class NewAttackPage {
 
       //========================= START JSON FOR THE OBSERVATION "Nausea and Vomiting Status"================================ 
       if (this.symptome.find(val => val == "Erbrechen") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
+
         let codingStuff4_5 = {
           coding: [{
             system: 'http://snomed.info/sct',
@@ -817,6 +895,9 @@ export class NewAttackPage {
         }, codingStuff4_5, category4_5);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry4_5.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -852,6 +933,8 @@ export class NewAttackPage {
 
       //========================= START JSON FOR THE OBSERVATION ""Visual function""================================
       if (this.symptome.find(val => val == "Flimmersehen") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let codingStuff5 = {
           coding: [{
@@ -874,6 +957,9 @@ export class NewAttackPage {
         }, codingStuff5, category5);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry5.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -909,6 +995,8 @@ export class NewAttackPage {
 
       //========================= START JSON FOR THE OBSERVATION ""General reaction to light""================================
       if (this.symptome.find(val => val == "Lichtempfindlichkeit") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let codingStuff6 = {
           coding: [{
@@ -931,6 +1019,9 @@ export class NewAttackPage {
         }, codingStuff6, category6);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry6.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -983,11 +1074,17 @@ export class NewAttackPage {
 
       //Observation: Phonophobia
       if (this.symptome.find(val => val == "Lärmempfindlichkeit") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
+
         let entry7 = new Observation({
           _dateTime: new Date().toISOString()
         }, codingStuff7, category7);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry7.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -1022,11 +1119,17 @@ export class NewAttackPage {
 
       //Observation: Erholung
       if (this.symptome.find(val => val == "Erholung") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
+
         let entry7_1 = new Observation({
           _dateTime: new Date().toISOString()
         }, codingStuff7, category7);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry7_1.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -1049,6 +1152,8 @@ export class NewAttackPage {
 
       //========================= START JSON FOR THE OBSERVATION ""Altered sensation of skin""================================
       if (this.symptome.find(val => val == "Gefühlsstörung") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let codingStuff8 = {
           coding: [{
@@ -1071,6 +1176,9 @@ export class NewAttackPage {
         }, codingStuff8, category8);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry8.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -1106,6 +1214,8 @@ export class NewAttackPage {
 
       //========================= START JSON FOR THE OBSERVATION ""Speech observable""================================
       if (this.symptome.find(val => val == "Sprachstörung") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let codingStuff9 = {
           coding: [{
@@ -1128,6 +1238,9 @@ export class NewAttackPage {
         }, codingStuff9, category9);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry9.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -1163,6 +1276,8 @@ export class NewAttackPage {
 
       //========================= START JSON FOR THE OBSERVATION ""Sense of smell""================================
       if (this.symptome.find(val => val == "Geruchsempfindlichkeit") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let codingStuff10 = {
           coding: [{
@@ -1185,6 +1300,9 @@ export class NewAttackPage {
         }, codingStuff10, category10);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry10.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -1237,11 +1355,17 @@ export class NewAttackPage {
 
       //Observation: Stress
       if (this.symptome.find(val => val == "Stress") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
+
         let entry11 = new Observation({
           _dateTime: new Date().toISOString()
         }, codingStuff11, category11);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry11.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -1263,11 +1387,17 @@ export class NewAttackPage {
       //-----------------------------------------------------------------------------
       //Observation: Leseschwäche
       if (this.symptome.find(val => val == "Leseschwäche") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
+
         let entry11_1 = new Observation({
           _dateTime: new Date().toISOString()
         }, codingStuff11, category11);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry11_1.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -1291,6 +1421,8 @@ export class NewAttackPage {
 
       //========================= START JSON FOR THE OBSERVATION ""Female reproductive function""================================
       if (this.symptome.find(val => val == "Menstruation") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let codingStuff12 = {
           coding: [{
@@ -1313,6 +1445,9 @@ export class NewAttackPage {
         }, codingStuff12, category12);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry12.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -1335,6 +1470,8 @@ export class NewAttackPage {
 
       //========================= START JSON FOR THE OBSERVATION ""Other Symptoms""================================
       if (this.symptome.find(val => val == "Andere") != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let codingStuff13 = {
           coding: [{
@@ -1357,6 +1494,9 @@ export class NewAttackPage {
         }, codingStuff13, category13);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
+
           entry13.addProperty("effectivePeriod", {
             start: this.fromDateTime,
             end: this.untilDateTime
@@ -1379,6 +1519,9 @@ export class NewAttackPage {
 
       //========================= START JSON FOR THE MEDICATION STATEMENT================================
       if (this.medicament != null) {
+        //tracking event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Medikament im Suchfeld erfasst")
+
         let code = {
           coding: [{
             system: 'http://midata.coop	',
@@ -1402,6 +1545,9 @@ export class NewAttackPage {
         let medEntry = new MedicationStatement(new Date(), code, medStatus, cat, {}, medTaken);
 
         if (this.medEffect != null) {
+          //tracking event
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Wirkung des Medikaments klick")
+
           let dosage = [{
             resourceType: "Dosage",
             doseQuantity: {
