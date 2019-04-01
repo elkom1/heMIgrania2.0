@@ -23,18 +23,19 @@ export class HomePage {
     this.midataService = midataService;
   }
 
-   ngOnInit() {
-    // this.matomoTracker.setUserId('UserID');
-    // this.matomoTracker.setDocumentTitle('ngx-Matomo Test');
+  ngOnInit() {
+    //set user ID and document title 
+    if (this.midataService.loggedIn()) {
+      this.matomoTracker.setUserId(this.midataService.getUser().email);
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
 
-    if(this.midataService.loggedIn()) {
-    this.matomoTracker.setUserId(this.midataService.getUser().email);
-    this.matomoTracker.setDocumentTitle('ngx-Matomo Test22');
-
-    console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
-    console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test22'))
+      console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
+      console.log(this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking'))
+    } else {
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
     }
-    this.matomoTracker.trackPageView; 
+    //Tracking Page view 
+    this.matomoTracker.trackPageView("Startseite View besucht");
   }
 
   swipe(event) {
