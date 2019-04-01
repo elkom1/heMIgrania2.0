@@ -1,5 +1,5 @@
 import {
-  Component
+  Component, ChangeDetectionStrategy
 } from '@angular/core';
 import {
   NavController
@@ -13,7 +13,8 @@ import { MatomoTracker } from 'ngx-matomo';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePage {
 

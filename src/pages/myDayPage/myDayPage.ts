@@ -1,5 +1,5 @@
 import {
-  Component
+  Component, ChangeDetectionStrategy
 } from '@angular/core';
 import {
   NavController
@@ -41,7 +41,8 @@ import {
 
 @Component({
   selector: 'page-myDay',
-  templateUrl: 'myDayPage.html'
+  templateUrl: 'myDayPage.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MyDayPage {
   testCheckboxOpen = false;
@@ -319,7 +320,7 @@ export class MyDayPage {
         if (this.date != null) {
           //track event
           this.matomoTracker.trackEvent("Page: Mein Tag", "Klick: Datum der Eingabe ausgewählt")
-          
+
           entry2.addComponent({
             code: {
               coding: [{

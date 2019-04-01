@@ -1,5 +1,5 @@
 import {
-  Component
+  Component, ChangeDetectionStrategy
 } from '@angular/core';
 import {
   NavController
@@ -39,7 +39,8 @@ import {
 
 @Component({
   selector: 'page-newAttack',
-  templateUrl: 'newAttackPage.html'
+  templateUrl: 'newAttackPage.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewAttackPage {
 
