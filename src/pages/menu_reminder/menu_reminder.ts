@@ -1,6 +1,19 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications';
+import {
+  Component
+} from '@angular/core';
+import {
+  NavController
+} from 'ionic-angular';
+import {
+  LocalNotifications,
+  ELocalNotificationTriggerUnit
+} from '@ionic-native/local-notifications';
+import {
+  MatomoTracker
+} from 'ngx-matomo';
+import {
+  MidataService
+} from '../../services/midataService';
 
 @Component({
   selector: 'page-menu_reminder',
@@ -8,15 +21,38 @@ import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native
 })
 export class Reminder {
 
-  reminder: boolean; 
-  myTime: string; 
+  reminder: boolean;
+  myTime: string;
+
+  private midataService: MidataService;
 
   constructor(public navCtrl: NavController,
-    public localNotifications: LocalNotifications) {
+    public localNotifications: LocalNotifications,
+    midataService: MidataService,
+    private matomoTracker: MatomoTracker) {
+
+    this.midataService = midataService;
+  }
+
+  ngOnInit() {
+    //set user ID and document title 
+    if (this.midataService.loggedIn()) {
+      this.matomoTracker.setUserId(this.midataService.getUser().email);
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
+
+      console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
+      console.log(this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking'))
+    } else {
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
+    }
+    //Tracking Page view 
+    this.matomoTracker.trackPageView("Reminder View besucht");
   }
 
   toggleLocalNotificatoin() {
     if (this.reminder && typeof this.myTime !== 'undefined') {
+      //tracking event
+      this.matomoTracker.trackEvent("Page: Reminder", "Reminder set")
       let time = this.myTime.split(":");
       let date = new Date(new Date().getTime() + 3600);
       date.setHours(Number(time[0]));
@@ -28,13 +64,15 @@ export class Reminder {
         text: 'Vergiss nicht deine tägliche Erfassung einzutragen',
         trigger: {
           firstAt: date,
-          every: ELocalNotificationTriggerUnit.DAY,  
+          every: ELocalNotificationTriggerUnit.DAY,
           count: 500
         }
       });
     } else if (!this.reminder) {
       this.localNotifications.cancelAll();
+      //tracking event
+      this.matomoTracker.trackEvent("Page: Reminder", "Reminder cancelled")
     }
 
-  } 
+  }
 }
