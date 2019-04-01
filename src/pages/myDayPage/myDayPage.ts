@@ -120,6 +120,8 @@ export class MyDayPage {
   showText() {
     if (this.selectedCard == false) {
       this.selectedCard = true;
+      //tracking event
+      this.matomoTracker.trackEvent("Page: Mein Tag", "card 1 klick: Schlafrhythmus")
     } else {
       this.selectedCard = false;
     }
@@ -128,6 +130,8 @@ export class MyDayPage {
   showText2() {
     if (this.selectedCard2 == false) {
       this.selectedCard2 = true;
+      //tracking event
+      this.matomoTracker.trackEvent("Page: Mein Tag", "card 2 klick: Essverhalten")
     } else {
       this.selectedCard2 = false;
     }
@@ -193,6 +197,9 @@ export class MyDayPage {
 
       //========================= START JSON for Observation = Sleep Rythm ===========================================
       if (this.sleepTime != null && this.awakeTime != null) {
+        //track event
+        this.matomoTracker.trackEvent("Page: Mein Tag", "Klick: Einschlafzeit und Aufwachzeit ausgewählt")
+
         let coding1 = {
           coding: [{
             system: 'http://loinc.org',
@@ -232,6 +239,9 @@ export class MyDayPage {
         })
 
         if (this.date != null) {
+          //track event
+          this.matomoTracker.trackEvent("Page: Mein Tag", "Klick: Datum der Eingabe ausgewählt")
+
           entry1.addComponent({
             code: {
               coding: [{
@@ -273,6 +283,9 @@ export class MyDayPage {
       // if (typeof asdf === "undefined")
 
       if (this.eatingHabit != null) {
+        //track event
+        this.matomoTracker.trackEvent("Page: Mein Tag", "Klick: Essverhalten ausgewählt")
+
         if (this.eatingHabit.match("Regelmässig gegessen")) {
           entry2.addProperty("valueCodeableConcept", {
             coding: [{
@@ -304,6 +317,9 @@ export class MyDayPage {
         }
 
         if (this.date != null) {
+          //track event
+          this.matomoTracker.trackEvent("Page: Mein Tag", "Klick: Datum der Eingabe ausgewählt")
+          
           entry2.addComponent({
             code: {
               coding: [{
