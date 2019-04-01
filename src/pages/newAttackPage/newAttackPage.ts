@@ -32,8 +32,9 @@ import {
 import {
   LoginPage
 } from '../login/login';
-import { MatomoTracker } from 'ngx-matomo';
-import { empty } from 'rxjs/Observer';
+import {
+  MatomoTracker
+} from 'ngx-matomo';
 
 
 @Component({
@@ -55,8 +56,8 @@ export class NewAttackPage {
   medicament: string;
   menge: number = 0;
   medEffect: string;
-  
-  required = false; 
+
+  required = false;
 
   intensityWateryEye: number = 0;
   intensityRedEye: number = 0;
@@ -158,7 +159,7 @@ export class NewAttackPage {
       this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
 
       console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
-      console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test33'))
+      console.log(this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking'))
     } else {
       this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
     }
@@ -219,7 +220,7 @@ export class NewAttackPage {
       this.selectedCard3 = false;
     }
   }
-  
+
   //-------------------------------------START METHODS FOR MEDICATION SEARCH-------------------------------
   initializeItems() {
     this.items = [
@@ -264,30 +265,45 @@ export class NewAttackPage {
 
   scan() {
     this.scanner.scan().then((data) => {
-      if(data.cancelled) {
+      if (data.cancelled) {
         let scannerAlert = this.alertCtrl.create({
           message: data.text + "Scan nicht erfolgreich" + "<br/>" + "Bitte versuche es nochmal",
           buttons: ['OK']
         });
         scannerAlert.present();
+
+        //track event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan nicht erfolgreich")
       } else {
-      let scannerAlert = this.alertCtrl.create({
-        message: data.text + "<br/>" + "Scan war erfolgreich",
-        buttons: ['OK']
-      });
-      scannerAlert.present();
-      (this.medicament == null || this.medicament != null) ? this.medicament = data.text: ""
-    }
+        let scannerAlert = this.alertCtrl.create({
+          message: data.text + "<br/>" + "Scan war erfolgreich",
+          buttons: ['OK']
+        });
+        scannerAlert.present();
+
+        //track event
+        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan war erfolgreich");
+
+        (this.medicament == null || this.medicament != null) ? this.medicament = data.text: ""
+      }
+      //track event just click the scan button 
+      this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan Button geklickt")
+
     }).catch(err => {
       console.log('Error', err);
     });
   }
 
   addMedicament() {
+    //track event
+    this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Add Medicament Button geklickt");
+
     if (this.midataService.loggedIn()) {
 
       let addMedAlert = this.alertCtrl.create({
-        message: (this.medicament != null && this.menge >= 1) ? this.medicament + "<br/>" + "wurde gespeichert" + "<br/>" + "<br/>" + "Du kannst noch weitere Medikamente hinzufügen" : "Du hast noch kein Medikament erfasst",
+        message: (this.medicament != null && this.menge >= 1) ? this.medicament + "<br/>" + "wurde gespeichert" + "<br/>" + "<br/>" + "Du kannst noch weitere Medikamente hinzufügen" + //track event add medicament success 
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Add Medicament success") : "Du hast noch kein Medikament erfasst" + //track event add medicament failed 
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Add Medicament failed "),
         buttons: ['OK']
       });
       addMedAlert.present();
@@ -360,15 +376,15 @@ export class NewAttackPage {
         text: 'Bestätigen',
         handler: data => {
           console.log('Checkbox data:', data);
-            this.navCtrl.push(LoginPage)
+          this.navCtrl.push(LoginPage)
 
-            let elements = document.querySelectorAll(".tabbar");
+          let elements = document.querySelectorAll(".tabbar");
 
-            if (elements != null) {
-              Object.keys(elements).map((key) => {
-                elements[key].style.display = 'none';
-              });
-            }
+          if (elements != null) {
+            Object.keys(elements).map((key) => {
+              elements[key].style.display = 'none';
+            });
+          }
         }
       });
       alert2.present();
@@ -379,11 +395,17 @@ export class NewAttackPage {
 
   //-------------------------------- START PERSISTENCE IN MIDATA OF ALL THE INPUT FIELDS---------------------------------------------------------
   presentAlert() {
-    if(this.group.get('symptome').hasError('required')){
+
+    //track event
+    this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Add Medicament Button geklickt");
+
+    if (this.group.get('symptome').hasError('required')) {
       console.log("Error: Selektiere minimum eine Auffälligkeit")
-     return this.alertCtrl.create({message: "Bitte gib mindestens eine Auffälligkeit an", buttons: ['OK']}).present()
-    }
-    else if (this.midataService.loggedIn()) {
+      return this.alertCtrl.create({
+        message: "Bitte gib mindestens eine Auffälligkeit an",
+        buttons: ['OK']
+      }).present()
+    } else if (this.midataService.loggedIn()) {
 
       let alert = this.alertCtrl.create({
         message: 'Deine Daten wurden erfasst',
@@ -397,7 +419,7 @@ export class NewAttackPage {
           coding: [{
             system: 'http://snomed.info/sct',
             code: '118222006',
-            display: 'General finding of observation of patient' 
+            display: 'General finding of observation of patient'
           }]
         }
 
@@ -442,7 +464,7 @@ export class NewAttackPage {
           coding: [{
             system: 'http://snomed.info/sct',
             code: '162306000',
-            display: 'Headache Character' 
+            display: 'Headache Character'
           }]
         }
 
@@ -564,7 +586,7 @@ export class NewAttackPage {
         coding: [{
           system: 'http://snomed.info/sct',
           code: '373573001',
-          display: 'Clinical finding present' 
+          display: 'Clinical finding present'
         }]
       }
 
@@ -778,7 +800,7 @@ export class NewAttackPage {
           coding: [{
             system: 'http://snomed.info/sct',
             code: '405166007',
-            display: 'Nausea and Vomiting Status' 
+            display: 'Nausea and Vomiting Status'
           }]
         }
 
@@ -835,7 +857,7 @@ export class NewAttackPage {
           coding: [{
             system: 'http://snomed.info/sct',
             code: '281004000',
-            display: 'Visual function' 
+            display: 'Visual function'
           }]
         }
 
@@ -892,7 +914,7 @@ export class NewAttackPage {
           coding: [{
             system: 'http://snomed.info/sct',
             code: '246613004',
-            display: 'General reaction to light' 
+            display: 'General reaction to light'
           }]
         }
 
@@ -947,7 +969,7 @@ export class NewAttackPage {
         coding: [{
           system: 'http://snomed.info/sct',
           code: '285854004',
-          display: 'Emotion' 
+          display: 'Emotion'
         }]
       }
 
@@ -1032,7 +1054,7 @@ export class NewAttackPage {
           coding: [{
             system: 'http://snomed.info/sct',
             code: '247325003',
-            display: 'Altered sensation of skin' 
+            display: 'Altered sensation of skin'
           }]
         }
 
@@ -1089,7 +1111,7 @@ export class NewAttackPage {
           coding: [{
             system: 'http://snomed.info/sct',
             code: '363918005',
-            display: 'Speech observable' 
+            display: 'Speech observable'
           }]
         }
 
@@ -1146,7 +1168,7 @@ export class NewAttackPage {
           coding: [{
             system: 'http://snomed.info/sct',
             code: '397686008',
-            display: 'Sense of smell, function' 
+            display: 'Sense of smell, function'
           }]
         }
 
@@ -1201,7 +1223,7 @@ export class NewAttackPage {
         coding: [{
           system: 'http://snomed.info/sct',
           code: '363870007',
-          display: 'Mental state, behavior / psychosocial function observable' 
+          display: 'Mental state, behavior / psychosocial function observable'
         }]
       }
 
@@ -1274,7 +1296,7 @@ export class NewAttackPage {
           coding: [{
             system: 'http://snomed.info/sct',
             code: '66523006',
-            display: 'Female reproductive function'  
+            display: 'Female reproductive function'
           }]
         }
 
@@ -1445,14 +1467,14 @@ export class NewAttackPage {
         text: 'Bestätigen',
         handler: data => {
           console.log('Checkbox data:', data);
-            this.navCtrl.push(LoginPage)
-            let elements = document.querySelectorAll(".tabbar");
+          this.navCtrl.push(LoginPage)
+          let elements = document.querySelectorAll(".tabbar");
 
-            if (elements != null) {
-              Object.keys(elements).map((key) => {
-                elements[key].style.display = 'none';
-              });
-            }
+          if (elements != null) {
+            Object.keys(elements).map((key) => {
+              elements[key].style.display = 'none';
+            });
+          }
         }
       });
       alert2.present();
