@@ -31,6 +31,8 @@ import {
   LogoutPage
 } from '../logout/logout';
 import { LoginPage } from '../login/login';
+import { MidataService } from '../../services/midataService';
+import { MatomoTracker } from 'ngx-matomo';
 
 
 export interface PageInterface {
@@ -109,8 +111,26 @@ export class MenuPage {
     },
   ];
 
-  constructor(public navCtrl: NavController) {}
+  private midataService: MidataService;
+
+  constructor(public navCtrl: NavController, midataService: MidataService, private matomoTracker: MatomoTracker) {
+    this.midataService = midataService;
+  }
   
+  ngOnInit() {
+    //set user ID and document title 
+    if (this.midataService.loggedIn()) {
+      this.matomoTracker.setUserId(this.midataService.getUser().email);
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
+
+      console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
+      console.log(this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking'))
+    } else {
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
+    }
+    //Tracking Page view 
+    this.matomoTracker.trackEvent("Page: Menu", "Menu list klick");
+  }
 
   openPage(page: PageInterface) {
     let params = {};
