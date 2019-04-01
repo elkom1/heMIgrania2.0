@@ -5,7 +5,7 @@ import { MyApp } from './app.component';
 import {NativeStorage} from '@ionic-native/native-storage';
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { Network } from '@ionic-native/network';
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
+import { SecureStorage} from '@ionic-native/secure-storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 

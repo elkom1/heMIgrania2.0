@@ -3,12 +3,8 @@ import {
 } from '@angular/core';
 import {
   NavController,
-  LoadingController,
   Platform
 } from 'ionic-angular';
-import {
-  InAppBrowser
-} from '@ionic-native/in-app-browser';
 import {
   MidataService
 } from '../../services/midataService';
