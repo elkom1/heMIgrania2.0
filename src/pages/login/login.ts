@@ -1,11 +1,24 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, Platform } from 'ionic-angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { MidataService } from '../../services/midataService';
+import {
+  Component
+} from '@angular/core';
+import {
+  IonicPage,
+  NavController,
+  LoadingController,
+  Platform
+} from 'ionic-angular';
+import {
+  InAppBrowser
+} from '@ionic-native/in-app-browser';
+import {
+  MidataService
+} from '../../services/midataService';
 import {
   AlertController
 } from 'ionic-angular';
-import { MatomoTracker } from 'ngx-matomo';
+import {
+  MatomoTracker
+} from 'ngx-matomo';
 
 
 @IonicPage()
@@ -17,67 +30,87 @@ import { MatomoTracker } from 'ngx-matomo';
 export class LoginPage {
 
   constructor(
-      public navCtrl: NavController,
-      private loadingCtrl: LoadingController,
-      private inAppBrowser: InAppBrowser,
-      private midataService: MidataService,
-      private platform: Platform,
-      private alertCtrl: AlertController,
-      private matomoTracker: MatomoTracker) {
-  }
+    public navCtrl: NavController,
+    private loadingCtrl: LoadingController,
+    private inAppBrowser: InAppBrowser,
+    private midataService: MidataService,
+    private platform: Platform,
+    private alertCtrl: AlertController,
+    private matomoTracker: MatomoTracker) {}
 
   // register(){
   //   this.inAppBrowser.create('https://test.midata.coop/#/portal/registration');
   // }
 
-  visitMidata(){
+  visitMidata() {
     this.inAppBrowser.create('https://midata.coop');
   }
 
   ngAfterViewInit() {
     this.platform.ready().then(() => {
       this.midataService.openSession().then(success => {
-      if (success) {
-        this.navCtrl.popToRoot(); 
+        if (success) {
+          this.navCtrl.popToRoot();
 
-        // this.matomoTracker.setUserId(this.midataService.getUser.toString())
-        
-        let alert = this.alertCtrl.create();
+          //Track event 
+          this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
+
+          let alert = this.alertCtrl.create();
           alert.setTitle("Du bist bereits angemeldet");
-          alert.addButton('Ok'); 
-          alert.present(); 
-      }
-      else {
-        console.warn('bii baa buu wubba lubba dubb dubb');
-      }
-    });
+          alert.addButton('Ok');
+          alert.present();
+        } else {
+          console.warn('bii baa buu wubba lubba dubb dubb');
+        }
+      });
     });
   }
 
+  ngOnInit() {
+    //set user ID and document title 
+    if (this.midataService.loggedIn()) {
+      this.matomoTracker.setUserId(this.midataService.getUser().email);
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
+
+      console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
+      console.log(this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking'))
+    } else {
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
+    }
+    //Tracking Page view 
+    this.matomoTracker.trackPageView("Login View besucht");
+  }
+
   goHome() {
-    this.navCtrl.popToRoot(); 
+    this.navCtrl.popToRoot();
   }
 
   login() {
     let loading = this.loadingCtrl.create({
-      content: 'Bitte warten...' 
+      content: 'Bitte warten...'
     });
 
     loading.present().catch();
 
     this.midataService.authenticate()
-      .then((success: boolean) => {  
+      .then((success: boolean) => {
         let alert = this.alertCtrl.create();
-          alert.setTitle("Anmeldung war erfolgreich");
-          alert.addButton('Ok'); 
-          alert.present(); 
-      return this.navCtrl.popToRoot(); 
-    })
+        alert.setTitle("Anmeldung war erfolgreich");
+        alert.addButton('Ok');
+        alert.present();
+        //Track Event 
+        this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
+        return this.navCtrl.popToRoot();
+      })
       .then(() => {
-      loading.dismiss().catch();
-    })
+        loading.dismiss().catch();
+        //Track Event 
+        this.matomoTracker.trackEvent("Login failed", "MIDATA Login faild")
+      })
       .catch((error) => {
-      loading.dismiss().catch();
-    })
+        loading.dismiss().catch();
+        //Track Event 
+        this.matomoTracker.trackEvent("Login failed", "MIDATA Login faild")
+      })
   }
 }
