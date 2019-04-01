@@ -99,16 +99,18 @@ export class MyDayPage {
       date: new FormControl('', [Validators.required])
     })
 
+    //set user ID and document title 
     if (this.midataService.loggedIn()) {
       this.matomoTracker.setUserId(this.midataService.getUser().email);
-      this.matomoTracker.setDocumentTitle('ngx-Matomo Test22');
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
 
       console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
-      console.log(this.matomoTracker.setDocumentTitle('ngx-Matomo Test22'))
+      console.log(this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking'))
+    } else {
+      this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
     }
-
+    //Tracking Page view 
     this.matomoTracker.trackPageView("Mein Tag View besucht");
-
   }
 
   ionViewWillEnter() {
@@ -132,11 +134,12 @@ export class MyDayPage {
   }
 
   showCheckbox() {
-
-    this.matomoTracker.trackEvent('trackEvent', 'Documentary', 'Play');
-    console.log(this.matomoTracker.trackPageView)
+    //track event
+    this.matomoTracker.trackEvent("Page: Mein Tag", "Save Button klick")
 
     if (this.midataService.loggedIn()) {
+      //track event
+      this.matomoTracker.trackEvent("Page: Mein Tag", "Save success")
 
       let alert = this.alertCtrl.create({
         cssClass: 'reset'
@@ -168,14 +171,20 @@ export class MyDayPage {
           console.log('Checkbox data:', data);
           if (data == "value1") {
             this.navCtrl.push(HomePage)
+            //track event
+            this.matomoTracker.trackEvent("Page: Mein Tag", "Nein, Keine sonstigen Beschwerden")
             // this.navCtrl.parent.select(0);
           }
           if (data == "value2") {
             this.navCtrl.push(NewAttackPage) //navigate the tab does not function
+            //track event
+            this.matomoTracker.trackEvent("Page: Mein Tag", "Ja, Möchte Beschwerden noch eintragen")
             // this.navCtrl.parent.select(2);
           }
           if (data == "value3") {
             this.navCtrl.push(HomePage)
+            //track event
+            this.matomoTracker.trackEvent("Page: Mein Tag", "Habe keine Zeit meine Beschwerden einzutragen")
             // this.navCtrl.parent.select(0);
           }
         }
