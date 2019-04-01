@@ -95,6 +95,8 @@ export class Diagnosen {
         }, codingStuff2, category2);
 
         if (this.diagnosen != null) {
+          //tracking event 
+          this.matomoTracker.trackEvent("Page: Diagnosen", "Eine Diagnose wurde ausgewählt")
 
           if (this.diagnosen.match("Migräne mit Aura")) {
             entry2.addProperty("valueCodeableConcept", {
@@ -177,6 +179,9 @@ export class Diagnosen {
           }
 
           if (this.date != null) {
+            //tracking event 
+            this.matomoTracker.trackEvent("Page: Diagnosen", "Klick: Datum der Diagnose ausgewählt")
+
             entry2.addComponent({
               code: {
                 coding: [{
