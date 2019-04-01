@@ -1,5 +1,6 @@
 import {
-  Component, ChangeDetectionStrategy
+  Component,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   NavController
@@ -273,34 +274,46 @@ export class NewAttackPage {
   }
 
   scan() {
-    this.scanner.scan().then((data) => {
-      if (data.cancelled) {
-        let scannerAlert = this.alertCtrl.create({
-          message: data.text + "Scan nicht erfolgreich" + "<br/>" + "Bitte versuche es nochmal",
-          buttons: ['OK']
-        });
-        scannerAlert.present();
+   
+    let alert2 = this.alertCtrl.create();
+      alert2.setTitle("heMIgrania möchte gerne auf deine Kamera zugreifen," + "<br/>" + "um die GTIN Nummer aus dem Barcode Scanner auszulesen");
 
-        //track event
-        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan nicht erfolgreich")
-      } else {
-        let scannerAlert = this.alertCtrl.create({
-          message: data.text + "<br/>" + "Scan war erfolgreich",
-          buttons: ['OK']
-        });
-        scannerAlert.present();
-
-        //track event
-        this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan war erfolgreich");
-
-        (this.medicament == null || this.medicament != null) ? this.medicament = data.text: ""
-      }
-      //track event just click the scan button 
-      this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan Button geklickt")
-
-    }).catch(err => {
-      console.log('Error', err);
-    });
+      alert2.addButton('Abbrechen');
+      alert2.addButton({
+        text: 'Bestätigen',
+        handler: () => {
+          this.scanner.scan().then((data) => {
+            if (data.cancelled) {
+              let scannerAlert = this.alertCtrl.create({
+                message: data.text + "Scan nicht erfolgreich" + "<br/>" + "Bitte versuche es nochmal",
+                buttons: ['OK']
+              });
+              scannerAlert.present();
+      
+              //track event
+              this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan nicht erfolgreich")
+            } else {
+              let scannerAlert = this.alertCtrl.create({
+                message: data.text + "<br/>" + "Scan war erfolgreich",
+                buttons: ['OK']
+              });
+              scannerAlert.present();
+      
+              //track event
+              this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan war erfolgreich");
+      
+              (this.medicament == null || this.medicament != null) ? this.medicament = data.text: ""
+            }
+            //track event just click the scan button 
+            this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan Button geklickt")
+      
+          }).catch(err => {
+            console.log('Error', err);
+          });
+        }
+      });
+      alert2.present();
+    
   }
 
   addMedicament() {
@@ -427,7 +440,7 @@ export class NewAttackPage {
       }).present()
     }
 
-    //Start methods for persistence the hole form when logged in 
+    //Start methods for persistence the whole form when logged in 
     else if (this.midataService.loggedIn()) {
 
       //tracking event
