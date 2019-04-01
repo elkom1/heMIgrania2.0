@@ -60,7 +60,7 @@ export class LoginPage {
           alert.addButton('Ok');
           alert.present();
         } else {
-          console.warn('bii baa buu wubba lubba dubb dubb');
+          console.warn('Anmeldung erforderlich');
         }
       });
     });
@@ -104,13 +104,9 @@ export class LoginPage {
       })
       .then(() => {
         loading.dismiss().catch();
-        //Track Event 
-        this.matomoTracker.trackEvent("Login failed", "MIDATA Login faild")
       })
       .catch((error) => {
         loading.dismiss().catch();
-        //Track Event 
-        this.matomoTracker.trackEvent("Login failed", "MIDATA Login faild")
       })
   }
 }
