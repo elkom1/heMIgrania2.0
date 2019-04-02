@@ -383,8 +383,12 @@ export class MyDayPage {
   swipe(event) {
     if (event.direction === 2) { // 2 = nach rechts swipen
       this.navCtrl.parent.select(2);
+      //track event 
+      this.matomoTracker.trackEvent("Page: Mein Tag", "Slide to Neuer Eintrag View")
     } else if (event.direction === 4) { // 4 = nach links swipen
       this.navCtrl.parent.select(0);
+      //track event 
+      this.matomoTracker.trackEvent("Page: Mein Tag", "Slide to Home View")
     }
   }
 }

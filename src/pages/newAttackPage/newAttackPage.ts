@@ -1645,6 +1645,8 @@ export class NewAttackPage {
   swipe(event) {
     if (event.direction === 4) { // 4 = nach links swipen
       this.navCtrl.parent.select(1); // 0 = Home, 1 = Mein Tag, 2 = Neuer Eintrag
+      //track event 
+      this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Slide to Mein Tag View")
     }
   }
 }
