@@ -67,12 +67,12 @@ export class MenuPage {
       tabComponent: MenuPage,
       icon: 'home'
     },
-    {
-      title: 'Entspannungsübungen',
-      pageName: 'EntspannungsUebungen',
-      tabComponent: EntspannungsUebungen,
-      icon: 'rose'
-    },
+    // {
+    //   title: 'Entspannungsübungen',
+    //   pageName: 'EntspannungsUebungen',
+    //   tabComponent: EntspannungsUebungen,
+    //   icon: 'rose'
+    // },
     {
       title: 'Wie nutze ich heMIgrania?',
       pageName: 'Tutorial',
