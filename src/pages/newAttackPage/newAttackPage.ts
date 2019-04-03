@@ -435,7 +435,7 @@ export class NewAttackPage {
     //track event
     this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Save Button klick");
 
-    if (this.group.get('symptome').hasError('required') && this.symptome == null) {
+    if (this.group.get('symptome').hasError('required') || this.symptome == null) {
       console.log("Error: Selektiere minimum eine Auffälligkeit")
       return this.alertCtrl.create({
         message: "Bitte gib mindestens eine Auffälligkeit an",
