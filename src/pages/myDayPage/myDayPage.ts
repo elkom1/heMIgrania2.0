@@ -1,5 +1,6 @@
 import {
-  Component, ChangeDetectionStrategy
+  Component,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   NavController
@@ -72,7 +73,7 @@ export class MyDayPage {
   }
 
   ngAfterViewInit() {
-   
+
   }
 
   ngOnInit() {
@@ -99,20 +100,20 @@ export class MyDayPage {
 
 
     //initialize default values
-     //inititalize sleeptime with a default value of last night 22:00 
-     let time = new Date();
-     time.setDate(time.getDate() - 1);
-     time.setHours(23);
-     time.setMinutes(0);
-     this.sleepTime = time.toISOString();
- 
-     //Initialize awake time in todays date at 08:00 
-     let time2 = new Date();
-     time2.setHours(9);
-     time2.setMinutes(0);
-     this.awakeTime = time2.toISOString();
- 
-     this.date = new Date(new Date().getTime()).toISOString();
+    //inititalize sleeptime with a default value of last night 22:00 
+    let time = new Date();
+    time.setDate(time.getDate() - 1);
+    time.setHours(23);
+    time.setMinutes(0);
+    this.sleepTime = time.toISOString();
+
+    //Initialize awake time in todays date at 08:00 
+    let time2 = new Date();
+    time2.setHours(9);
+    time2.setMinutes(0);
+    this.awakeTime = time2.toISOString();
+
+    this.date = new Date(new Date().getTime()).toISOString();
   }
 
   ionViewWillEnter() {
@@ -340,21 +341,28 @@ export class MyDayPage {
       //========================= END JSON FOR THE OBSERVATION "Eating Habit"================================
 
       //update the input fields 
-      (this.sleepTime != null) ? this.sleepTime = null: null;
-      (this.awakeTime != null) ? this.awakeTime = null: null;
+      //inititalize sleeptime with a default value of last night 22:00 
+      let time = new Date();
+      time.setDate(time.getDate() - 1);
+      time.setHours(23);
+      time.setMinutes(0);
+      this.sleepTime = time.toISOString();
+      //Initialize awake time in todays date at 08:00 
+      let time2 = new Date();
+      time2.setHours(9);
+      time2.setMinutes(0);
+      this.awakeTime = time2.toISOString();
+      //date
+      this.date = new Date(new Date().getTime()).toISOString();
       (this.sleepQuality != null) ? this.sleepQuality = null: null;
       (this.eatingHabit != null) ? this.eatingHabit = null: null;
-      (this.date != null) ? this.date = null: null;
-      this.sleepTime = new Date(new Date().getTime() - 82800000).toISOString();
-      this.awakeTime = new Date(new Date().getTime() - 3600000).toISOString();
-      this.date = new Date(new Date().getTime()).toISOString();
-
-
+      this.selectedCard = false;
+      this.selectedCard2 = false;
 
     } else {
 
       let alert2 = this.alertCtrl.create();
-      alert2.setTitle('Für die Abspeicherung' + '<br />' +'überprüfe dein Anmeldestatus');
+      alert2.setTitle('Für die Abspeicherung' + '<br />' + 'überprüfe dein Anmeldestatus');
 
       alert2.addButton('Abbrechen');
       alert2.addButton({
