@@ -50,7 +50,7 @@ export class LoginPage {
     this.platform.ready().then(() => {
       this.midataService.openSession().then(success => {
         if (success) {
-          this.navCtrl.popToRoot();
+          this.navCtrl.pop();
 
           //Track event 
           this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
@@ -105,7 +105,7 @@ export class LoginPage {
         alert.present();
         //Track Event 
         this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
-        return this.navCtrl.popToRoot();
+        return this.navCtrl.pop();
       })
       .then(() => {
         loading.dismiss().catch();
