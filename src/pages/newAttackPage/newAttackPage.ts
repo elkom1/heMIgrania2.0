@@ -147,12 +147,7 @@ export class NewAttackPage {
   }
   //-------------------------------------END CONSTRUCTOR ----------------------------------------------------
 
-  ngAfterViewInit() {
-    this.situation = "migräneanfall";
-    this.menge = 1;
-    this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
-    this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
-  }
+  ngAfterViewInit() {}
 
   ngOnInit() {
     //set user ID and document title 
@@ -167,6 +162,12 @@ export class NewAttackPage {
     }
     //Tracking Page view 
     this.matomoTracker.trackPageView("Neuer Eintrag View besucht");
+
+    // set default values
+    this.situation = "migräneanfall";
+    this.menge = 1;
+    this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
+    this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
   }
 
   ionViewWillEnter() {
@@ -274,46 +275,46 @@ export class NewAttackPage {
   }
 
   scan() {
-   
-    let alert2 = this.alertCtrl.create();
-      alert2.setTitle("heMIgrania möchte gerne auf deine Kamera zugreifen," + "<br/>" + "um die GTIN Nummer aus dem Barcode Scanner auszulesen");
 
-      alert2.addButton('Abbrechen');
-      alert2.addButton({
-        text: 'Bestätigen',
-        handler: () => {
-          this.scanner.scan().then((data) => {
-            if (data.cancelled) {
-              let scannerAlert = this.alertCtrl.create({
-                message: data.text + "Scan nicht erfolgreich" + "<br/>" + "Bitte versuche es nochmal",
-                buttons: ['OK']
-              });
-              scannerAlert.present();
-      
-              //track event
-              this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan nicht erfolgreich")
-            } else {
-              let scannerAlert = this.alertCtrl.create({
-                message: data.text + "<br/>" + "Scan war erfolgreich",
-                buttons: ['OK']
-              });
-              scannerAlert.present();
-      
-              //track event
-              this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan war erfolgreich");
-      
-              (this.medicament == null || this.medicament != null) ? this.medicament = data.text: ""
-            }
-            //track event just click the scan button 
-            this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan Button geklickt")
-      
-          }).catch(err => {
-            console.log('Error', err);
-          });
-        }
-      });
-      alert2.present();
-    
+    let alert2 = this.alertCtrl.create();
+    alert2.setTitle("heMIgrania möchte gerne auf deine Kamera zugreifen," + "<br/>" + "um die GTIN Nummer aus dem Barcode Scanner auszulesen");
+
+    alert2.addButton('Abbrechen');
+    alert2.addButton({
+      text: 'Bestätigen',
+      handler: () => {
+        this.scanner.scan().then((data) => {
+          if (data.cancelled) {
+            let scannerAlert = this.alertCtrl.create({
+              message: data.text + "Scan nicht erfolgreich" + "<br/>" + "Bitte versuche es nochmal",
+              buttons: ['OK']
+            });
+            scannerAlert.present();
+
+            //track event
+            this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan nicht erfolgreich")
+          } else {
+            let scannerAlert = this.alertCtrl.create({
+              message: data.text + "<br/>" + "Scan war erfolgreich",
+              buttons: ['OK']
+            });
+            scannerAlert.present();
+
+            //track event
+            this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan war erfolgreich");
+
+            (this.medicament == null || this.medicament != null) ? this.medicament = data.text: ""
+          }
+          //track event just click the scan button 
+          this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Scan Button geklickt")
+
+        }).catch(err => {
+          console.log('Error', err);
+        });
+      }
+    });
+    alert2.present();
+
   }
 
   addMedicament() {
@@ -1614,13 +1615,30 @@ export class NewAttackPage {
       this.selectedSmellSensitivity = false;
       this.selectedVomiting = false;
       this.selectedNausea = false;
+      this.intensity = 0; 
+      this.intensityFlimmerSehen = 0; 
+      this.intensityNasenLaufen = 0; 
+      this.intensityNasenVerstopfung = 0; 
+      this.intensityNausea = 0; 
+      this.intensityPhonophobia = 0; 
+      this.intensityPhotophobia = 0; 
+      this.intensityRedEye = 0; 
+      this.intensitySmellSensitivity = 0; 
+      this.intensitySpeechDisorder = 0; 
+      this.intensityTouchSensation = 0; 
+      this.intensityVomiting = 0; 
+      this.intensityWateryEye = 0; 
+      this.intensityTouchSensation = 0; 
       this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
       this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
+      this.selectedCard = false;
+      this.selectedCard2 = false;
+      this.selectedCard3 = false;
 
     } else {
 
       let alert2 = this.alertCtrl.create();
-      alert2.setTitle('Bitte melde dich in MIDATA an');
+      alert2.setTitle('Für die Abspeicherung' + '<br />' + 'überprüfe dein Anmeldestatus');
 
       alert2.addButton('Abbrechen');
       alert2.addButton({

@@ -24,13 +24,13 @@
         <ion-list radio-group [(ngModel)]="situation" name="situation" formControlName="situation">
           <div class="Row">
             <div class="Column">
-              <ion-item no-lines>
+              <ion-item no-lines text-wrap>
                 <ion-label>Migräneanfall</ion-label>
                 <ion-radio value="migräneanfall"></ion-radio>
               </ion-item>
             </div>
             <div class="Column">
-              <ion-item no-lines>
+              <ion-item no-lines text-wrap>
                 <ion-label>Unwohlsein</ion-label>
                 <ion-radio value="unwohlsein" class="Column"></ion-radio>
               </ion-item>
@@ -46,7 +46,7 @@
           </h1>
         </ion-card-header>
         <ion-card-content *ngIf="selectedCard">
-          <ion-item no-lines>
+          <ion-item no-lines text-wrap>
             <ion-label>Auffälligkeiten angeben</ion-label>
             <ion-select okText="Bestätigen" cancelText="Abbrechen" multiple="true" (ionChange)="onChangeSymptoms()"
               [(ngModel)]="symptome" name="symptome" formControlName="symptome">
@@ -71,7 +71,7 @@
             </ion-select>
 
           </ion-item>
-          <ion-item *ngIf="selectedOther" no-lines>
+          <ion-item text-wrap *ngIf="selectedOther" no-lines>
             <ion-input placeholder="Andere Auffälligkeiten" [(ngModel)]="otherSymptom" name="otherSymptom"
               formControlName="otherSymptom"></ion-input>
           </ion-item>
@@ -83,7 +83,7 @@
         <ion-card-header text-center>
           <h1 style="font-weight: bold; color: white">Kopfschmerzen</h1>
         </ion-card-header>
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label>Schmerzareal</ion-label>
           <ion-select okText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="painAreal" name="painAreal"
             formControlName="painAreal">
@@ -93,7 +93,7 @@
           </ion-select>
         </ion-item>
 
-        <ion-item *ngIf="selectedHeadache" no-lines>
+        <ion-item text-wrap *ngIf="selectedHeadache" no-lines>
           <ion-label>Schmerzart</ion-label>
           <ion-select okText="Bestätigen" cancelText="Abbrechen" (ionChange)="onChangePainType()" [(ngModel)]="painType"
             name="painType" formControlName="painType">
@@ -306,12 +306,12 @@
           </h1>
         </ion-card-header>
         <ion-card-content *ngIf="selectedCard2">
-          <ion-item no-lines>
+          <ion-item no-lines text-wrap>
             <ion-label>Von</ion-label>
             <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen"
               [(ngModel)]="fromDateTime" name="fromDateTime" formControlName="fromDateTime"></ion-datetime>
           </ion-item>
-          <ion-item no-lines>
+          <ion-item no-lines text-wrap>
             <ion-label>Bis</ion-label>
             <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen"
               [(ngModel)]="untilDateTime" name="untilDateTime" formControlName="untilDateTime"></ion-datetime>
@@ -337,34 +337,33 @@
               <ion-searchbar (ionInput)="getItems($event)" [(ngModel)]="medicament" name="medicament"
                 formControlName="medicament"></ion-searchbar>
               <ion-list *ngIf="showList">
-                <ion-item *ngFor="let item of items" (click)="chooseMedicament(item)">
+                <ion-item text-wrap *ngFor="let item of items" (click)="chooseMedicament(item)">
                   {{ item }}
                 </ion-item>
               </ion-list>
             </div>
           </div>
 
-          <ion-label style="font-size: 16px">Anzahl Tabletten oder Tropfen</ion-label>
           <div class="Row">
             <div class="Column">
-              <ion-item no-lines>
+              <ion-item text-wrap>
+                <ion-label>Anzahl Tabletten oder Tropfen</ion-label>
                 <ion-input type="number" min="1" max="15" [(ngModel)]="menge" name="menge" formControlName="menge">
                 </ion-input>
               </ion-item>
             </div>
-
-            <div class="Column">
-              <ion-item no-lines>
-                <ion-label>Hat es gewirkt ?</ion-label>
-                <ion-select okText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="medEffect" name="medEffect"
-                  formControlName="medEffect">
-                  <ion-option>Ja</ion-option>
-                  <ion-option>Nein</ion-option>
-                  <ion-option>Hat sich verschlimmert</ion-option>
-                </ion-select>
-              </ion-item>
-            </div>
           </div>
+
+          <ion-item text-wrap>
+            <ion-label>Hat es gewirkt ?</ion-label>
+            <ion-select okText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="medEffect" name="medEffect"
+              formControlName="medEffect">
+              <ion-option>Ja</ion-option>
+              <ion-option>Nein</ion-option>
+              <ion-option>Hat sich verschlimmert</ion-option>
+            </ion-select>
+          </ion-item>
+
 
           <button ion-button color="light" (click)="addMedicament()">
             <ion-icon name="add-circle"></ion-icon>
