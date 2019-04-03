@@ -276,17 +276,19 @@ export class NewAttackPage {
 
   scan() {
 
-    let alert2 = this.alertCtrl.create();
-    alert2.setTitle("heMIgrania möchte gerne auf deine Kamera zugreifen," + "<br/>" + "um die GTIN Nummer aus dem Barcode Scanner auszulesen");
+    let alert2 = this.alertCtrl.create({
+      message: "heMIgrania möchte gerne auf deine Kamera zugreifen," + "<br/>" + "um die GTIN Nummer aus dem Barcode Scanner auszulesen"
+    });
+    alert2.setTitle("Kamerazugriff");
 
     alert2.addButton('Abbrechen');
     alert2.addButton({
-      text: 'Bestätigen',
+      text: 'Weiter',
       handler: () => {
         this.scanner.scan().then((data) => {
           if (data.cancelled) {
             let scannerAlert = this.alertCtrl.create({
-              message: data.text + "Scan nicht erfolgreich" + "<br/>" + "Bitte versuche es nochmal",
+              message: data.text + "Es wurde kein Scan durchgeführt",
               buttons: ['OK']
             });
             scannerAlert.present();
@@ -433,7 +435,7 @@ export class NewAttackPage {
     //track event
     this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Save Button klick");
 
-    if (this.group.get('symptome').hasError('required')) {
+    if (this.group.get('symptome').hasError('required') && this.symptome == null) {
       console.log("Error: Selektiere minimum eine Auffälligkeit")
       return this.alertCtrl.create({
         message: "Bitte gib mindestens eine Auffälligkeit an",
@@ -448,7 +450,7 @@ export class NewAttackPage {
       this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Complete Save Success")
 
       let alert = this.alertCtrl.create({
-        message: 'Deine Daten wurden erfasst',
+        message: 'Daten wurden erfolgreich in MIDATA gespeichert',
         buttons: ['OK']
       });
       alert.present();

@@ -14,15 +14,15 @@
 
   <ion-card>
     <ion-card-header text center>
-      <h1 text-center style="font-weight: bold; color: white">Tägliche Erinnerung <br /> festlegen</h1>
+      <h1 text-wrap text-center style="font-weight: bold; color: white">Tägliche Erinnerung <br /> festlegen</h1>
     </ion-card-header>
 
-    <ion-item no-lines>
+    <ion-item no-lines text-wrap>
       <ion-label>Erinnerung</ion-label>
       <ion-toggle [(ngModel)]="reminder" (ionChange)="toggleLocalNotificatoin()"></ion-toggle>
     </ion-item>
 
-    <ion-item no-lines>
+    <ion-item no-lines text-wrap>
       <ion-label>Zeit</ion-label>
       <ion-datetime displayFormat="HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="myTime" (ionChange)="toggleLocalNotificatoin()"></ion-datetime>
     </ion-item>

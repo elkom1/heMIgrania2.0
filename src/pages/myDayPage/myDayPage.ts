@@ -152,7 +152,7 @@ export class MyDayPage {
         cssClass: 'reset',
         message: 'Hattest du sonstige Beschwerden?'
       });
-      alert.setTitle('Deine Daten wurden erfasst');
+      alert.setTitle('Daten wurden erfolgreich in MIDATA gespeichert');
 
       alert.addInput({
         type: 'radio',

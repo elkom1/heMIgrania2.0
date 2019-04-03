@@ -19,29 +19,26 @@
 
       <ion-card>
         <ion-card-header>
-          <h1 style="font-weight: bold; color: white">Was erfasst du gerade ?</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Was erfasst du gerade ?</h1>
         </ion-card-header>
         <ion-list radio-group [(ngModel)]="situation" name="situation" formControlName="situation">
-          <div class="Row">
-            <div class="Column">
+        
               <ion-item no-lines text-wrap>
                 <ion-label>Migräneanfall</ion-label>
                 <ion-radio value="migräneanfall"></ion-radio>
               </ion-item>
-            </div>
-            <div class="Column">
+           
               <ion-item no-lines text-wrap>
                 <ion-label>Unwohlsein</ion-label>
                 <ion-radio value="unwohlsein" class="Column"></ion-radio>
               </ion-item>
-            </div>
-          </div>
+        
         </ion-list>
       </ion-card>
 
       <ion-card>
         <ion-card-header (click)="showText()">
-          <h1 style="font-weight: bold; color: white">
+          <h1 text-wrap style="font-weight: bold; color: white">
             <ion-icon name="md-bulb"></ion-icon> Auffälligkeiten
           </h1>
         </ion-card-header>
@@ -81,7 +78,7 @@
 
       <ion-card *ngIf="selectedHeadache">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Kopfschmerzen</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Kopfschmerzen</h1>
         </ion-card-header>
         <ion-item no-lines text-wrap>
           <ion-label>Schmerzareal</ion-label>
@@ -108,7 +105,7 @@
             formControlName="otherPainType"></ion-input>
         </ion-item>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Schmerzintensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensity" name="intensity"
             formControlName="intensity">
@@ -120,10 +117,10 @@
 
       <ion-card *ngIf="selectedWateryEye">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Tränende Augen</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Tränende Augen</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Schmerzintensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityWateryEye"
             name="intensityWateryEye" formControlName="intensityWateryEye">
@@ -135,10 +132,10 @@
 
       <ion-card *ngIf="selectedRedEye">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Gerötete Augen</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Gerötete Augen</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Schmerzintensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityRedEye"
             name="intensityRedEye" formControlName="intensityRedEye">
@@ -151,10 +148,10 @@
 
       <ion-card *ngIf="selectedNasenLaufen">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Nasenlaufen</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Nasenlaufen</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityNasenLaufen"
             name="intensityNasenLaufen" formControlName="intensityNasenLaufen">
@@ -166,10 +163,10 @@
 
       <ion-card *ngIf="selectedNasenVerstopfung">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Nasenverstopfung</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Nasenverstopfung</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityNasenVerstopfung"
             name="intensityNasenVerstopfung" formControlName="intensityNasenVerstopfung">
@@ -181,10 +178,10 @@
 
       <ion-card *ngIf="selectedFlimmerSehen">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Flimmersehen</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Flimmersehen</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityFlimmerSehen"
             name="intensityFlimmerSehen" formControlName="intensityFlimmerSehen">
@@ -196,10 +193,10 @@
 
       <ion-card *ngIf="selectedPhotophobia">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Lichtempfindlichkeit</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Lichtempfindlichkeit</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityPhotophobia"
             name="intensityPhotophobia" formControlName="intensityPhotophobia">
@@ -211,10 +208,10 @@
 
       <ion-card *ngIf="selectedPhonophobia">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Lärmempfindlichkeit</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Lärmempfindlichkeit</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityPhonophobia"
             name="intensityPhonophobia" formControlName="intensityPhonophobia">
@@ -226,10 +223,10 @@
 
       <ion-card *ngIf="selectedTouchSensation">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Gefühlsstörung</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Gefühlsstörung</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityTouchSensation"
             name="intensityTouchSensation" formControlName="intensityTouchSensation">
@@ -239,12 +236,12 @@
         </ion-item>
       </ion-card>
 
-      <ion-card *ngIf="selectedSpeechDisorder">
+      <ion-card text-wrap *ngIf="selectedSpeechDisorder">
         <ion-card-header text-center>
           <h1 style="font-weight: bold; color: white">Sprachstörung</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensitySpeechDisorder"
             name="intensitySpeechDisorder" formControlName="intensitySpeechDisorder">
@@ -256,10 +253,10 @@
 
       <ion-card *ngIf="selectedSmellSensitivity">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Geruchsempfindlichkeit</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Geruchsempfindlichkeit</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensitySmellSensitivity"
             name="intensitySmellSensitivity" formControlName="intensitySmellSensitivity">
@@ -271,10 +268,10 @@
 
       <ion-card *ngIf="selectedVomiting">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Erbrechen</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Erbrechen</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Schmerzintensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityVomiting"
             name="intensityVomiting" formControlName="intensityVomiting">
@@ -286,10 +283,10 @@
 
       <ion-card *ngIf="selectedNausea">
         <ion-card-header text-center>
-          <h1 style="font-weight: bold; color: white">Übelkeit</h1>
+          <h1 text-wrap style="font-weight: bold; color: white">Übelkeit</h1>
         </ion-card-header>
 
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
           <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
           <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityNausea"
             name="intensityNausea" formControlName="intensityNausea">
@@ -301,7 +298,7 @@
 
       <ion-card>
         <ion-card-header (click)="showText2()">
-          <h1 style="font-weight: bold; color: white">
+          <h1 text-wrap style="font-weight: bold; color: white">
             <ion-icon name="time"></ion-icon> Dauer des Schmerzes
           </h1>
         </ion-card-header>
@@ -321,7 +318,7 @@
 
       <ion-card>
         <ion-card-header (click)="showText3()">
-          <h1 style="font-weight: bold; color: white">
+          <h1 text-wrap style="font-weight: bold; color: white">
             <ion-icon name="medkit"></ion-icon> Medikamente
           </h1>
         </ion-card-header>

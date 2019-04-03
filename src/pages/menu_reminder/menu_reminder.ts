@@ -61,7 +61,7 @@ export class Reminder {
     if (this.reminder && typeof this.myTime !== 'undefined') {
       //show popup
       let alert2 = this.alertCtrl.create();
-      alert2.setTitle('Deine Erinnerung wurde gesetzt um:' + ' ' + this.myTime.substring(11, 16).bold());
+      alert2.setTitle('Deine Erinnerung wurde gesetzt um:' + ' ' + '"' + this.myTime.substring(11, 16) + '"');
       alert2.addButton('Ok');
       alert2.present();
 

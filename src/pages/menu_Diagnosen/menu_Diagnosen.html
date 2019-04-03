@@ -16,15 +16,15 @@
 
     <ion-card>
       <ion-card-header text-center>
-        <h1 style="font-weight: bold; color:white">Meine Diagnosen</h1>
+        <h1 text-wrap style="font-weight: bold; color:white">Meine Diagnosen</h1>
       </ion-card-header>
-      <ion-item>
+      <ion-item text-wrap>
         <ion-label>Datum der Diagnose</ion-label>
         <ion-datetime displayFormat="MMM DD, YYYY" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="date">
         </ion-datetime>
       </ion-item>
 
-      <ion-item>
+      <ion-item text-wrap>
         <ion-label>Diagnose</ion-label>
         <ion-select okText="Bestätigen" cancelText="Abbrechen" (ionChange)="onChangeDiagnoses()"
           [(ngModel)]="diagnosen">
