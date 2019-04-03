@@ -37,18 +37,18 @@
             Schlafrhythmus
           </h1>
         </ion-card-header>
-        <ion-card-content *ngIf="selectedCard" text-center>
+        <ion-card-content *ngIf="selectedCard">
           <ion-label text-center style="font-weight: bold; font-size: 18px">Einschlafzeit</ion-label>
-          <ion-item no-lines text-wrap class="movie-card">
+          <div text-center>
             <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen"
               [(ngModel)]="sleepTime" name="sleepTime" formControlName="sleepTime"></ion-datetime>
-          </ion-item>
+          </div>
 
           <ion-label text-center style="font-weight: bold; font-size: 18px">Aufwachzeit</ion-label>
-          <ion-item no-lines text-wrap class="movie-card">
+          <div text-center>
             <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen"
               [(ngModel)]="awakeTime" name="awakeTime" formControlName="awakeTime"></ion-datetime>
-          </ion-item>
+          </div>
 
           <ion-item class="movie-card">
             <ion-label style="font-weight: bold; font-size: 18px">Schlafqualität</ion-label>
