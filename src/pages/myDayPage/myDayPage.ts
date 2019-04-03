@@ -72,23 +72,7 @@ export class MyDayPage {
   }
 
   ngAfterViewInit() {
-    //inititalize sleeptime with a default value of last night 22:00 
-    let time = new Date();
-    time.setDate(time.getDate() - 1);
-    time.setHours(23);
-    time.setMinutes(0);
-    this.sleepTime = time.toISOString();
-
-    //Initialize awake time in todays date at 08:00 
-    let time2 = new Date();
-    time2.setHours(9);
-    time2.setMinutes(0);
-    this.awakeTime = time2.toISOString();
-
-    this.date = new Date(new Date().getTime()).toISOString();
-
-    // console.log(this.midataService.getUser().email)
-
+   
   }
 
   ngOnInit() {
@@ -112,6 +96,23 @@ export class MyDayPage {
     }
     //Tracking Page view 
     this.matomoTracker.trackPageView("Mein Tag View besucht");
+
+
+    //initialize default values
+     //inititalize sleeptime with a default value of last night 22:00 
+     let time = new Date();
+     time.setDate(time.getDate() - 1);
+     time.setHours(23);
+     time.setMinutes(0);
+     this.sleepTime = time.toISOString();
+ 
+     //Initialize awake time in todays date at 08:00 
+     let time2 = new Date();
+     time2.setHours(9);
+     time2.setMinutes(0);
+     this.awakeTime = time2.toISOString();
+ 
+     this.date = new Date(new Date().getTime()).toISOString();
   }
 
   ionViewWillEnter() {
@@ -147,9 +148,10 @@ export class MyDayPage {
       this.matomoTracker.trackEvent("Page: Mein Tag", "Save success")
 
       let alert = this.alertCtrl.create({
-        cssClass: 'reset'
+        cssClass: 'reset',
+        message: 'Hattest du sonstige Beschwerden?'
       });
-      alert.setTitle('Hattest du sonstige Beschwerden ?');
+      alert.setTitle('Deine Daten wurden erfasst');
 
       alert.addInput({
         type: 'radio',
@@ -352,7 +354,7 @@ export class MyDayPage {
     } else {
 
       let alert2 = this.alertCtrl.create();
-      alert2.setTitle('Bitte melde dich in MIDATA an');
+      alert2.setTitle('Für die Abspeicherung' + '<br />' +'überprüfe dein Anmeldestatus');
 
       alert2.addButton('Abbrechen');
       alert2.addButton({
