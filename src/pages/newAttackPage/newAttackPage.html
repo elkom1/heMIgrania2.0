@@ -21,18 +21,22 @@
         <ion-card-header>
           <h1 text-wrap style="font-weight: bold; color: white">Was erfasst du gerade ?</h1>
         </ion-card-header>
+
         <ion-list radio-group [(ngModel)]="situation" name="situation" formControlName="situation">
-        
+          <div class="Row">
+            <div class="Column">
               <ion-item no-lines text-wrap>
                 <ion-label>Migräneanfall</ion-label>
                 <ion-radio value="migräneanfall"></ion-radio>
               </ion-item>
-           
+            </div>
+            <div class="Column">
               <ion-item no-lines text-wrap>
                 <ion-label>Unwohlsein</ion-label>
                 <ion-radio value="unwohlsein" class="Column"></ion-radio>
               </ion-item>
-        
+            </div>
+          </div>
         </ion-list>
       </ion-card>
 
@@ -298,8 +302,8 @@
 
       <ion-card>
         <ion-card-header (click)="showText2()">
-          <h1 text-wrap style="font-weight: bold; color: white">
-            <ion-icon name="time"></ion-icon> Dauer des Schmerzes
+          <h1 style="font-weight: bold; color: white">
+            <ion-icon name="time"></ion-icon> Schmerzdauer
           </h1>
         </ion-card-header>
         <ion-card-content *ngIf="selectedCard2">
