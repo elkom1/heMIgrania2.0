@@ -25,14 +25,22 @@ import {
 } from '@angular/core';
 import {
   NavController,
-  Nav
+  Nav,
+  AlertController,
+  Platform
 } from 'ionic-angular';
 import {
   LogoutPage
 } from '../logout/logout';
-import { LoginPage } from '../login/login';
-import { MidataService } from '../../services/midataService';
-import { MatomoTracker } from 'ngx-matomo';
+import {
+  LoginPage
+} from '../login/login';
+import {
+  MidataService
+} from '../../services/midataService';
+import {
+  MatomoTracker
+} from 'ngx-matomo';
 
 
 export interface PageInterface {
@@ -54,8 +62,7 @@ export class MenuPage {
   // Reference to the app's root nav
   @ViewChild(Nav) nav: Nav;
 
-  pages: PageInterface[] = [
-    {
+  pages: PageInterface[] = [{
       title: 'MIDATA Benutzerkonto',
       pageName: 'LoginPage',
       tabComponent: LoginPage,
@@ -104,7 +111,7 @@ export class MenuPage {
       icon: 'contacts'
     },
     {
-      title: 'Logout',
+      title: 'Abmelden',
       pageName: 'LogoutPage',
       tabComponent: LogoutPage,
       icon: 'log-out'
@@ -113,10 +120,11 @@ export class MenuPage {
 
   private midataService: MidataService;
 
-  constructor(public navCtrl: NavController, midataService: MidataService, private matomoTracker: MatomoTracker) {
+  constructor(public navCtrl: NavController, midataService: MidataService, private matomoTracker: MatomoTracker, private platform: Platform,
+    private alertCtrl: AlertController, ) {
     this.midataService = midataService;
   }
-  
+
   ngOnInit() {
     //set user ID and document title 
     if (this.midataService.loggedIn()) {
@@ -144,10 +152,44 @@ export class MenuPage {
     if (this.nav.getActiveChildNavs()[0] && page.index != undefined) {
       this.nav.getActiveChildNavs()[0].select(page.index);
     } else {
-      // Tabs are not active, so reset the root page 
+
+      if (page.tabComponent == LogoutPage) {
+        this.platform.ready().then(() => {
+          if (this.midataService.loggedIn()) {
+
+            let alert = this.alertCtrl.create({
+              message: "Bist du sicher, dass du dich abmelden willst?"
+            });
+            alert.setTitle("Bestätigung");
+            alert.addButton('Abbrechen');
+            alert.addButton({
+              text: 'Ja',
+              handler: data => {
+                this.midataService.logout();
+                this.navCtrl.popToRoot();
+                //Tracking event 
+                this.matomoTracker.trackEvent("Logout success", "MIDATA Logout success")
+              }
+            });
+            alert.present();
+          } else {
+            this.navCtrl.popToRoot();
+
+            let alert = this.alertCtrl.create();
+            alert.setTitle("Du bist bereits abgemeldet");
+            alert.addButton('Ok');
+            alert.present();
+
+            console.warn('bii baa buu wubba lubba dubb dubb');
+          }
+        });
+      }
+      else if(page.tabComponent != LogoutPage) {
+         // Tabs are not active, so reset the root page 
       // In this case: moving to or from SpecialPage
       this.nav.push(page.tabComponent, params);
       this.isActive(this.nav.getActiveChildNav())
+      }
     }
   }
 
