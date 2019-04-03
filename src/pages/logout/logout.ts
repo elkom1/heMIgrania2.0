@@ -34,15 +34,19 @@ export class LogoutPage {
   ngAfterViewInit() {
     this.platform.ready().then(() => {
       if (this.midataService.loggedIn()) {
-        this.midataService.logout();
-        this.navCtrl.popToRoot();
-
-        //Tracking event 
-        this.matomoTracker.trackEvent("Logout success", "MIDATA Logout success")
 
         let alert = this.alertCtrl.create();
-        alert.setTitle("Abmeldung war erfolgreich");
-        alert.addButton('Ok');
+        alert.setTitle("Willst Du dich wirklich abmelden");
+        alert.addButton('Abbrechen');
+        alert.addButton({
+          text: 'Bestätigen',
+          handler: data => {
+            this.midataService.logout();
+            this.navCtrl.popToRoot();
+            //Tracking event 
+            this.matomoTracker.trackEvent("Logout success", "MIDATA Logout success")
+          }
+        });
         alert.present();
       } else {
         this.navCtrl.popToRoot();
