@@ -27,7 +27,7 @@ import {
 })
 export class Diagnosen {
 
-  date = Date;
+  date: string;
   diagnosen: string;
   otherDiagnose: string;
 
@@ -52,6 +52,11 @@ export class Diagnosen {
     }
     //Tracking Page view 
     this.matomoTracker.trackPageView("Diagnosen View besucht");
+
+    //Set Default value 
+    let time = new Date();
+    time.setDate(time.getDate());
+    this.date = time.toISOString();
   }
 
   onChangeDiagnoses() {
@@ -62,8 +67,8 @@ export class Diagnosen {
     //tracking event 
     this.matomoTracker.trackEvent("Page: Diagnosen", "Save Button klick")
 
-    if (this.midataService.loggedIn()) {
-      if (this.diagnosen != null && this.date != null) {
+    if (this.diagnosen != null && this.date != null) {
+      if (this.midataService.loggedIn()) {
         //tracking event 
         this.matomoTracker.trackEvent("Page: Diagnosen", "Save success")
 
@@ -203,24 +208,28 @@ export class Diagnosen {
         this.diagnosen = null;
         this.otherDiagnose = null;
         this.selectedOther = false;
-      } else { //if eingabefelder nicht eingetragen sind 
+        let time = new Date();
+        time.setDate(time.getDate());
+        this.date = time.toISOString();
+      } 
+      else { //If nicht eingeloggt in MIDATA 
         let alert2 = this.alertCtrl.create();
-        alert2.setTitle('Bitte Datum und Diagnose eingeben');
-        alert2.addButton('Ok');
+        alert2.setTitle('Für die Abspeicherung' + '<br />' +'überprüfe dein Anmeldestatus');
+
+        alert2.addButton('Abbrechen');
+        alert2.addButton({
+          text: 'Bestätigen',
+          handler: data => {
+            console.log('Checkbox data:', data);
+            this.navCtrl.push(LoginPage)
+          }
+        });
         alert2.present();
       }
-    } else { //If nicht eingeloggt in MIDATA 
+    } else { //if eingabefelder nicht eingetragen sind 
       let alert2 = this.alertCtrl.create();
-      alert2.setTitle('Bitte melde dich in MIDATA an');
-
-      alert2.addButton('Abbrechen');
-      alert2.addButton({
-        text: 'Bestätigen',
-        handler: data => {
-          console.log('Checkbox data:', data);
-          this.navCtrl.push(LoginPage)
-        }
-      });
+      alert2.setTitle('Bitte Diagnose eingeben');
+      alert2.addButton('Ok');
       alert2.present();
     }
   }

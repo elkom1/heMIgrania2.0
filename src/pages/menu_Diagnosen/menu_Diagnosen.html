@@ -20,12 +20,14 @@
       </ion-card-header>
       <ion-item>
         <ion-label>Datum der Diagnose</ion-label>
-        <ion-datetime displayFormat="MMM DD, YYYY" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="date"></ion-datetime>
+        <ion-datetime displayFormat="MMM DD, YYYY" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="date">
+        </ion-datetime>
       </ion-item>
 
       <ion-item>
         <ion-label>Diagnose</ion-label>
-        <ion-select okText="Bestätigen" cancelText="Abbrechen" (ionChange)="onChangeDiagnoses()" [(ngModel)]="diagnosen">
+        <ion-select okText="Bestätigen" cancelText="Abbrechen" (ionChange)="onChangeDiagnoses()"
+          [(ngModel)]="diagnosen">
           <ion-option>Migräne mit Aura</ion-option>
           <ion-option>Migräne ohne Aura</ion-option>
           <ion-option>Typische Aura mit Migränekopfschmerz</ion-option>
@@ -42,9 +44,9 @@
     </ion-card>
 
     <div text-center>
-    <button ion-button round color="secondary" (click)="presentAlert()">
-      Hinzufügen
-    </button>
+      <button ion-button round large color="secondary" (click)="presentAlert()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
     </div>
 
   </ion-list>
