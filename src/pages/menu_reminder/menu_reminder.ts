@@ -2,7 +2,8 @@ import {
   Component
 } from '@angular/core';
 import {
-  NavController
+  NavController,
+  AlertController
 } from 'ionic-angular';
 import {
   LocalNotifications,
@@ -29,7 +30,8 @@ export class Reminder {
   constructor(public navCtrl: NavController,
     public localNotifications: LocalNotifications,
     midataService: MidataService,
-    private matomoTracker: MatomoTracker) {
+    private matomoTracker: MatomoTracker,
+    private alertCtrl: AlertController) {
 
     this.midataService = midataService;
   }
@@ -47,10 +49,22 @@ export class Reminder {
     }
     //Tracking Page view 
     this.matomoTracker.trackPageView("Reminder View besucht");
+
+    //Starting Default value 
+    let time2 = new Date();
+    time2.setHours(20);
+    time2.setMinutes(0);
+    this.myTime = time2.toISOString();
   }
 
   toggleLocalNotificatoin() {
     if (this.reminder && typeof this.myTime !== 'undefined') {
+      //show popup
+      let alert2 = this.alertCtrl.create();
+      alert2.setTitle('Deine Erinnerung wurde gesetzt um:' + ' ' + this.myTime.substring(11, 16).bold());
+      alert2.addButton('Ok');
+      alert2.present();
+
       //tracking event
       this.matomoTracker.trackEvent("Page: Reminder", "Reminder set")
       let time = this.myTime.split(":");
@@ -68,7 +82,9 @@ export class Reminder {
           count: 500
         }
       });
-    } else if (!this.reminder) {
+    } 
+    
+    else if (!this.reminder) {
       this.localNotifications.cancelAll();
       //tracking event
       this.matomoTracker.trackEvent("Page: Reminder", "Reminder cancelled")
