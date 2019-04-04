@@ -40,10 +40,6 @@ export class HomePage {
     this.matomoTracker.trackPageView("Startseite View besucht");
   }
 
-  openTutorial() {
-    this.navCtrl.push(Tutorial)
-  }
-
   swipe(event) {
     if (event.direction === 2) { // 2 = nach rechts swipen
       this.navCtrl.parent.select(1); // 0 = Home, 1 = Mein Tag, 2 = Neuer Eintrag
