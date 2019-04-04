@@ -9,6 +9,7 @@ import {
 } from '../../services/midataService';
 
 import { MatomoTracker } from 'ngx-matomo';
+import { Tutorial } from '../menu_tutorial/menu_tutorial';
 
 
 @Component({
@@ -37,6 +38,10 @@ export class HomePage {
     }
     //Tracking Page view 
     this.matomoTracker.trackPageView("Startseite View besucht");
+  }
+
+  openTutorial() {
+    this.navCtrl.push(Tutorial)
   }
 
   swipe(event) {
