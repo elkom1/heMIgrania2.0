@@ -11,6 +11,18 @@ margin-top: 0px;
 {
     display: table-cell;
 }
+.select {
+    max-width: 100%; 
+}
+.ion-text-end {
+text-align: end;
+border: solid; 
+border-color: beige;
+margin-left: 13%; 
+margin-right: 13%; 
+text-align: center;
+}
+
 
 // .card {
 //     background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));

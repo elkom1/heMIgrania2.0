@@ -39,18 +39,23 @@
         </ion-card-header>
         <ion-card-content *ngIf="selectedCard">
           <ion-label text-center style="font-weight: bold; font-size: 18px">Einschlafzeit</ion-label>
-          <div text-center>
-            <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen"
-              [(ngModel)]="sleepTime" name="sleepTime" formControlName="sleepTime"></ion-datetime>
+          <div class="ion-text-end">
+            <ion-item text-wrap>
+              <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen"
+                [(ngModel)]="sleepTime" name="sleepTime" formControlName="sleepTime"></ion-datetime>
+            </ion-item>
           </div>
 
           <ion-label text-center style="font-weight: bold; font-size: 18px">Aufwachzeit</ion-label>
-          <div text-center>
-            <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen"
-              [(ngModel)]="awakeTime" name="awakeTime" formControlName="awakeTime"></ion-datetime>
+
+          <div class="ion-text-end">
+            <ion-item text-wrap>
+              <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen"
+                [(ngModel)]="awakeTime" name="awakeTime" formControlName="awakeTime"></ion-datetime>
+            </ion-item>
           </div>
 
-          <ion-item class="movie-card">
+          <ion-item>
             <ion-label style="font-weight: bold; font-size: 18px">Schlafqualität</ion-label>
             <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="sleepQuality"
               name="sleepQuality" formControlName="sleepQuality">
@@ -70,9 +75,8 @@
         </ion-card-header>
         <ion-card-content *ngIf="selectedCard2">
           <ion-item text-wrap>
-            <ion-label>Bitte Essverhalten angeben</ion-label>
-            <ion-select okText="Bestätigen" cancelText="Abbrechen" popover [(ngModel)]="eatingHabit" name="eatingHabit"
-              formControlName="eatingHabit">
+            <ion-select placeholder="Bitte Essverhalten eingeben" okText="Bestätigen" cancelText="Abbrechen" popover
+              [(ngModel)]="eatingHabit" name="eatingHabit" formControlName="eatingHabit">
               <ion-option>Regelmässig gegessen</ion-option>
               <ion-option>Unregelmässig gegessen</ion-option>
               <ion-option>Unbestimmtes Essverhalten</ion-option>
