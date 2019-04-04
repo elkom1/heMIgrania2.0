@@ -114,6 +114,8 @@ export class MyDayPage {
     this.awakeTime = time2.toISOString();
 
     this.date = new Date(new Date().getTime()).toISOString();
+
+    this.sleepQuality = 5; 
   }
 
   ionViewWillEnter() {
@@ -354,10 +356,11 @@ export class MyDayPage {
       this.awakeTime = time2.toISOString();
       //date
       this.date = new Date(new Date().getTime()).toISOString();
-      (this.sleepQuality != null) ? this.sleepQuality = null: null;
       (this.eatingHabit != null) ? this.eatingHabit = null: null;
       this.selectedCard = false;
       this.selectedCard2 = false;
+
+      this.sleepQuality = 5; 
 
     } else {
 

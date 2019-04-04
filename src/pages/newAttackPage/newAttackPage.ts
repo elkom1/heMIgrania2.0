@@ -168,6 +168,21 @@ export class NewAttackPage {
     this.menge = 1;
     this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
     this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
+
+    this.intensity = 5; 
+    this.intensityFlimmerSehen = 5; 
+    this.intensityNasenLaufen = 5; 
+    this.intensityNasenVerstopfung = 5; 
+    this.intensityNausea = 5; 
+    this.intensityPhonophobia = 5; 
+    this.intensityPhotophobia = 5; 
+    this.intensityRedEye = 5; 
+    this.intensitySmellSensitivity = 5; 
+    this.intensitySpeechDisorder = 5; 
+    this.intensityTouchSensation = 5; 
+    this.intensityVomiting = 5; 
+    this.intensityWateryEye = 5; 
+    this.intensityTouchSensation = 5; 
   }
 
   ionViewWillEnter() {
@@ -1617,20 +1632,20 @@ export class NewAttackPage {
       this.selectedSmellSensitivity = false;
       this.selectedVomiting = false;
       this.selectedNausea = false;
-      this.intensity = 0; 
-      this.intensityFlimmerSehen = 0; 
-      this.intensityNasenLaufen = 0; 
-      this.intensityNasenVerstopfung = 0; 
-      this.intensityNausea = 0; 
-      this.intensityPhonophobia = 0; 
-      this.intensityPhotophobia = 0; 
-      this.intensityRedEye = 0; 
-      this.intensitySmellSensitivity = 0; 
-      this.intensitySpeechDisorder = 0; 
-      this.intensityTouchSensation = 0; 
-      this.intensityVomiting = 0; 
-      this.intensityWateryEye = 0; 
-      this.intensityTouchSensation = 0; 
+      this.intensity = 5; 
+      this.intensityFlimmerSehen = 5; 
+      this.intensityNasenLaufen = 5; 
+      this.intensityNasenVerstopfung = 5; 
+      this.intensityNausea = 5; 
+      this.intensityPhonophobia = 5; 
+      this.intensityPhotophobia = 5; 
+      this.intensityRedEye = 5; 
+      this.intensitySmellSensitivity = 5; 
+      this.intensitySpeechDisorder = 5; 
+      this.intensityTouchSensation = 5; 
+      this.intensityVomiting = 5; 
+      this.intensityWateryEye = 5; 
+      this.intensityTouchSensation = 5; 
       this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
       this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
       this.selectedCard = false;
