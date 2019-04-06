@@ -1,9 +1,10 @@
 import {
   Component,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ViewChild
 } from '@angular/core';
 import {
-  NavController
+  NavController, Content
 } from 'ionic-angular';
 
 import {
@@ -44,6 +45,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewAttackPage {
+  @ViewChild(Content) content: Content;
 
   //-------------------------------------START INITIALIZE ITEMS -------------------------------------------------
   situation: string;
@@ -113,7 +115,7 @@ export class NewAttackPage {
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private scanner: BarcodeScanner, private matomoTracker: MatomoTracker) {
     //Here we can intialize all of the attributes which are selected and altered
     this.group = new FormGroup({
-      menge: new FormControl(''),
+      menge: new FormControl('', [Validators.required, Validators.max(15)]),
       symptome: new FormControl('', [Validators.required, Validators.minLength(1)]),
       otherSymptom: new FormControl('', [Validators.required, Validators.minLength(4)]),
       painAreal: new FormControl('', [Validators.required]),
@@ -205,6 +207,9 @@ export class NewAttackPage {
     this.selectedSmellSensitivity = this.symptome.find(value => value == "Geruchsempfindlichkeit") == null ? false : true
     this.selectedVomiting = this.symptome.find(value => value == "Erbrechen") == null ? false : true
     this.selectedNausea = this.symptome.find(value => value == "Übelkeit") == null ? false : true
+
+    // track event 
+    this.matomoTracker.trackEvent("Page: Neuer Eintrag", "eine Auffälligkeit ausgewählt")
   }
 
   onChangePainType() {
@@ -215,15 +220,15 @@ export class NewAttackPage {
   }
   //-------------------------------------END ONCHANGE METHODS FOR "OTHER SELECTION"------------------------
 
-  showText() {
-    if (this.selectedCard == false) {
-      this.selectedCard = true;
-      //tracking event
-      this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 1 klick: Auffälligkeiten")
-    } else {
-      this.selectedCard = false;
-    }
-  }
+  // showText() {
+  //   if (this.selectedCard == false) {
+  //     this.selectedCard = true;
+  //     //tracking event
+  //     this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 1 klick: Auffälligkeiten")
+  //   } else {
+  //     this.selectedCard = false;
+  //   }
+  // }
 
   showText2() {
     if (this.selectedCard2 == false) {
@@ -238,6 +243,9 @@ export class NewAttackPage {
   showText3() {
     if (this.selectedCard3 == false) {
       this.selectedCard3 = true;
+      //Scroll up after click 
+      this.content.scrollToBottom();
+      this.content.scrollTo(0, 1000);
       //tracking event
       this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 3 klick: Medikamente")
     } else {
@@ -454,6 +462,14 @@ export class NewAttackPage {
       console.log("Error: Selektiere minimum eine Auffälligkeit")
       return this.alertCtrl.create({
         message: "Bitte gib mindestens eine Auffälligkeit an",
+        buttons: ['OK']
+      }).present()
+    }
+
+    else if (this.group.get('menge').hasError('required') && this.medicament != null) {
+      console.log("Error: Anzahl Tabletten nicht richtig")
+      return this.alertCtrl.create({
+        message: "Bitte gib eine Zahl von 1-15",
         buttons: ['OK']
       }).present()
     }

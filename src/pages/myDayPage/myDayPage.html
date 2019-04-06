@@ -12,9 +12,6 @@
 
 <ion-content padding>
 
-  <!--add swipe gesture-->
-  <div class="main-content" (swipe)="swipe($event)">
-
     <form [formGroup]="group" (ngSubmit)="showCheckbox()">
 
       <ion-card>
@@ -25,7 +22,7 @@
         </ion-card-header>
         <ion-item text-wrap>
           <ion-label>Bitte Datum angeben</ion-label>
-          <ion-datetime displayFormat="MMM DD, YYYY" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="date"
+          <ion-datetime displayFormat="MMM DD, YYYY" min="2019" max="2019-07-31" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="date"
             name="date" formControlName="date"></ion-datetime>
         </ion-item>
       </ion-card>
@@ -41,7 +38,7 @@
           <ion-label text-center style="font-weight: bold; font-size: 18px">Einschlafzeit</ion-label>
           <div class="ion-text-end">
             <ion-item text-wrap>
-              <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen"
+              <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Bestätigen" cancelText="Abbrechen"
                 [(ngModel)]="sleepTime" name="sleepTime" formControlName="sleepTime"></ion-datetime>
             </ion-item>
           </div>
@@ -50,7 +47,7 @@
 
           <div class="ion-text-end">
             <ion-item text-wrap>
-              <ion-datetime displayFormat="MMM DD, YYYY HH:mm" doneText="Bestätigen" cancelText="Abbrechen"
+              <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Bestätigen" cancelText="Abbrechen"
                 [(ngModel)]="awakeTime" name="awakeTime" formControlName="awakeTime"></ion-datetime>
             </ion-item>
           </div>
@@ -93,6 +90,5 @@
 
     </form>
 
-  </div>
 
 </ion-content>

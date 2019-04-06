@@ -51,6 +51,7 @@
     "cordova-plugin-whitelist": "^1.3.3",
     "cordova-plugin-x-toast": "^2.7.2",
     "ionic-angular": "3.9.2",
+    "ionic-scroller": "0.0.4",
     "ionic-select-searchable": "^2.10.0",
     "ionic2-super-tabs": "^5.2.0",
     "ionicons": "3.0.0",
