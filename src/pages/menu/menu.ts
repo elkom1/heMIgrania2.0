@@ -81,7 +81,7 @@ export class MenuPage {
     //   icon: 'rose'
     // },
     {
-      title: 'Wie nutze ich heMIgrania?',
+      title: 'Wie nutze ich heMIgrania',
       pageName: 'Tutorial',
       tabComponent: Tutorial,
       icon: 'help'
