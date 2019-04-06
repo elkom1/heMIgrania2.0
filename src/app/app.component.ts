@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
-import { Platform} from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, NavController, Nav} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MenuPage } from '../pages/menu/menu';
 
 import { MatomoInjector } from 'ngx-matomo';
+import { LoginPage } from '../pages/login/login';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav;
 
  rootPage:any = MenuPage;
 
@@ -25,7 +27,13 @@ export class MyApp {
       this.matomoInjector.init('//analytics.i4mi.bfh.ch/', 2);
 
       splashScreen.hide();
+
     });
 
   }
+
+  ngAfterViewInit(){ 
+    this.nav.push(LoginPage)
+  }
+  
 }
