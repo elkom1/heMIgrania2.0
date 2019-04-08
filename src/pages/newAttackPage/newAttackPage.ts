@@ -464,6 +464,13 @@ export class NewAttackPage {
       }).present()
     }
 
+    else if (this.selectedCard2 == false && this.symptome != null) {
+      this.alertCtrl.create({
+        message: "Bitte erfasse deine Schmerzdauer",
+        buttons: ['OK']
+      }).present()
+    }
+
     else if (this.group.get('symptome').hasError('required') || this.symptome == null) {
       console.log("Error: Selektiere minimum eine Auffälligkeit")
       return this.alertCtrl.create({
