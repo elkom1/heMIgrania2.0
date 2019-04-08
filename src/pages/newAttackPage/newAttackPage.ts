@@ -190,6 +190,15 @@ export class NewAttackPage {
     this.tabBarElement.style.display = 'flex';
   }
 
+  // ionViewWillLeave() {
+  //   if(this.situation != null || this.symptome != null || this.selectedCard2 == true) {
+  //     this.alertCtrl.create({
+  //       message: "Möchtest du die Seite wirklich verlassen",
+  //       buttons: ['OK']
+  //     }).present()
+  //   }
+  // }
+
   //-------------------------------------START ONCHANGE METHODS FOR "OTHER SELECTION"------------------------
   onChangeSymptoms() {
     this.selectedOther = this.symptome.find(val => val == "Andere") == null ? false : true
@@ -1677,7 +1686,6 @@ export class NewAttackPage {
       this.intensityTouchSensation = 5; 
       this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
       this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
-      this.selectedCard = false;
       this.selectedCard2 = false;
       this.selectedCard3 = false;
 
