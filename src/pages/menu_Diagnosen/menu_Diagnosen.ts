@@ -73,7 +73,7 @@ export class Diagnosen {
         this.matomoTracker.trackEvent("Page: Diagnosen", "Save success")
 
         let alert = this.alertCtrl.create({
-          message: 'Deine Diagnose wurde gespeichert',
+          message: 'Diagnose wurde erfolgreich in deinem MIDATA Konto gespeichert',
           buttons: ['OK']
         });
         alert.present();
@@ -213,8 +213,10 @@ export class Diagnosen {
         this.date = time.toISOString();
       } 
       else { //If nicht eingeloggt in MIDATA 
-        let alert2 = this.alertCtrl.create();
-        alert2.setTitle('Für die Abspeicherung' + '<br />' +'überprüfe dein Anmeldestatus');
+        let alert2 = this.alertCtrl.create({
+          message: 'Bitte melde dich in MIDATA an'
+        });
+        alert2.setTitle('Anmeldung erforderlich');
 
         alert2.addButton('Abbrechen');
         alert2.addButton({

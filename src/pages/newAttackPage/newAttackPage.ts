@@ -166,7 +166,6 @@ export class NewAttackPage {
     this.matomoTracker.trackPageView("Neuer Eintrag View besucht");
 
     // set default values
-    this.situation = "migräneanfall";
     this.menge = 1;
     this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
     this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
@@ -220,15 +219,15 @@ export class NewAttackPage {
   }
   //-------------------------------------END ONCHANGE METHODS FOR "OTHER SELECTION"------------------------
 
-  // showText() {
-  //   if (this.selectedCard == false) {
-  //     this.selectedCard = true;
-  //     //tracking event
-  //     this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 1 klick: Auffälligkeiten")
-  //   } else {
-  //     this.selectedCard = false;
-  //   }
-  // }
+  showText() {
+    // if (this.selectedCard == false) {
+    //   this.selectedCard = true;
+      //tracking event
+      this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 1 klick: Auffälligkeiten")
+    // } else {
+    //   this.selectedCard = false;
+    // }
+  }
 
   showText2() {
     if (this.selectedCard2 == false) {
@@ -458,7 +457,14 @@ export class NewAttackPage {
     //track event
     this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Save Button klick");
 
-    if (this.group.get('symptome').hasError('required') || this.symptome == null) {
+    if (this.situation == null) {
+      this.alertCtrl.create({
+        message: "Bitte erfasse das erste Eingabefeld",
+        buttons: ['OK']
+      }).present()
+    }
+
+    else if (this.group.get('symptome').hasError('required') || this.symptome == null) {
       console.log("Error: Selektiere minimum eine Auffälligkeit")
       return this.alertCtrl.create({
         message: "Bitte gib mindestens eine Auffälligkeit an",
@@ -481,7 +487,7 @@ export class NewAttackPage {
       this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Complete Save Success")
 
       let alert = this.alertCtrl.create({
-        message: 'Daten wurden erfolgreich in MIDATA gespeichert',
+        message: 'Daten wurden erfolgreich in deinem MIDATA Konto gespeichert',
         buttons: ['OK']
       });
       alert.present();
@@ -1625,7 +1631,7 @@ export class NewAttackPage {
       //========================= END JSON PUT MEDICATION COMPONENTS IN BUNDLE2 AND SAVE===========================================
 
       //update the input fields 
-      this.situation = "migräneanfall";
+      this.situation = null;
       this.symptome = null;
       this.fromDateTime = null;
       this.untilDateTime = null;
@@ -1670,8 +1676,10 @@ export class NewAttackPage {
 
     } else {
 
-      let alert2 = this.alertCtrl.create();
-      alert2.setTitle('Für die Abspeicherung' + '<br />' + 'überprüfe dein Anmeldestatus');
+      let alert2 = this.alertCtrl.create({
+        message: 'Bitte melde dich in MIDATA an'
+      });
+      alert2.setTitle('Anmeldung erforderlich');
 
       alert2.addButton('Abbrechen');
       alert2.addButton({

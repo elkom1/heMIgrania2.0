@@ -63,7 +63,6 @@ export class MyDayPage {
   tabBarElement: any;
 
   selectedCard: Boolean = false;
-  selectedCard2: Boolean = false;
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, midataService: MidataService, private matomoTracker: MatomoTracker) {
     //Here we can intialize all of the attributes which are selected and altered
@@ -133,20 +132,34 @@ export class MyDayPage {
   }
 
   showText2() {
-    if (this.selectedCard2 == false) {
-      this.selectedCard2 = true;
+    // if (this.selectedCard2 == false) {
+    //   this.selectedCard2 = true;
       //tracking event
       this.matomoTracker.trackEvent("Page: Mein Tag", "card 2 klick: Essverhalten")
-    } else {
-      this.selectedCard2 = false;
-    }
+    // } else {
+    //   this.selectedCard2 = false;
+    // }
   }
 
   showCheckbox() {
     //track event
     this.matomoTracker.trackEvent("Page: Mein Tag", "Save Button klick")
 
-    if (this.midataService.loggedIn()) {
+    if (this.eatingHabit == null) {
+      this.alertCtrl.create({
+        message: "Bitte gib dein Essverhalten an",
+        buttons: ['OK']
+      }).present()
+    }
+
+    else if (this.selectedCard == false) {
+      this.alertCtrl.create({
+        message: "Bitte gib dein Schlafrythmus an",
+        buttons: ['OK']
+      }).present()
+    }
+
+    else if (this.midataService.loggedIn()) {
       //track event
       this.matomoTracker.trackEvent("Page: Mein Tag", "Save success")
 
@@ -154,7 +167,7 @@ export class MyDayPage {
         cssClass: 'reset',
         message: 'Hattest du sonstige Beschwerden?'
       });
-      alert.setTitle('Daten wurden erfolgreich in MIDATA gespeichert');
+      alert.setTitle('Daten wurden erfolgreich in deinem MIDATA Konto gespeichert');
 
       alert.addInput({
         type: 'radio',
@@ -174,9 +187,8 @@ export class MyDayPage {
         value: 'value3'
       });
 
-      alert.addButton('Abbrechen');
       alert.addButton({
-        text: 'Bestätigen',
+        text: 'Weiter',
         handler: data => {
           console.log('Checkbox data:', data);
           if (data == "value1") {
@@ -202,7 +214,7 @@ export class MyDayPage {
       alert.present();
 
       //========================= START JSON for Observation = Sleep Rythm ===========================================
-      if (this.sleepTime != null && this.awakeTime != null) {
+      if (this.sleepTime != null && this.awakeTime != null && this.selectedCard == true) {
         //track event
         this.matomoTracker.trackEvent("Page: Mein Tag", "Klick: Einschlafzeit und Aufwachzeit ausgewählt")
 
@@ -358,14 +370,15 @@ export class MyDayPage {
       this.date = new Date(new Date().getTime()).toISOString();
       (this.eatingHabit != null) ? this.eatingHabit = null: null;
       this.selectedCard = false;
-      this.selectedCard2 = false;
 
       this.sleepQuality = 5; 
 
     } else {
 
-      let alert2 = this.alertCtrl.create();
-      alert2.setTitle('Für die Abspeicherung' + '<br />' + 'überprüfe dein Anmeldestatus');
+      let alert2 = this.alertCtrl.create({
+        message: 'Bitte melde dich in MIDATA an'
+      });
+      alert2.setTitle('Anmeldung erforderlich');
 
       alert2.addButton('Abbrechen');
       alert2.addButton({
