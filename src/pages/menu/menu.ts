@@ -166,7 +166,7 @@ export class MenuPage {
               text: 'Ja',
               handler: data => {
                 this.midataService.logout();
-                this.navCtrl.popToRoot();
+                this.navCtrl.push(LoginPage);
                 //Tracking event 
                 this.matomoTracker.trackEvent("Logout success", "MIDATA Logout success")
               }
