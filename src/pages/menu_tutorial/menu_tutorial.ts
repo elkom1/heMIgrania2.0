@@ -43,16 +43,6 @@ export class Tutorial {
     this.matomoTracker.trackPageView("Tutorial View besucht");
   }
 
-  showText() {
-    if (this.selectedCard == false) {
-      this.selectedCard = true;
-      //tracking event 
-      this.matomoTracker.trackEvent("Page: Tutorial", "card 1 klick: Was sehe ich auf der Startseite?")
-    } else {
-      this.selectedCard = false;
-    }
-  }
-
   showText2() {
     if (this.selectedCard2 == false) {
       this.selectedCard2 = true;
