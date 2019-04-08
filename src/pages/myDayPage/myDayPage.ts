@@ -385,7 +385,7 @@ export class MyDayPage {
         text: 'Bestätigen',
         handler: data => {
           console.log('Checkbox data:', data);
-          this.navCtrl.push(LoginPage)
+          this.navCtrl.push(LoginPage); 
           //   this.menuPage.openPage(this.menuPage.pages[0])
           let elements = document.querySelectorAll(".tabbar");
 
