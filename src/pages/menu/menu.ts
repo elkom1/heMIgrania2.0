@@ -41,6 +41,7 @@ import {
 import {
   MatomoTracker
 } from 'ngx-matomo';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 export interface PageInterface {
@@ -121,7 +122,7 @@ export class MenuPage {
   private midataService: MidataService;
 
   constructor(public navCtrl: NavController, midataService: MidataService, private matomoTracker: MatomoTracker, private platform: Platform,
-    private alertCtrl: AlertController, ) {
+    private alertCtrl: AlertController, private inAppBrowser: InAppBrowser ) {
     this.midataService = midataService;
   }
 
@@ -153,7 +154,17 @@ export class MenuPage {
       this.nav.getActiveChildNavs()[0].select(page.index);
     } else {
 
-      if (page.tabComponent == LogoutPage) {
+      if (page.tabComponent == LoginPage) {
+        this.platform.ready().then(() => {
+          if (this.midataService.loggedIn()) {
+            this.inAppBrowser.create('https://test.midata.coop/#/portal/login');
+          } else {
+            this.navCtrl.push(LoginPage)
+          }
+        });
+      }
+
+      else if (page.tabComponent == LogoutPage) {
         this.platform.ready().then(() => {
           if (this.midataService.loggedIn()) {
 
