@@ -1698,7 +1698,7 @@ export class NewAttackPage {
 
       alert2.addButton('Abbrechen');
       alert2.addButton({
-        text: 'Bestätigen',
+        text: 'Weiter',
         handler: data => {
           console.log('Checkbox data:', data);
           this.navCtrl.push(LoginPage)
