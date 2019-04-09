@@ -9,8 +9,6 @@ import {
 } from '../../services/midataService';
 
 import { MatomoTracker } from 'ngx-matomo';
-import { Tutorial } from '../menu_tutorial/menu_tutorial';
-
 
 @Component({
   selector: 'page-home',
@@ -26,7 +24,7 @@ export class HomePage {
   }
 
   ngOnInit() {
-    //set user ID and document title 
+    //set user ID and document title
     if (this.midataService.loggedIn()) {
       this.matomoTracker.setUserId(this.midataService.getUser().email);
       this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
@@ -36,14 +34,14 @@ export class HomePage {
     } else {
       this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
     }
-    //Tracking Page view 
+    //Tracking Page view
     this.matomoTracker.trackPageView("Startseite View besucht");
   }
 
   swipe(event) {
     if (event.direction === 2) { // 2 = nach rechts swipen
       this.navCtrl.parent.select(1); // 0 = Home, 1 = Mein Tag, 2 = Neuer Eintrag
-      //track event 
+      //track event
       this.matomoTracker.trackEvent("Page: Home", "Slide to Mein Tag View")
     }
   }

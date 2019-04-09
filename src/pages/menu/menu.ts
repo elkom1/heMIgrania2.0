@@ -2,9 +2,6 @@ import {
   Impressum
 } from './../menu_impressum/menu_impressum';
 import {
-  EntspannungsUebungen
-} from './../menu_entspannungsUebungen/menu_entspannungsUebungen';
-import {
   Diagnosen
 } from './../menu_Diagnosen/menu_Diagnosen';
 import {
@@ -76,12 +73,6 @@ export class MenuPage {
       tabComponent: MenuPage,
       icon: 'home'
     },
-    // {
-    //   title: 'Entspannungsübungen',
-    //   pageName: 'EntspannungsUebungen',
-    //   tabComponent: EntspannungsUebungen,
-    //   icon: 'rose'
-    // },
     {
       title: 'Wie nutze ich heMIgrania',
       pageName: 'Tutorial',
@@ -134,7 +125,7 @@ export class MenuPage {
   }
 
   ngOnInit() {
-    //set user ID and document title 
+    //set user ID and document title
     if (this.midataService.loggedIn()) {
       this.matomoTracker.setUserId(this.midataService.getUser().email);
       this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
@@ -144,7 +135,7 @@ export class MenuPage {
     } else {
       this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
     }
-    //Tracking Page view 
+    //Tracking Page view
     this.matomoTracker.trackEvent("Page: Menu", "Menu list klick");
   }
 
@@ -185,7 +176,7 @@ export class MenuPage {
               handler: data => {
                 this.midataService.logout();
                 this.navCtrl.push(LoginPage);
-                //Tracking event 
+                //Tracking event
                 this.matomoTracker.trackEvent("Logout success", "MIDATA Logout success")
               }
             });
@@ -203,7 +194,7 @@ export class MenuPage {
         });
       }
       else if(page.tabComponent != LogoutPage) {
-         // Tabs are not active, so reset the root page 
+         // Tabs are not active, so reset the root page
       // In this case: moving to or from SpecialPage
       this.nav.push(page.tabComponent, params);
       this.isActive(this.nav.getActiveChildNav())

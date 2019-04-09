@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, NavController, Nav} from 'ionic-angular';
+import { Platform, Nav} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -23,8 +23,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
 
-      //piwik initialise 
-      this.matomoInjector.init('//analytics.i4mi.bfh.ch/', 2);
+      //piwik initialise
+      this.matomoInjector.init('https://analytics.i4mi.bfh.ch/', 2);
 
       splashScreen.hide();
 
@@ -32,8 +32,8 @@ export class MyApp {
 
   }
 
-  ngAfterViewInit(){ 
+  ngAfterViewInit(){
     this.nav.push(LoginPage)
   }
-  
+
 }
