@@ -25,6 +25,7 @@ import { Reminder } from '../pages/menu_reminder/menu_reminder';
 import { EntspannungsUebungen } from '../pages/menu_entspannungsUebungen/menu_entspannungsUebungen';
 import { Diagnosen } from '../pages/menu_Diagnosen/menu_Diagnosen';
 import { Datenschutz } from '../pages/menu_Datenschutz/menu_Datenschutz';
+import {Nutzungsbedingungen} from '../pages/menu_Nutzungsbedingungen/menu_Nutzungsbedingungen';
 import { MenuPage } from '../pages/menu/menu';
 
 
@@ -48,6 +49,7 @@ import { MatomoModule } from 'ngx-matomo';
     EntspannungsUebungen, 
     Diagnosen, 
     Datenschutz,
+    Nutzungsbedingungen,
     Reminder, 
     Tutorial, 
     LoginPage,
@@ -71,6 +73,7 @@ import { MatomoModule } from 'ngx-matomo';
     EntspannungsUebungen,
     Diagnosen, 
     Datenschutz,
+    Nutzungsbedingungen,
     Reminder, 
     Tutorial, 
     LoginPage, 

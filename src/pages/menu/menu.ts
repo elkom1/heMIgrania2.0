@@ -42,6 +42,7 @@ import {
   MatomoTracker
 } from 'ngx-matomo';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Nutzungsbedingungen } from '../menu_Nutzungsbedingungen/menu_Nutzungsbedingungen';
 
 
 export interface PageInterface {
@@ -104,6 +105,12 @@ export class MenuPage {
       pageName: 'Datenschutz',
       tabComponent: Datenschutz,
       icon: 'lock'
+    },
+    {
+      title: 'Nutzungsbedingungen',
+      pageName: 'menu_Nutzungsbedingungen',
+      tabComponent: Nutzungsbedingungen,
+      icon: 'book'
     },
     {
       title: 'Impressum',
