@@ -39,7 +39,7 @@ export class LoginPage {
     private matomoTracker: MatomoTracker) {}
 
   // register(){
-  //   this.inAppBrowser.create('https://test.midata.coop/#/portal/registration');
+  //   this.inAppBrowser.create('https://ch.midata.coop/#/portal/registration');
   // }
 
   visitMidata() {
