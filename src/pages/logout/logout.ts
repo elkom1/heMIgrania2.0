@@ -37,9 +37,9 @@ export class LogoutPage {
 
         let alert = this.alertCtrl.create();
         alert.setTitle("Willst Du dich wirklich abmelden");
-        alert.addButton('Abbrechen');
+        alert.addButton('Nein');
         alert.addButton({
-          text: 'Bestätigen',
+          text: 'Ja',
           handler: data => {
             this.midataService.logout();
             this.navCtrl.popToRoot();

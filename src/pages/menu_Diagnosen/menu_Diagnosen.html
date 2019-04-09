@@ -20,13 +20,13 @@
       </ion-card-header>
       <ion-item text-wrap>
         <ion-label>Datum der Diagnose</ion-label>
-        <ion-datetime displayFormat="MMM DD, YYYY" min="2000" max="2019-07-31" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="date">
+        <ion-datetime displayFormat="MMM DD, YYYY" min="2000" max="2019-07-31" doneText="Weiter" cancelText="Abbrechen" [(ngModel)]="date">
         </ion-datetime>
       </ion-item>
 
       <ion-item text-wrap>
         <ion-label>Diagnose</ion-label>
-        <ion-select okText="Bestätigen" cancelText="Abbrechen" (ionChange)="onChangeDiagnoses()"
+        <ion-select okText="Weiter" cancelText="Abbrechen" (ionChange)="onChangeDiagnoses()"
           [(ngModel)]="diagnosen">
           <ion-option>Migräne mit Aura</ion-option>
           <ion-option>Migräne ohne Aura</ion-option>

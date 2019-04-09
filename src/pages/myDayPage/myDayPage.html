@@ -22,7 +22,7 @@
       </ion-card-header>
       <ion-item text-wrap>
         <ion-label>Bitte Datum angeben</ion-label>
-        <ion-datetime displayFormat="MMM DD, YYYY" min="2019" max="2019-07-31" doneText="Bestätigen"
+        <ion-datetime displayFormat="MMM DD, YYYY" min="2019" max="2019-07-31" doneText="Weiter"
           cancelText="Abbrechen" [(ngModel)]="date" name="date" formControlName="date"></ion-datetime>
       </ion-item>
     </ion-card>
@@ -35,7 +35,7 @@
       </ion-card-header>
       <ion-card-content>
         <ion-item text-wrap>
-          <ion-select placeholder="Bitte Essverhalten eingeben" okText="Bestätigen" cancelText="Abbrechen" popover
+          <ion-select placeholder="Bitte Essverhalten eingeben" okText="Weiter" cancelText="Abbrechen" popover
             [(ngModel)]="eatingHabit" name="eatingHabit" formControlName="eatingHabit">
             <ion-option>Regelmässig gegessen</ion-option>
             <ion-option>Unregelmässig gegessen</ion-option>
@@ -56,7 +56,7 @@
         <ion-label text-center style="font-weight: bold; font-size: 18px">Einschlafzeit</ion-label>
         <div class="ion-text-end">
           <ion-item text-wrap>
-            <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Bestätigen"
+            <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Weiter"
               cancelText="Abbrechen" [(ngModel)]="sleepTime" name="sleepTime" formControlName="sleepTime">
             </ion-datetime>
           </ion-item>
@@ -66,7 +66,7 @@
 
         <div class="ion-text-end">
           <ion-item text-wrap>
-            <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Bestätigen"
+            <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Weiter"
               cancelText="Abbrechen" [(ngModel)]="awakeTime" name="awakeTime" formControlName="awakeTime">
             </ion-datetime>
           </ion-item>
