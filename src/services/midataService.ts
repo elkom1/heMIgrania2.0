@@ -4,7 +4,7 @@ import { SecureStorage, SecureStorageObject } from "@ionic-native/secure-storage
 import { Events, Platform } from "ionic-angular";
 import { Network } from "@ionic-native/network";
 import {NativeStorage} from '@ionic-native/native-storage';
-import { TokenRefreshResponse, AuthResponse } from "midata/dist/src/api";
+import { TokenRefreshResponse } from "midata/dist/src/api";
 import {Promise} from 'es6-promise';
 import { AuthAndPatResponse } from 'Midata/dist/src/Midata';
 

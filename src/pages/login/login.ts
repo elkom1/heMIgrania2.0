@@ -19,9 +19,6 @@ import {
 import {
   MatomoTracker
 } from 'ngx-matomo';
-import {
-  MenuPage
-} from '../menu/menu';
 
 
 @IonicPage()
@@ -82,12 +79,6 @@ export class LoginPage {
     }
     //Tracking Page view 
     this.matomoTracker.trackPageView("Login View besucht");
-  }
-
-  goHome() {
-    this.navCtrl.popToRoot();
-    //tracking event 
-    this.matomoTracker.trackEvent("Page: Login", "Zurück zur Startseite ohne Anmeldung")
   }
 
   login() {
