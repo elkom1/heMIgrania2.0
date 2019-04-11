@@ -19,6 +19,9 @@ import {
 import {
   MatomoTracker
 } from 'ngx-matomo';
+import {
+  MenuPage
+} from '../menu/menu';
 
 
 @IonicPage()
@@ -91,27 +94,35 @@ export class LoginPage {
     //tracking event 
     this.matomoTracker.trackEvent("Page: Login", "Anmelden Button klick")
 
-    let loading = this.loadingCtrl.create({
-      content: 'Bitte warten...'
-    });
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Bitte warten...'
+    // });
 
-    loading.present().catch();
+    // loading.present().catch();
 
     this.midataService.authenticate()
       .then((success: boolean) => {
-        let alert = this.alertCtrl.create();
-        alert.setTitle("Anmeldung war erfolgreich");
-        alert.addButton('Ok');
-        alert.present();
-        //Track Event 
-        this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
-        return this.navCtrl.pop();
+        if (success) {
+          let alert = this.alertCtrl.create();
+          alert.setTitle("Anmeldung war erfolgreich");
+          alert.addButton('Ok');
+          alert.present();
+          //Track Event 
+          this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
+          return this.navCtrl.pop();
+        }
       })
-      .then(() => {
-        loading.dismiss().catch();
-      })
+      
       .catch((error) => {
-        loading.dismiss().catch();
+        
+          let alert = this.alertCtrl.create();
+          alert.setTitle("Anmeldung war erfolgreich");
+          alert.addButton('Ok');
+          alert.present();
+          //Track Event 
+          this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
+          this.navCtrl.pop();
+        
       })
   }
 }
