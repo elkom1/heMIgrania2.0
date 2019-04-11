@@ -106,7 +106,6 @@ export class NewAttackPage {
   tabBarElement: any;
 
   selectedCard: Boolean = false;
-  selectedCard2: Boolean = false;
   selectedCard3: Boolean = false;
   //-------------------------------------END INITIALIZE ITEMS -------------------------------------------------
 
@@ -238,15 +237,15 @@ export class NewAttackPage {
     // }
   }
 
-  showText2() {
-    if (this.selectedCard2 == false) {
-      this.selectedCard2 = true;
-      //tracking event
-      this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 2 klick: Dauer des Schmerzes")
-    } else {
-      this.selectedCard2 = false;
-    }
-  }
+  // showText2() {
+  //   if (this.selectedCard2 == false) {
+  //     this.selectedCard2 = true;
+  //     //tracking event
+  //     this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 2 klick: Dauer des Schmerzes")
+  //   } else {
+  //     this.selectedCard2 = false;
+  //   }
+  // }
 
   showText3() {
     if (this.selectedCard3 == false) {
@@ -469,13 +468,6 @@ export class NewAttackPage {
     if (this.situation == null) {
       this.alertCtrl.create({
         message: "Bitte erfasse das erste Eingabefeld",
-        buttons: ['OK']
-      }).present()
-    }
-
-    else if (this.selectedCard2 == false && this.symptome != null) {
-      this.alertCtrl.create({
-        message: "Bitte gib den Zeitrahmen an",
         buttons: ['OK']
       }).present()
     }
@@ -1686,7 +1678,6 @@ export class NewAttackPage {
       this.intensityTouchSensation = 5; 
       this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
       this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
-      this.selectedCard2 = false;
       this.selectedCard3 = false;
 
     } else {
