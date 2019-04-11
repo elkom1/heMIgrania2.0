@@ -37,6 +37,26 @@
       </ion-list>
     </ion-card>
 
+     <ion-card>
+      <ion-card-header (click)="showText2()">
+        <h1 style="font-weight: bold; color: white">
+          <ion-icon name="time"></ion-icon> Zeitrahmen
+        </h1>
+      </ion-card-header>
+      <ion-card-content *ngIf="selectedCard2">
+        <ion-item no-lines text-wrap>
+          <ion-label>Von</ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Weiter" cancelText="Abbrechen"
+            [(ngModel)]="fromDateTime" name="fromDateTime" formControlName="fromDateTime"></ion-datetime>
+        </ion-item>
+        <ion-item no-lines text-wrap>
+          <ion-label>Bis</ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Weiter" cancelText="Abbrechen"
+            [(ngModel)]="untilDateTime" name="untilDateTime" formControlName="untilDateTime"></ion-datetime>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
     <ion-card>
       <ion-card-header (click)="showText()">
         <h1 text-wrap style="font-weight: bold; color: white">
@@ -295,26 +315,6 @@
           <ion-icon range-right name="md-sad"></ion-icon>
         </ion-range>
       </ion-item>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-header (click)="showText2()">
-        <h1 style="font-weight: bold; color: white">
-          <ion-icon name="time"></ion-icon> Schmerzdauer
-        </h1>
-      </ion-card-header>
-      <ion-card-content *ngIf="selectedCard2">
-        <ion-item no-lines text-wrap>
-          <ion-label>Von</ion-label>
-          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Weiter" cancelText="Abbrechen"
-            [(ngModel)]="fromDateTime" name="fromDateTime" formControlName="fromDateTime"></ion-datetime>
-        </ion-item>
-        <ion-item no-lines text-wrap>
-          <ion-label>Bis</ion-label>
-          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Weiter" cancelText="Abbrechen"
-            [(ngModel)]="untilDateTime" name="untilDateTime" formControlName="untilDateTime"></ion-datetime>
-        </ion-item>
-      </ion-card-content>
     </ion-card>
 
     <ion-card>
