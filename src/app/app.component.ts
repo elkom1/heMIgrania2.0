@@ -27,7 +27,7 @@ export class MyApp {
       this.matomoInjector.init('https://analytics.i4mi.bfh.ch/', 2);
 
       splashScreen.hide();
-
+      statusBar.hide(); 
     });
 
   }
