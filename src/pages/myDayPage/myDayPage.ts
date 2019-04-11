@@ -235,8 +235,8 @@ export class MyDayPage {
         }
 
         let entry1 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, coding1, category1);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category1, coding1);
 
         entry1.addProperty("effectivePeriod", {
           start: this.sleepTime,
@@ -294,8 +294,8 @@ export class MyDayPage {
       }
 
       let entry2 = new Observation({
-        _dateTime: new Date().toISOString()
-      }, codingStuff2, category2);
+        effectiveDateTime: new Date().toISOString()
+      }, "preliminary", category2, codingStuff2);
 
       // let asdf = undefined;
       // if (typeof asdf === "undefined")

@@ -22,15 +22,13 @@ import {
 import {
   Observation,
   Bundle,
-  MedicationStatement
+  MedicationStatement,
+  MedicationStatementStatus,
+  MedicationStatementTaken
 } from 'Midata';
 import {
   BarcodeScanner
 } from '@ionic-native/barcode-scanner';
-import {
-  medicationStatus,
-  medicationTaken
-} from 'Midata/dist/src/resources/MedicationStatement';
 import {
   LoginPage
 } from '../login/login';
@@ -389,9 +387,9 @@ export class NewAttackPage {
           }],
         }
 
-        let medStatus: medicationStatus = "active";
+        let medStatus: MedicationStatementStatus = "active";
 
-        let medTaken: medicationTaken = "y";
+        let medTaken: MedicationStatementTaken = "y";
 
         let medEntry = new MedicationStatement(new Date(), code, medStatus, cat, {}, medTaken);
 
@@ -522,8 +520,8 @@ export class NewAttackPage {
         }
 
         let entry1 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, coding1, category1);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category1, coding1);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -575,8 +573,8 @@ export class NewAttackPage {
         }
 
         let entry = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff, category);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category, codingStuff);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -711,8 +709,8 @@ export class NewAttackPage {
         this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let entry4 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff4, category4);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category4, codingStuff4);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -756,8 +754,8 @@ export class NewAttackPage {
         this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let entry4_1 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff4, category4);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category4, codingStuff4);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -801,8 +799,8 @@ export class NewAttackPage {
         this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let entry4_2 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff4, category4);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category4, codingStuff4);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -846,8 +844,8 @@ export class NewAttackPage {
         this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let entry4_3 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff4, category4);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category4, codingStuff4);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -891,8 +889,8 @@ export class NewAttackPage {
         this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let entry4_4 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff4, category4);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category4, codingStuff4);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -953,8 +951,8 @@ export class NewAttackPage {
         }
 
         let entry4_5 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff4_5, category4_5);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category4_5, codingStuff4_5);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1015,8 +1013,8 @@ export class NewAttackPage {
         }
 
         let entry5 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff5, category5);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category5, codingStuff5);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1077,8 +1075,8 @@ export class NewAttackPage {
         }
 
         let entry6 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff6, category6);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category6, codingStuff6);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1140,8 +1138,8 @@ export class NewAttackPage {
         this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let entry7 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff7, category7);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category7, codingStuff7);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1185,8 +1183,8 @@ export class NewAttackPage {
         this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let entry7_1 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff7, category7);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category7, codingStuff7);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1234,8 +1232,8 @@ export class NewAttackPage {
         }
 
         let entry8 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff8, category8);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category8, codingStuff8);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1296,8 +1294,8 @@ export class NewAttackPage {
         }
 
         let entry9 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff9, category9);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category9, codingStuff9);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1358,8 +1356,8 @@ export class NewAttackPage {
         }
 
         let entry10 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff10, category10);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category10, codingStuff10);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1421,8 +1419,8 @@ export class NewAttackPage {
         this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let entry11 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff11, category11);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category11, codingStuff11);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1453,8 +1451,8 @@ export class NewAttackPage {
         this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
         let entry11_1 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff11, category11);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category11, codingStuff11);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1503,8 +1501,8 @@ export class NewAttackPage {
         }
 
         let entry12 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff12, category12);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category12, codingStuff12);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1552,8 +1550,8 @@ export class NewAttackPage {
         }
 
         let entry13 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff13, category13);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary", category13, codingStuff13);
 
         if (this.fromDateTime != null && this.untilDateTime != null) {
           //tracking event
@@ -1600,9 +1598,9 @@ export class NewAttackPage {
           }],
         }
 
-        let medStatus: medicationStatus = "active";
+        let medStatus: MedicationStatementStatus = "active";
 
-        let medTaken: medicationTaken = "y";
+        let medTaken: MedicationStatementTaken = "y";
 
         let medEntry = new MedicationStatement(new Date(), code, medStatus, cat, {}, medTaken);
 

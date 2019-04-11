@@ -12,8 +12,7 @@ import {
 } from '../../services/midataService';
 import {
   Observation,
-  Bundle
-} from 'Midata';
+  Bundle } from 'midata';
 import {
   LoginPage
 } from '../login/login';
@@ -96,8 +95,8 @@ export class Diagnosen {
         }
 
         let entry2 = new Observation({
-          _dateTime: new Date().toISOString()
-        }, codingStuff2, category2);
+          effectiveDateTime: new Date().toISOString()
+        }, "preliminary",category2, codingStuff2);
 
         if (this.diagnosen != null) {
           //tracking event 
