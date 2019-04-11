@@ -5,9 +5,6 @@ import {
   Diagnosen
 } from './../menu_Diagnosen/menu_Diagnosen';
 import {
-  Datenschutz
-} from './../menu_Datenschutz/menu_Datenschutz';
-import {
   Reminder
 } from './../menu_reminder/menu_reminder'
 import {
@@ -39,7 +36,6 @@ import {
   MatomoTracker
 } from 'ngx-matomo';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { Nutzungsbedingungen } from '../menu_Nutzungsbedingungen/menu_Nutzungsbedingungen';
 
 
 export interface PageInterface {
@@ -90,18 +86,6 @@ export class MenuPage {
       pageName: 'Reminder',
       tabComponent: Reminder,
       icon: 'alarm'
-    },
-    {
-      title: 'Datenschutzerklärung',
-      pageName: 'Datenschutz',
-      tabComponent: Datenschutz,
-      icon: 'lock'
-    },
-    {
-      title: 'Nutzungsbedingungen',
-      pageName: 'menu_Nutzungsbedingungen',
-      tabComponent: Nutzungsbedingungen,
-      icon: 'book'
     },
     {
       title: 'Impressum',
@@ -155,7 +139,7 @@ export class MenuPage {
       if (page.tabComponent == LoginPage) {
         this.platform.ready().then(() => {
           if (this.midataService.loggedIn()) {
-            this.inAppBrowser.create('https://ch.midata.coop/#/portal/login');
+            this.inAppBrowser.create('https://test.midata.coop/#/portal/login');
           } else {
             this.navCtrl.push(LoginPage)
           }
