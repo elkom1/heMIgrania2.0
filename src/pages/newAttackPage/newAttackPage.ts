@@ -4,7 +4,8 @@ import {
   ViewChild
 } from '@angular/core';
 import {
-  NavController, Content
+  NavController,
+  Content
 } from 'ionic-angular';
 
 import {
@@ -167,20 +168,20 @@ export class NewAttackPage {
     this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
     this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
 
-    this.intensity = 5; 
-    this.intensityFlimmerSehen = 5; 
-    this.intensityNasenLaufen = 5; 
-    this.intensityNasenVerstopfung = 5; 
-    this.intensityNausea = 5; 
-    this.intensityPhonophobia = 5; 
-    this.intensityPhotophobia = 5; 
-    this.intensityRedEye = 5; 
-    this.intensitySmellSensitivity = 5; 
-    this.intensitySpeechDisorder = 5; 
-    this.intensityTouchSensation = 5; 
-    this.intensityVomiting = 5; 
-    this.intensityWateryEye = 5; 
-    this.intensityTouchSensation = 5; 
+    this.intensity = 5;
+    this.intensityFlimmerSehen = 5;
+    this.intensityNasenLaufen = 5;
+    this.intensityNasenVerstopfung = 5;
+    this.intensityNausea = 5;
+    this.intensityPhonophobia = 5;
+    this.intensityPhotophobia = 5;
+    this.intensityRedEye = 5;
+    this.intensitySmellSensitivity = 5;
+    this.intensitySpeechDisorder = 5;
+    this.intensityTouchSensation = 5;
+    this.intensityVomiting = 5;
+    this.intensityWateryEye = 5;
+    this.intensityTouchSensation = 5;
   }
 
   ionViewWillEnter() {
@@ -228,8 +229,8 @@ export class NewAttackPage {
   showText() {
     // if (this.selectedCard == false) {
     //   this.selectedCard = true;
-      //tracking event
-      this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 1 klick: Auffälligkeiten")
+    //tracking event
+    this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 1 klick: Auffälligkeiten")
     // } else {
     //   this.selectedCard = false;
     // }
@@ -468,17 +469,13 @@ export class NewAttackPage {
         message: "Bitte erfasse das erste Eingabefeld",
         buttons: ['OK']
       }).present()
-    }
-
-    else if (this.group.get('symptome').hasError('required') || this.symptome == null) {
+    } else if (this.group.get('symptome').hasError('required') || this.symptome == null) {
       console.log("Error: Selektiere minimum eine Auffälligkeit")
       return this.alertCtrl.create({
         message: "Bitte gib mindestens eine Auffälligkeit an",
         buttons: ['OK']
       }).present()
-    }
-
-    else if (this.group.get('menge').hasError('required') && this.medicament != null) {
+    } else if (this.group.get('menge').hasError('required') && this.medicament != null) {
       console.log("Error: Anzahl Tabletten nicht richtig")
       return this.alertCtrl.create({
         message: "Bitte gib eine Zahl von 1-15",
@@ -655,7 +652,7 @@ export class NewAttackPage {
             });
           }
 
-          if (this.painType.match("Andere")) {
+          if (this.painType.match("Andere") && this.otherPainType != null) {
             entry.addProperty("valueCodeableConcept", {
               coding: [{
                 system: 'http://snomed.info/sct',
@@ -1529,7 +1526,7 @@ export class NewAttackPage {
       //========================= END JSON FOR THE OBSERVATION ""Female reproductive function""================================
 
       //========================= START JSON FOR THE OBSERVATION ""Other Symptoms""================================
-      if (this.symptome.find(val => val == "Andere") != null) {
+      if (this.symptome.find(val => val == "Andere") != null && this.otherSymptom != null) {
         //tracking event
         this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Auffälligkeiten ausgewählt")
 
@@ -1563,13 +1560,13 @@ export class NewAttackPage {
           });
         }
 
-        entry13.addProperty("valueCodeableConcept", {
-          coding: [{
-            system: 'http://snomed.info/sct',
-            code: '74964007',
-            display: this.otherSymptom
-          }]
-        });
+          entry13.addProperty("valueCodeableConcept", {
+            coding: [{
+              system: 'http://snomed.info/sct',
+              code: '74964007',
+              display: this.otherSymptom
+            }]
+          });
 
         let bundle13 = new Bundle("transaction");
         bundle13.addEntry("POST", entry13.resourceType, entry13);
@@ -1660,20 +1657,20 @@ export class NewAttackPage {
       this.selectedSmellSensitivity = false;
       this.selectedVomiting = false;
       this.selectedNausea = false;
-      this.intensity = 5; 
-      this.intensityFlimmerSehen = 5; 
-      this.intensityNasenLaufen = 5; 
-      this.intensityNasenVerstopfung = 5; 
-      this.intensityNausea = 5; 
-      this.intensityPhonophobia = 5; 
-      this.intensityPhotophobia = 5; 
-      this.intensityRedEye = 5; 
-      this.intensitySmellSensitivity = 5; 
-      this.intensitySpeechDisorder = 5; 
-      this.intensityTouchSensation = 5; 
-      this.intensityVomiting = 5; 
-      this.intensityWateryEye = 5; 
-      this.intensityTouchSensation = 5; 
+      this.intensity = 5;
+      this.intensityFlimmerSehen = 5;
+      this.intensityNasenLaufen = 5;
+      this.intensityNasenVerstopfung = 5;
+      this.intensityNausea = 5;
+      this.intensityPhonophobia = 5;
+      this.intensityPhotophobia = 5;
+      this.intensityRedEye = 5;
+      this.intensitySmellSensitivity = 5;
+      this.intensitySpeechDisorder = 5;
+      this.intensityTouchSensation = 5;
+      this.intensityVomiting = 5;
+      this.intensityWateryEye = 5;
+      this.intensityTouchSensation = 5;
       this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
       this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
       this.selectedCard3 = false;
