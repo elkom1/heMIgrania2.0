@@ -4,8 +4,9 @@ import { SecureStorage, SecureStorageObject } from "@ionic-native/secure-storage
 import { Events, Platform } from "ionic-angular";
 import { Network } from "@ionic-native/network";
 import {NativeStorage} from '@ionic-native/native-storage';
-import { TokenRefreshResponse, TokenResponse } from "midata/dist/src/api";
+import { TokenRefreshResponse, AuthResponse } from "midata/dist/src/api";
 import {Promise} from 'es6-promise';
+import { AuthAndPatResponse } from 'Midata/dist/src/Midata';
 
 @Injectable()
 export class MidataService {
@@ -39,7 +40,7 @@ export class MidataService {
       });
 
       // TODO: Change platform
-      this.midata = new Midata('https://ch.midata.coop', 'heMIgrania', 'metal taste buzz bonus toy volume');
+      this.midata = new Midata('https://test.midata.coop', 'heMIgrania', 'metal taste buzz bonus toy volume');
 
       platform.ready().then(() => {
         if (this.network.type === "none") {
@@ -283,8 +284,8 @@ export class MidataService {
         .then(() => {
         return this.midata.authenticate();
         })
-        .then((rsp : TokenResponse) => {
-        return this.setSecureStorageToken(rsp.refresh_token);
+        .then((rsp: AuthAndPatResponse ) => {
+        return this.setSecureStorageToken(rsp.authResponse.refresh_token);
         })
         .then(() => {
         this.syncResourceMap().catch(() => {
