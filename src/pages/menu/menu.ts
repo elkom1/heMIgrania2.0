@@ -139,7 +139,7 @@ export class MenuPage {
       if (page.tabComponent == LoginPage) {
         this.platform.ready().then(() => {
           if (this.midataService.loggedIn()) {
-            this.inAppBrowser.create('https://test.midata.coop/#/portal/login');
+            this.inAppBrowser.create('https://ch.midata.coop/#/portal/login');
           } else {
             this.navCtrl.push(LoginPage)
           }
