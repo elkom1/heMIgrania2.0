@@ -82,7 +82,7 @@ export class Diagnosen {
           coding: [{
             system: 'http://snomed.info/sct',
             code: '418138009',
-            display: 'Diagnosen erfassen' //muss noch registriert werden
+            display: 'Diagnosis' //muss noch registriert werden
           }]
         }
 
