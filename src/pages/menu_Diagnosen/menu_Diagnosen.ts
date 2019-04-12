@@ -66,7 +66,7 @@ export class Diagnosen {
     //tracking event 
     this.matomoTracker.trackEvent("Page: Diagnosen", "Save Button klick")
 
-    if (this.diagnosen != null && this.date != null) {
+    if (this.diagnosen != null) {
       if (this.midataService.loggedIn()) {
         //tracking event 
         this.matomoTracker.trackEvent("Page: Diagnosen", "Save success")
@@ -172,7 +172,7 @@ export class Diagnosen {
             });
           }
 
-          if (this.diagnosen.match("Andere")) {
+          if (this.diagnosen.match("Andere") && this.otherDiagnose != null) {
             entry2.addProperty("valueCodeableConcept", {
               coding: [{
                 system: 'http://snomed.info/sct',
