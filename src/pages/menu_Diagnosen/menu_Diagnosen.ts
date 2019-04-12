@@ -82,7 +82,7 @@ export class Diagnosen {
           coding: [{
             system: 'http://snomed.info/sct',
             code: '418138009',
-            display: 'Diagnosis' //muss noch registriert werden
+            display: 'Diagnosen erfassen' //muss noch registriert werden
           }]
         }
 
@@ -96,7 +96,7 @@ export class Diagnosen {
 
         let entry2 = new Observation({
           effectiveDateTime: new Date().toISOString()
-        }, "preliminary",category2, codingStuff2);
+        }, "preliminary", category2, codingStuff2);
 
         if (this.diagnosen != null) {
           //tracking event 
@@ -198,7 +198,8 @@ export class Diagnosen {
 
           let bundle2 = new Bundle("transaction");
           bundle2.addEntry("POST", entry2.resourceType, entry2);
-          this.midataService.save(bundle2);
+          //console.log(bundle2.toJson())
+          this.midataService.save(bundle2.toJson());
         }
         //========================= END JSON FOR THE OBSERVATION "Diagnosis"================================
 
