@@ -35,9 +35,6 @@ import {
 import {
   MatomoTracker
 } from 'ngx-matomo';
-import {
-  InAppBrowser
-} from '@ionic-native/in-app-browser';
 import { Nutzungsbedingungen } from '../menu_Nutzungsbedingungen/menu_Nutzungsbedingungen';
 
 
@@ -113,7 +110,7 @@ export class MenuPage {
   private midataService: MidataService;
 
   constructor(public navCtrl: NavController, midataService: MidataService, private matomoTracker: MatomoTracker, private platform: Platform,
-    private alertCtrl: AlertController, private inAppBrowser: InAppBrowser) {
+    private alertCtrl: AlertController) {
     this.midataService = midataService;
   }
 
