@@ -428,8 +428,8 @@ export class NewAttackPage {
         this.medicament = null;
         this.menge = 1;
         this.medEffect = null;
-        this.fromDateTime = new Date().toISOString();
-        this.untilDateTime = new Date().toISOString();
+        this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
+        this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
       }
     } else {
 
@@ -1636,8 +1636,6 @@ export class NewAttackPage {
       //update the input fields 
       this.situation = null;
       this.symptome = null;
-      this.fromDateTime = null;
-      this.untilDateTime = null;
       this.medicament = null;
       this.menge = 1;
       this.medEffect = null;
