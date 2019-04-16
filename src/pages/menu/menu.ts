@@ -35,7 +35,10 @@ import {
 import {
   MatomoTracker
 } from 'ngx-matomo';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import {
+  InAppBrowser
+} from '@ionic-native/in-app-browser';
+import { Nutzungsbedingungen } from '../menu_Nutzungsbedingungen/menu_Nutzungsbedingungen';
 
 
 export interface PageInterface {
@@ -88,6 +91,12 @@ export class MenuPage {
       icon: 'alarm'
     },
     {
+      title: 'Nutzungsbedingungen',
+      pageName: 'Nutzungsbedingungen',
+      tabComponent: Nutzungsbedingungen,
+      icon: 'book'
+    },
+    {
       title: 'Impressum',
       pageName: 'Impressum',
       tabComponent: Impressum,
@@ -104,7 +113,7 @@ export class MenuPage {
   private midataService: MidataService;
 
   constructor(public navCtrl: NavController, midataService: MidataService, private matomoTracker: MatomoTracker, private platform: Platform,
-    private alertCtrl: AlertController, private inAppBrowser: InAppBrowser ) {
+    private alertCtrl: AlertController, private inAppBrowser: InAppBrowser) {
     this.midataService = midataService;
   }
 
@@ -136,17 +145,7 @@ export class MenuPage {
       this.nav.getActiveChildNavs()[0].select(page.index);
     } else {
 
-      if (page.tabComponent == LoginPage) {
-        this.platform.ready().then(() => {
-          if (this.midataService.loggedIn()) {
-            this.inAppBrowser.create('https://ch.midata.coop/#/portal/login');
-          } else {
-            this.navCtrl.push(LoginPage)
-          }
-        });
-      }
-
-      else if (page.tabComponent == LogoutPage) {
+      if (page.tabComponent == LogoutPage) {
         this.platform.ready().then(() => {
           if (this.midataService.loggedIn()) {
 
@@ -176,12 +175,11 @@ export class MenuPage {
             console.warn('bii baa buu wubba lubba dubb dubb');
           }
         });
-      }
-      else if(page.tabComponent != LogoutPage) {
-         // Tabs are not active, so reset the root page
-      // In this case: moving to or from SpecialPage
-      this.nav.push(page.tabComponent, params);
-      this.isActive(this.nav.getActiveChildNav())
+      } else if (page.tabComponent != LogoutPage) {
+        // Tabs are not active, so reset the root page
+        // In this case: moving to or from SpecialPage
+        this.nav.push(page.tabComponent, params);
+        this.isActive(this.nav.getActiveChildNav())
       }
     }
   }
