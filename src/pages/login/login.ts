@@ -63,6 +63,14 @@ export class LoginPage {
           console.warn('Anmeldung erforderlich');
         }
       });
+      // Disable back button of the android HW device 
+      document.addEventListener('backbutton', () => {
+        if (this.navCtrl.canGoBack()) {
+          this.platform.exitApp()
+          return;
+        }
+        this.navCtrl.pop()
+      }, false);
     });
   }
 
@@ -104,10 +112,10 @@ export class LoginPage {
         }
       })
       .then(() => {
-        loading.dismiss().catch(); 
+        loading.dismiss().catch();
       })
       .catch((error) => {
-          loading.dismiss().catch(); 
+        loading.dismiss().catch();
       })
   }
 }
