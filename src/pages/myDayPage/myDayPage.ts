@@ -112,9 +112,9 @@ export class MyDayPage {
     time2.setMinutes(0);
     this.awakeTime = time2.toISOString();
 
-    this.date = new Date(new Date().getTime()).toISOString();
+    this.date = new Date().toISOString();
 
-    this.sleepQuality = 5; 
+    this.sleepQuality = 5;
   }
 
   ionViewWillEnter() {
@@ -134,8 +134,8 @@ export class MyDayPage {
   showText2() {
     // if (this.selectedCard2 == false) {
     //   this.selectedCard2 = true;
-      //tracking event
-      this.matomoTracker.trackEvent("Page: Mein Tag", "card 2 klick: Essverhalten")
+    //tracking event
+    this.matomoTracker.trackEvent("Page: Mein Tag", "card 2 klick: Essverhalten")
     // } else {
     //   this.selectedCard2 = false;
     // }
@@ -150,16 +150,12 @@ export class MyDayPage {
         message: "Bitte gib dein Essverhalten an",
         buttons: ['OK']
       }).present()
-    }
-
-    else if (this.selectedCard == false) {
+    } else if (this.selectedCard == false) {
       this.alertCtrl.create({
         message: "Bitte gib dein Schlafrythmus an",
         buttons: ['OK']
       }).present()
-    }
-
-    else if (this.midataService.loggedIn()) {
+    } else if (this.midataService.loggedIn()) {
       //track event
       this.matomoTracker.trackEvent("Page: Mein Tag", "Save success")
 
@@ -238,9 +234,16 @@ export class MyDayPage {
           effectiveDateTime: new Date().toISOString()
         }, "preliminary", category1, coding1);
 
+        // date calculation
+        let chosenFromDate = new Date(this.sleepTime)
+        chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+        let chosenUntilDate = new Date(this.awakeTime);
+        chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+        // finish date calculation
         entry1.addProperty("effectivePeriod", {
-          start: this.sleepTime,
-          end: this.awakeTime
+          start: chosenFromDate.toISOString(),
+          end: chosenUntilDate.toISOString()
         });
 
         entry1.addComponent({
@@ -266,7 +269,7 @@ export class MyDayPage {
                 display: "Date of entry"
               }]
             },
-            valueDateTime: "" + this.date
+            valueString: this.date
           })
         }
 
@@ -294,7 +297,7 @@ export class MyDayPage {
       }
 
       let entry2 = new Observation({
-        effectiveDateTime: new Date().toISOString()
+        effectiveDateTime: this.date
       }, "preliminary", category2, codingStuff2);
 
       // let asdf = undefined;
@@ -337,15 +340,6 @@ export class MyDayPage {
         if (this.date != null) {
           //track event
           this.matomoTracker.trackEvent("Page: Mein Tag", "Klick: Datum der Eingabe ausgewählt")
-
-          entry2.addComponent({
-            code: {
-              coding: [{
-                display: "Date of entry"
-              }]
-            },
-            valueDateTime: "" + this.date
-          })
         }
 
         let bundle2 = new Bundle("transaction");
@@ -371,7 +365,7 @@ export class MyDayPage {
       (this.eatingHabit != null) ? this.eatingHabit = null: null;
       this.selectedCard = false;
 
-      this.sleepQuality = 5; 
+      this.sleepQuality = 5;
 
     } else {
 
@@ -385,7 +379,7 @@ export class MyDayPage {
         text: 'Weiter',
         handler: data => {
           console.log('Checkbox data:', data);
-          this.navCtrl.push(LoginPage); 
+          this.navCtrl.push(LoginPage);
           //   this.menuPage.openPage(this.menuPage.pages[0])
           let elements = document.querySelectorAll(".tabbar");
 

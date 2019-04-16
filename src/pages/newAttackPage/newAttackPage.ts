@@ -227,24 +227,14 @@ export class NewAttackPage {
   //-------------------------------------END ONCHANGE METHODS FOR "OTHER SELECTION"------------------------
 
   showText() {
-    // if (this.selectedCard == false) {
-    //   this.selectedCard = true;
     //tracking event
     this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 1 klick: Auffälligkeiten")
-    // } else {
-    //   this.selectedCard = false;
-    // }
   }
 
-  // showText2() {
-  //   if (this.selectedCard2 == false) {
-  //     this.selectedCard2 = true;
-  //     //tracking event
-  //     this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 2 klick: Dauer des Schmerzes")
-  //   } else {
-  //     this.selectedCard2 = false;
-  //   }
-  // }
+  showText2() {
+    //tracking event
+    this.matomoTracker.trackEvent("Page: Neuer Eintrag", "card 2 klick: Dauer des Schmerzes")
+  }
 
   showText3() {
     if (this.selectedCard3 == false) {
@@ -392,6 +382,7 @@ export class NewAttackPage {
 
         let medTaken: MedicationStatementTaken = "y";
 
+
         let medEntry = new MedicationStatement(new Date(), code, medStatus, cat, {}, medTaken);
 
         if (this.medEffect != null) {
@@ -524,9 +515,16 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+          // finish date calculation
           entry1.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
           });
         }
 
@@ -577,9 +575,16 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+          // finish date calculation
           entry.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
           });
         }
 
@@ -713,9 +718,16 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+          // finish date calculation
           entry4.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
           });
         }
 
@@ -758,9 +770,16 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+          // finish date calculation
           entry4_1.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
           });
         }
 
@@ -803,10 +822,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-          entry4_2.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
-          });
+         // date calculation
+         let chosenFromDate = new Date(this.fromDateTime)
+         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+         let chosenUntilDate = new Date(this.untilDateTime);
+         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+         // finish date calculation
+         entry4_2.addProperty("effectivePeriod", {
+           start: chosenFromDate.toISOString(),
+           end: chosenUntilDate.toISOString()
+         });
         }
 
         entry4_2.addProperty("valueCodeableConcept", {
@@ -848,10 +874,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-          entry4_3.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
-          });
+         // date calculation
+         let chosenFromDate = new Date(this.fromDateTime)
+         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+         let chosenUntilDate = new Date(this.untilDateTime);
+         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+         // finish date calculation
+         entry4_3.addProperty("effectivePeriod", {
+           start: chosenFromDate.toISOString(),
+           end: chosenUntilDate.toISOString()
+         });
         }
 
         entry4_3.addProperty("valueCodeableConcept", {
@@ -893,10 +926,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-          entry4_4.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
-          });
+         // date calculation
+         let chosenFromDate = new Date(this.fromDateTime)
+         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+         let chosenUntilDate = new Date(this.untilDateTime);
+         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+         // finish date calculation
+         entry4_4.addProperty("effectivePeriod", {
+           start: chosenFromDate.toISOString(),
+           end: chosenUntilDate.toISOString()
+         });
 
           entry4_4.addProperty("valueCodeableConcept", {
             coding: [{
@@ -955,9 +995,16 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+          // finish date calculation
           entry4_5.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
           });
         }
 
@@ -1017,10 +1064,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-          entry5.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
-          });
+         // date calculation
+         let chosenFromDate = new Date(this.fromDateTime)
+         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+         let chosenUntilDate = new Date(this.untilDateTime);
+         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+         // finish date calculation
+         entry5.addProperty("effectivePeriod", {
+           start: chosenFromDate.toISOString(),
+           end: chosenUntilDate.toISOString()
+         });
         }
 
         entry5.addProperty("valueCodeableConcept", {
@@ -1079,9 +1133,16 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+          // finish date calculation
           entry6.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
           });
         }
 
@@ -1142,10 +1203,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-          entry7.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
-          });
+         // date calculation
+         let chosenFromDate = new Date(this.fromDateTime)
+         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+         let chosenUntilDate = new Date(this.untilDateTime);
+         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+         // finish date calculation
+         entry7.addProperty("effectivePeriod", {
+           start: chosenFromDate.toISOString(),
+           end: chosenUntilDate.toISOString()
+         });
         }
 
         entry7.addProperty("valueCodeableConcept", {
@@ -1187,9 +1255,16 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+          // finish date calculation
           entry7_1.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
           });
         }
 
@@ -1236,9 +1311,16 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+          // finish date calculation
           entry8.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
           });
         }
 
@@ -1298,10 +1380,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-          entry9.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
-          });
+         // date calculation
+         let chosenFromDate = new Date(this.fromDateTime)
+         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+         let chosenUntilDate = new Date(this.untilDateTime);
+         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+         // finish date calculation
+         entry9.addProperty("effectivePeriod", {
+           start: chosenFromDate.toISOString(),
+           end: chosenUntilDate.toISOString()
+         });
         }
 
         entry9.addProperty("valueCodeableConcept", {
@@ -1360,9 +1449,16 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+          // finish date calculation
           entry10.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
           });
         }
 
@@ -1423,10 +1519,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-          entry11.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
-          });
+         // date calculation
+         let chosenFromDate = new Date(this.fromDateTime)
+         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+         let chosenUntilDate = new Date(this.untilDateTime);
+         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+         // finish date calculation
+         entry11.addProperty("effectivePeriod", {
+           start: chosenFromDate.toISOString(),
+           end: chosenUntilDate.toISOString()
+         });
         }
 
         entry11.addProperty("valueCodeableConcept", {
@@ -1455,10 +1558,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-          entry11_1.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
-          });
+         // date calculation
+         let chosenFromDate = new Date(this.fromDateTime)
+         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+         let chosenUntilDate = new Date(this.untilDateTime);
+         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+         // finish date calculation
+         entry11_1.addProperty("effectivePeriod", {
+           start: chosenFromDate.toISOString(),
+           end: chosenUntilDate.toISOString()
+         });
         }
 
         entry11_1.addProperty("valueCodeableConcept", {
@@ -1505,10 +1615,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-          entry12.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
-          });
+         // date calculation
+         let chosenFromDate = new Date(this.fromDateTime)
+         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+         let chosenUntilDate = new Date(this.untilDateTime);
+         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+         // finish date calculation
+         entry12.addProperty("effectivePeriod", {
+           start: chosenFromDate.toISOString(),
+           end: chosenUntilDate.toISOString()
+         });
         }
 
         entry12.addProperty("valueCodeableConcept", {
@@ -1554,19 +1671,26 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-          entry13.addProperty("effectivePeriod", {
-            start: this.fromDateTime,
-            end: this.untilDateTime
-          });
+         // date calculation
+         let chosenFromDate = new Date(this.fromDateTime)
+         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+         let chosenUntilDate = new Date(this.untilDateTime);
+         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+
+         // finish date calculation
+         entry13.addProperty("effectivePeriod", {
+           start: chosenFromDate.toISOString(),
+           end: chosenUntilDate.toISOString()
+         });
         }
 
-          entry13.addProperty("valueCodeableConcept", {
-            coding: [{
-              system: 'http://snomed.info/sct',
-              code: '74964007',
-              display: this.otherSymptom
-            }]
-          });
+        entry13.addProperty("valueCodeableConcept", {
+          coding: [{
+            system: 'http://snomed.info/sct',
+            code: '74964007',
+            display: this.otherSymptom
+          }]
+        });
 
         let bundle13 = new Bundle("transaction");
         bundle13.addEntry("POST", entry13.resourceType, entry13);

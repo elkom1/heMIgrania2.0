@@ -95,7 +95,7 @@ export class Diagnosen {
         }
 
         let entry2 = new Observation({
-          effectiveDateTime: new Date().toISOString()
+          effectiveDateTime: this.date
         }, "preliminary", category2, codingStuff2);
 
         if (this.diagnosen != null) {
@@ -185,15 +185,6 @@ export class Diagnosen {
           if (this.date != null) {
             //tracking event 
             this.matomoTracker.trackEvent("Page: Diagnosen", "Klick: Datum der Diagnose ausgewählt")
-
-            entry2.addComponent({
-              code: {
-                coding: [{
-                  display: "Date of diagnosis"
-                }]
-              },
-              valueDateTime: "" + this.date
-            })
           }
 
           let bundle2 = new Bundle("transaction");
@@ -204,7 +195,6 @@ export class Diagnosen {
         //========================= END JSON FOR THE OBSERVATION "Diagnosis"================================
 
         //update fields
-        this.date = null;
         this.diagnosen = null;
         this.otherDiagnose = null;
         this.selectedOther = false;
