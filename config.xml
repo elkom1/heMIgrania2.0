@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ch.bfh.i4mi.bcs.migren" version="2.2.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="ch.bfh.i4mi.bcs.migren" version="2.4.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>heMIgrania</name>
     <description>heMIgrania wurde entwickelt, um mit Migränedaten Analysen durchführen zu können.</description>
     <author email="i4mi@bfh.ch" href="https://i4mi.bfh.ch/">Institut Medical Informatics</author>
     <content src="index.html" />
     <access origin="*" />
+    <allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <preference name="ScrollEnabled" value="false" />
