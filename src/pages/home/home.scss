@@ -1,28 +1,51 @@
 page-home {
-    .Row {
-        display: table;
-        width: 100%; /*Optional*/
-    }
-    
-    .Column
-    {
-        display: table-cell;
-    }
+  .Row {
+    display: table;
+    width: 100%;
+    /*Optional*/
+  }
 
-    img.img-centered {
-        margin: auto; 
-        align-items: center;
-        display: block;
-      }
+  .Column {
+    display: table-cell;
+  }
 
-      .toolbar-background {
-        background: linear-gradient(120deg, rgb(105, 209, 201), rgb(40, 131, 63));
-    }
-    .toolbar-title-md {
-        color: white 
-    }
-.button {
+  img.img-centered {
+    margin: auto;
+    align-items: center;
+    display: block;
+  }
+
+  .toolbar-background {
+    background: linear-gradient(120deg, rgb(105, 209, 201), rgb(40, 131, 63));
+  }
+
+  .toolbar-title-md {
+    color: white
+  }
+
+  .button {
     text-decoration: underline
-}
-    
+  }
+
+  .my-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+    top: 0;
+    left: 0;
+  }
+
+  .overlayPage {
+    margin: auto;
+    align-items: center;
+    display: block;
+    position: fixed;
+    top: 0;
+    left:0;
+    // height: 70%; 
+    // width: 80%;
+  }
+
 }

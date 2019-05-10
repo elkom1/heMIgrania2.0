@@ -14,6 +14,16 @@
   <!--add swipe gesture-->
   <div class="main-content" (swipe)="swipe($event)">
 
+    <ion-fab right bottom (click)="showOverlay()">
+      <button ion-fab class="fabButton">
+        <ion-icon name="help"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <div class="my-overlay" padding [hidden]="overlayHidden">
+      <img src="assets/imgs/felder3.png" alt="overlay2" class="overlayPage">
+    </div>
+
     <br />
     <br />
     <br />

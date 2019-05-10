@@ -1,5 +1,6 @@
 import {
-  Component, ChangeDetectionStrategy
+  Component,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   NavController
@@ -8,7 +9,9 @@ import {
   MidataService
 } from '../../services/midataService';
 
-import { MatomoTracker } from 'ngx-matomo';
+import {
+  MatomoTracker
+} from 'ngx-matomo';
 
 @Component({
   selector: 'page-home',
@@ -17,10 +20,16 @@ import { MatomoTracker } from 'ngx-matomo';
 })
 export class HomePage {
 
+  overlayHidden: boolean = true;
+
   private midataService: MidataService;
 
   constructor(public navCtrl: NavController, midataService: MidataService, private matomoTracker: MatomoTracker) {
     this.midataService = midataService;
+  }
+
+  public hideOverlay() {
+    this.overlayHidden = true;
   }
 
   ngOnInit() {
@@ -36,6 +45,14 @@ export class HomePage {
     }
     //Tracking Page view
     this.matomoTracker.trackPageView("Startseite View besucht");
+  }
+
+  showOverlay() {
+    if (this.overlayHidden == true) {
+      this.overlayHidden = false;
+    } else {
+      this.overlayHidden = true;
+    }
   }
 
   swipe(event) {
