@@ -27,6 +27,7 @@ import { Diagnosen } from '../pages/menu_Diagnosen/menu_Diagnosen';
 import { Datenschutz } from '../pages/menu_Datenschutz/menu_Datenschutz';
 import {Nutzungsbedingungen} from '../pages/menu_Nutzungsbedingungen/menu_Nutzungsbedingungen';
 import { MenuPage } from '../pages/menu/menu';
+import { MidataProfile } from '../pages/menu_midataProfile/menu_midataProfile';
 
 
 import { LoginPage } from "../pages/login/login";
@@ -54,6 +55,7 @@ import { MatomoModule } from 'ngx-matomo';
     Tutorial, 
     LoginPage,
     LogoutPage,
+    MidataProfile,
  
   ],
   imports: [
@@ -78,6 +80,7 @@ import { MatomoModule } from 'ngx-matomo';
     Tutorial, 
     LoginPage, 
     LogoutPage,
+    MidataProfile, 
   ],
   providers: [
     StatusBar,

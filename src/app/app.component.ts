@@ -28,12 +28,12 @@ export class MyApp {
 
       splashScreen.hide();
       statusBar.hide(); 
+      
     });
-
   }
 
-  ngAfterViewInit(){
-    this.nav.push(LoginPage)
-  }
+  // ngAfterViewInit(){
+  //   this.nav.push(LoginPage)
+  // }
 
 }
