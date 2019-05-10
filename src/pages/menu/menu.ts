@@ -36,6 +36,8 @@ import {
   MatomoTracker
 } from 'ngx-matomo';
 import { Nutzungsbedingungen } from '../menu_Nutzungsbedingungen/menu_Nutzungsbedingungen';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { MidataProfile } from '../menu_midataProfile/menu_midataProfile';
 
 
 export interface PageInterface {
@@ -59,8 +61,8 @@ export class MenuPage {
 
   pages: PageInterface[] = [{
       title: 'MIDATA Benutzerkonto',
-      pageName: 'LoginPage',
-      tabComponent: LoginPage,
+      pageName: 'MidataProfile',
+      tabComponent: MidataProfile,
       icon: 'contact'
     },
     {
@@ -88,6 +90,12 @@ export class MenuPage {
       icon: 'alarm'
     },
     {
+      title: 'anakoda Dashboard',
+      pageName: 'Dashboard',
+      tabComponent: '',
+      icon: 'stats'
+    },
+    {
       title: 'Nutzungsbedingungen',
       pageName: 'Nutzungsbedingungen',
       tabComponent: Nutzungsbedingungen,
@@ -109,8 +117,10 @@ export class MenuPage {
 
   private midataService: MidataService;
 
+  userStatus: string; 
+
   constructor(public navCtrl: NavController, midataService: MidataService, private matomoTracker: MatomoTracker, private platform: Platform,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController, private inAppBrowser: InAppBrowser) {
     this.midataService = midataService;
   }
 
@@ -120,6 +130,8 @@ export class MenuPage {
       this.matomoTracker.setUserId(this.midataService.getUser().email);
       this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
 
+      this.userStatus = this.midataService.getUser().email;
+      
       console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
       console.log(this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking'))
     } else {
@@ -128,6 +140,19 @@ export class MenuPage {
     //Tracking Page view
     this.matomoTracker.trackEvent("Page: Menu", "Menu list klick");
   }
+
+  // ngAfterViewInit() {
+  //   this.platform.ready().then(() => {
+  //     this.midataService.openSession().then(success => {
+  //       if (success) {
+  //        this.userStatus = this.midataService.getUser().email; 
+  //       } else {
+  //         console.warn('Anmeldung erforderlich');
+  //         this.userStatus = "Offline"
+  //       }
+  //     });
+  //   });
+  // }
 
   openPage(page: PageInterface) {
     let params = {};
@@ -141,6 +166,10 @@ export class MenuPage {
     if (this.nav.getActiveChildNavs()[0] && page.index != undefined) {
       this.nav.getActiveChildNavs()[0].select(page.index);
     } else {
+
+      if(page.pageName == 'Dashboard') {
+        this.inAppBrowser.create('https://anakoda.ch/app');
+      }
 
       if (page.tabComponent == LogoutPage) {
         this.platform.ready().then(() => {
