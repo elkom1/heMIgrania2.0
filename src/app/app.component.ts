@@ -32,8 +32,8 @@ export class MyApp {
     });
   }
 
-  // ngAfterViewInit(){
-  //   this.nav.push(LoginPage)
-  // }
+  ngAfterViewInit(){
+    this.nav.push(LoginPage)
+  }
 
 }
