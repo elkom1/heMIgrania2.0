@@ -16,8 +16,10 @@
     <ion-card-header text-center (click)="showText2()">
       <h2 text-wrap style="font-weight: bold; color: white">Was kann ich im Bereich <br /> "Mein Tag" machen?</h2>
     </ion-card-header>
-    <ion-card-content style="font-size: 16px" text-wrap *ngIf="selectedCard2">
-      Dieser Bereich dient dir für deine tägliche Erfassung respektive deinem täglichen Ess- und Schlafverhalten. Es ist sehr wichtig, dass du dies jeden Tag aufzeichnest, um mehr über deine Migräne in Erfahrung zu bringen. <br/> Bitte beachte, dass du deine Daten nur einmal pro 24 Stunden erfassen solltest.
+    <ion-card-content style="font-size: 16px; text-align: justify" text-wrap *ngIf="selectedCard2">
+      Dieser Bereich dient dir für deine tägliche Erfassung respektive deinem täglichen Ess- und Schlafverhalten. Es ist
+      sehr wichtig, dass du dies jeden Tag aufzeichnest, um mehr über deine Migräne in Erfahrung zu bringen. <br />
+      Bitte beachte, dass du deine Daten nur einmal pro 24 Stunden erfassen solltest.
     </ion-card-content>
   </ion-card>
 
@@ -25,9 +27,9 @@
     <ion-card-header text-center (click)="showText3()">
       <h2 text-wrap style="font-weight: bold; color: white">Was kann ich im Bereich <br /> "Neuer Eintrag" machen?</h2>
     </ion-card-header>
-    <ion-card-content style="font-size: 16px" text-wrap *ngIf="selectedCard3">
+    <ion-card-content style="font-size: 16px; text-align: justify" text-wrap *ngIf="selectedCard3">
       Hier zeichnest du deine Migräneanfälle auf. Jedes Mal, wenn du einen weiteren Anfall hattest, kannst du ihn in
-      diesem Bereich erfassen. In diesem Bereich wurden folgende Informationstypen festgelegt: 
+      diesem Bereich erfassen. In diesem Bereich wurden folgende Informationstypen festgelegt:
       <br />
       • Was erfasst du gerade? (Ist es einen Migränenanfall oder ein allgemeines Unwohlsein?) <br />
 
@@ -47,10 +49,14 @@
     <ion-card-header text-center (click)="showText4()">
       <h2 text-wrap style="font-weight: bold; color: white"> Was kann ich auf der Menüliste sehen?</h2>
     </ion-card-header>
-    <ion-card-content style="font-size: 16px" text-wrap *ngIf="selectedCard4">
-      • Hier kannst du weitere Features von heMIgrania nutzen. <br />
-      • Mit einem Klick auf "Meine Diagnosen" kannst du deine Diagnosen erfassen, welche bisher bei dir diagnositziert worden sind. <br />
-      • Indem du auf "Erinnerung" drückst, kannst du eine tägliche Notifikation setzen, welche dich daran erinnert, einen neuen Eintrag bei heMIgrania zu erfassen. 
+    <ion-card-content style="font-size: 16px; text-align: justify" text-wrap *ngIf="selectedCard4">
+      • Hier kannst du weitere Features von heMIgrania nutzen. <br/>
+      • MIDATA Benutzerkonto kann überprüft und bearbeitet werden <br/>
+      • Mit einem Klick auf "Meine Diagnosen" kannst du deine Diagnosen erfassen, welche bisher bei dir
+        diagnositziert worden sind. <br/>
+      • Indem du auf "Erinnerung" drückst, kannst du eine tägliche Notifikation setzen, welche dich daran
+        erinnert, einen neuen Eintrag bei heMIgrania zu erfassen. <br/>
+      • Mit dem Klick auf "anakoda Dashboard" wirst du zum anakoda Portal weitergeleitet, indem du deine Eingaben und Einträge visualisiert ansichten kannst <br/> 
     </ion-card-content>
   </ion-card>
 
