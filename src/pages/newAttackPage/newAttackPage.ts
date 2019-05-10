@@ -5,8 +5,7 @@ import {
 } from '@angular/core';
 import {
   NavController,
-  Content,
-  DateTime
+  Content
 } from 'ionic-angular';
 
 import {
