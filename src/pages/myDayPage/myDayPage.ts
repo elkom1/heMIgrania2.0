@@ -55,6 +55,7 @@ export class MyDayPage {
   sleepQuality: number = 0;
   eatingHabit: string;
   date: string;
+  maxDate: string; 
 
   tabsPage: TabsPage;
   menuPage: MenuPage;
@@ -113,6 +114,7 @@ export class MyDayPage {
     this.awakeTime = time2.toISOString();
 
     this.date = new Date().toISOString();
+    this.maxDate = new Date(new Date().getTime() + 7200000).toISOString(); // Time + 2h = current time Swiss
 
     this.sleepQuality = 5;
   }
@@ -145,7 +147,15 @@ export class MyDayPage {
     //track event
     this.matomoTracker.trackEvent("Page: Mein Tag", "Save Button klick")
 
-    if (this.eatingHabit == null) {
+    if (this.sleepTime >= this.awakeTime) {
+      console.log("Error: end time greater than start time")
+      return this.alertCtrl.create({
+        message: "Schlafzeit stimmt nicht: Einschlafzeit ist grösser als Aufwachzeit",
+        buttons: ['OK']
+      }).present()
+    }
+
+    else if (this.eatingHabit == null) {
       this.alertCtrl.create({
         message: "Bitte gib dein Essverhalten an",
         buttons: ['OK']
