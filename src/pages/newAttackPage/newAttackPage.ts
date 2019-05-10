@@ -5,7 +5,8 @@ import {
 } from '@angular/core';
 import {
   NavController,
-  Content
+  Content,
+  DateTime
 } from 'ionic-angular';
 
 import {
@@ -59,6 +60,8 @@ export class NewAttackPage {
   medicament: string;
   menge: number = 0;
   medEffect: string;
+
+  maxDate: string; 
 
   required = false;
 
@@ -167,6 +170,7 @@ export class NewAttackPage {
     this.menge = 1;
     this.fromDateTime = new Date(new Date().getTime() - 14400000).toISOString();
     this.untilDateTime = new Date(new Date().getTime() - 3600000).toISOString();
+    this.maxDate = new Date(new Date().getTime() + 7200000).toISOString(); // Time + 2h = current time Swiss
 
     this.intensity = 5;
     this.intensityFlimmerSehen = 5;
@@ -383,7 +387,7 @@ export class NewAttackPage {
         let medTaken: MedicationStatementTaken = "y";
 
 
-        let medEntry = new MedicationStatement(new Date(), code, medStatus, cat, {}, medTaken);
+        let medEntry = new MedicationStatement(new Date(this.fromDateTime), code, medStatus, cat, {}, medTaken);
 
         if (this.medEffect != null) {
           //tracking event
@@ -455,7 +459,14 @@ export class NewAttackPage {
     //track event
     this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Save Button klick");
 
-    if (this.situation == null) {
+    if (this.fromDateTime >= this.untilDateTime) {
+      console.log("Error: end time greater than start time")
+      return this.alertCtrl.create({
+        message: "Zeitrahmen stimmt nicht: Startdatum ist grösser als Enddatum",
+        buttons: ['OK']
+      }).present()
+    }
+    else if (this.situation == null) {
       this.alertCtrl.create({
         message: "Bitte erfasse das erste Eingabefeld",
         buttons: ['OK']
@@ -472,7 +483,7 @@ export class NewAttackPage {
         message: "Bitte gib eine Zahl von 1-15",
         buttons: ['OK']
       }).present()
-    }
+    } 
 
     //Start methods for persistence the whole form when logged in 
     else if (this.midataService.loggedIn()) {
@@ -526,7 +537,7 @@ export class NewAttackPage {
             start: chosenFromDate.toISOString(),
             end: chosenUntilDate.toISOString()
           });
-        }
+        } 
 
         entry1.addProperty("valueCodeableConcept", {
           coding: [{
@@ -822,17 +833,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-         // date calculation
-         let chosenFromDate = new Date(this.fromDateTime)
-         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
-         let chosenUntilDate = new Date(this.untilDateTime);
-         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
 
-         // finish date calculation
-         entry4_2.addProperty("effectivePeriod", {
-           start: chosenFromDate.toISOString(),
-           end: chosenUntilDate.toISOString()
-         });
+          // finish date calculation
+          entry4_2.addProperty("effectivePeriod", {
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
+          });
         }
 
         entry4_2.addProperty("valueCodeableConcept", {
@@ -874,17 +885,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-         // date calculation
-         let chosenFromDate = new Date(this.fromDateTime)
-         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
-         let chosenUntilDate = new Date(this.untilDateTime);
-         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
 
-         // finish date calculation
-         entry4_3.addProperty("effectivePeriod", {
-           start: chosenFromDate.toISOString(),
-           end: chosenUntilDate.toISOString()
-         });
+          // finish date calculation
+          entry4_3.addProperty("effectivePeriod", {
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
+          });
         }
 
         entry4_3.addProperty("valueCodeableConcept", {
@@ -926,17 +937,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-         // date calculation
-         let chosenFromDate = new Date(this.fromDateTime)
-         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
-         let chosenUntilDate = new Date(this.untilDateTime);
-         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
 
-         // finish date calculation
-         entry4_4.addProperty("effectivePeriod", {
-           start: chosenFromDate.toISOString(),
-           end: chosenUntilDate.toISOString()
-         });
+          // finish date calculation
+          entry4_4.addProperty("effectivePeriod", {
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
+          });
 
           entry4_4.addProperty("valueCodeableConcept", {
             coding: [{
@@ -1064,17 +1075,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-         // date calculation
-         let chosenFromDate = new Date(this.fromDateTime)
-         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
-         let chosenUntilDate = new Date(this.untilDateTime);
-         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
 
-         // finish date calculation
-         entry5.addProperty("effectivePeriod", {
-           start: chosenFromDate.toISOString(),
-           end: chosenUntilDate.toISOString()
-         });
+          // finish date calculation
+          entry5.addProperty("effectivePeriod", {
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
+          });
         }
 
         entry5.addProperty("valueCodeableConcept", {
@@ -1203,17 +1214,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-         // date calculation
-         let chosenFromDate = new Date(this.fromDateTime)
-         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
-         let chosenUntilDate = new Date(this.untilDateTime);
-         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
 
-         // finish date calculation
-         entry7.addProperty("effectivePeriod", {
-           start: chosenFromDate.toISOString(),
-           end: chosenUntilDate.toISOString()
-         });
+          // finish date calculation
+          entry7.addProperty("effectivePeriod", {
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
+          });
         }
 
         entry7.addProperty("valueCodeableConcept", {
@@ -1380,17 +1391,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-         // date calculation
-         let chosenFromDate = new Date(this.fromDateTime)
-         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
-         let chosenUntilDate = new Date(this.untilDateTime);
-         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
 
-         // finish date calculation
-         entry9.addProperty("effectivePeriod", {
-           start: chosenFromDate.toISOString(),
-           end: chosenUntilDate.toISOString()
-         });
+          // finish date calculation
+          entry9.addProperty("effectivePeriod", {
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
+          });
         }
 
         entry9.addProperty("valueCodeableConcept", {
@@ -1519,17 +1530,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-         // date calculation
-         let chosenFromDate = new Date(this.fromDateTime)
-         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
-         let chosenUntilDate = new Date(this.untilDateTime);
-         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
 
-         // finish date calculation
-         entry11.addProperty("effectivePeriod", {
-           start: chosenFromDate.toISOString(),
-           end: chosenUntilDate.toISOString()
-         });
+          // finish date calculation
+          entry11.addProperty("effectivePeriod", {
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
+          });
         }
 
         entry11.addProperty("valueCodeableConcept", {
@@ -1558,17 +1569,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-         // date calculation
-         let chosenFromDate = new Date(this.fromDateTime)
-         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
-         let chosenUntilDate = new Date(this.untilDateTime);
-         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
 
-         // finish date calculation
-         entry11_1.addProperty("effectivePeriod", {
-           start: chosenFromDate.toISOString(),
-           end: chosenUntilDate.toISOString()
-         });
+          // finish date calculation
+          entry11_1.addProperty("effectivePeriod", {
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
+          });
         }
 
         entry11_1.addProperty("valueCodeableConcept", {
@@ -1615,17 +1626,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-         // date calculation
-         let chosenFromDate = new Date(this.fromDateTime)
-         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
-         let chosenUntilDate = new Date(this.untilDateTime);
-         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
 
-         // finish date calculation
-         entry12.addProperty("effectivePeriod", {
-           start: chosenFromDate.toISOString(),
-           end: chosenUntilDate.toISOString()
-         });
+          // finish date calculation
+          entry12.addProperty("effectivePeriod", {
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
+          });
         }
 
         entry12.addProperty("valueCodeableConcept", {
@@ -1671,17 +1682,17 @@ export class NewAttackPage {
           //tracking event
           this.matomoTracker.trackEvent("Page: Neuer Eintrag", "Klick: Schmerzdauer VON & BIS")
 
-         // date calculation
-         let chosenFromDate = new Date(this.fromDateTime)
-         chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
-         let chosenUntilDate = new Date(this.untilDateTime);
-         chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
+          // date calculation
+          let chosenFromDate = new Date(this.fromDateTime)
+          chosenFromDate.setTime(chosenFromDate.getTime() + chosenFromDate.getTimezoneOffset() * 60 * 1000);
+          let chosenUntilDate = new Date(this.untilDateTime);
+          chosenUntilDate.setTime(chosenUntilDate.getTime() + chosenUntilDate.getTimezoneOffset() * 60 * 1000);
 
-         // finish date calculation
-         entry13.addProperty("effectivePeriod", {
-           start: chosenFromDate.toISOString(),
-           end: chosenUntilDate.toISOString()
-         });
+          // finish date calculation
+          entry13.addProperty("effectivePeriod", {
+            start: chosenFromDate.toISOString(),
+            end: chosenUntilDate.toISOString()
+          });
         }
 
         entry13.addProperty("valueCodeableConcept", {
@@ -1723,7 +1734,7 @@ export class NewAttackPage {
 
         let medTaken: MedicationStatementTaken = "y";
 
-        let medEntry = new MedicationStatement(new Date(), code, medStatus, cat, {}, medTaken);
+        let medEntry = new MedicationStatement(new Date(this.fromDateTime), code, medStatus, cat, {}, medTaken);
 
         if (this.medEffect != null) {
           //tracking event

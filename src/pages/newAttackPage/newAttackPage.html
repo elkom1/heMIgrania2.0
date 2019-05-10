@@ -16,15 +16,15 @@
 
     <ion-card>
       <ion-card-header>
-        <h1 style="font-weight: bold; color: white">Was erfasst du gerade?</h1>
+        <h1 text-wrap style="font-weight: bold; color: white">Was erfasst du gerade?</h1>
       </ion-card-header>
 
       <ion-list radio-group [(ngModel)]="situation" name="situation" formControlName="situation">
-        <div class="Row">
-          <div class="Column">
+        <div class="Row" text-wrap>
+          <div class="Column" text-wrap>
             <ion-item no-lines text-wrap>
-              <ion-label>Migräneanfall</ion-label>
-              <ion-radio value="migräneanfall"></ion-radio>
+              <ion-label text-wrap>Migräneanfall</ion-label>
+              <ion-radio text-wrap value="migräneanfall"></ion-radio>
             </ion-item>
           </div>
           <div class="Column">
@@ -40,18 +40,18 @@
      <ion-card>
       <ion-card-header (click)="showText2()">
         <h1 style="font-weight: bold; color: white">
-          <ion-icon name="time"></ion-icon> Zeitrahmen
+          <ion-icon name="time" style="color: lightgreen"></ion-icon> Zeitrahmen
         </h1>
       </ion-card-header>
       <ion-card-content>
         <ion-item no-lines text-wrap>
           <ion-label>Von</ion-label>
-          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Weiter" cancelText="Abbrechen"
+          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="{{maxDate}}" doneText="Weiter" cancelText="Abbrechen"
             [(ngModel)]="fromDateTime" name="fromDateTime" formControlName="fromDateTime"></ion-datetime>
         </ion-item>
         <ion-item no-lines text-wrap>
           <ion-label>Bis</ion-label>
-          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-07-31" doneText="Weiter" cancelText="Abbrechen"
+          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="{{maxDate}}" doneText="Weiter" cancelText="Abbrechen"
             [(ngModel)]="untilDateTime" name="untilDateTime" formControlName="untilDateTime"></ion-datetime>
         </ion-item>
       </ion-card-content>
@@ -60,7 +60,7 @@
     <ion-card>
       <ion-card-header (click)="showText()">
         <h1 text-wrap style="font-weight: bold; color: white">
-          <ion-icon name="md-bulb"></ion-icon> Auffälligkeiten
+          <ion-icon name="md-bulb" style="color: yellow"></ion-icon> Auffälligkeiten
         </h1>
       </ion-card-header>
       <ion-card-content>
@@ -128,10 +128,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Schmerzintensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensity" name="intensity"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensity" name="intensity"
           formControlName="intensity">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -143,10 +143,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Schmerzintensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityWateryEye"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensityWateryEye"
           name="intensityWateryEye" formControlName="intensityWateryEye">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -158,10 +158,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Schmerzintensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityRedEye"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensityRedEye"
           name="intensityRedEye" formControlName="intensityRedEye">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -174,10 +174,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityNasenLaufen"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensityNasenLaufen"
           name="intensityNasenLaufen" formControlName="intensityNasenLaufen">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -189,10 +189,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityNasenVerstopfung"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensityNasenVerstopfung"
           name="intensityNasenVerstopfung" formControlName="intensityNasenVerstopfung">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -204,10 +204,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityFlimmerSehen"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensityFlimmerSehen"
           name="intensityFlimmerSehen" formControlName="intensityFlimmerSehen">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -219,10 +219,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityPhotophobia"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensityPhotophobia"
           name="intensityPhotophobia" formControlName="intensityPhotophobia">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -234,10 +234,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityPhonophobia"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensityPhonophobia"
           name="intensityPhonophobia" formControlName="intensityPhonophobia">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -249,10 +249,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityTouchSensation"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensityTouchSensation"
           name="intensityTouchSensation" formControlName="intensityTouchSensation">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -264,10 +264,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensitySpeechDisorder"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensitySpeechDisorder"
           name="intensitySpeechDisorder" formControlName="intensitySpeechDisorder">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -279,10 +279,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensitySmellSensitivity"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensitySmellSensitivity"
           name="intensitySmellSensitivity" formControlName="intensitySmellSensitivity">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -294,10 +294,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Schmerzintensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityVomiting"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensityVomiting"
           name="intensityVomiting" formControlName="intensityVomiting">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -309,10 +309,10 @@
 
       <ion-item no-lines text-wrap>
         <ion-label style="font-weight: bold; font-size: 20px">Intensität</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="intensityNausea"
+        <ion-range min="0" max="10" step="1" snaps="true" color="primary" [(ngModel)]="intensityNausea"
           name="intensityNausea" formControlName="intensityNausea">
-          <ion-icon small range-left name="md-happy"></ion-icon>
-          <ion-icon range-right name="md-sad"></ion-icon>
+          <ion-icon range-left name="md-happy" color="secondary"></ion-icon>
+          <ion-icon range-right name="md-sad" color="danger"></ion-icon>
         </ion-range>
       </ion-item>
     </ion-card>
@@ -320,7 +320,7 @@
     <ion-card>
       <ion-card-header (click)="showText3()">
         <h1 text-wrap style="font-weight: bold; color: white">
-          <ion-icon name="medkit"></ion-icon> Medikamente
+          <ion-icon name="medkit" style="color: lightgreen"></ion-icon> Medikamente
         </h1>
       </ion-card-header>
       <ion-card-content style="background-color: white" *ngIf="selectedCard3">
