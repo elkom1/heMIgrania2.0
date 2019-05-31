@@ -29,6 +29,8 @@ export class Diagnosen {
   date: string;
   diagnosen: string;
   otherDiagnose: string;
+  maxDate: string; 
+
 
   selectedOther = false;
 
@@ -56,6 +58,7 @@ export class Diagnosen {
     let time = new Date();
     time.setDate(time.getDate());
     this.date = time.toISOString();
+    this.maxDate = new Date(new Date().getTime() + 7200000).toISOString(); // Time + 2h = current time Swiss
   }
 
   onChangeDiagnoses() {
