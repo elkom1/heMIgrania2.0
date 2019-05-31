@@ -55,10 +55,10 @@ export class LoginPage {
           //Track event 
           this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
 
-          let alert = this.alertCtrl.create();
-          alert.setTitle("Du bist bereits angemeldet");
-          alert.addButton('Ok');
-          alert.present();
+          // let alert = this.alertCtrl.create();
+          // alert.setTitle("Du bist bereits angemeldet");
+          // alert.addButton('Ok');
+          // alert.present();
         } else {
           console.warn('Anmeldung erforderlich');
         }
@@ -102,10 +102,10 @@ export class LoginPage {
     this.midataService.authenticate()
       .then((success: boolean) => {
         if (success) {
-          let alert = this.alertCtrl.create();
-          alert.setTitle("Anmeldung war erfolgreich");
-          alert.addButton('Ok');
-          alert.present();
+          // let alert = this.alertCtrl.create();
+          // alert.setTitle("Anmeldung war erfolgreich");
+          // alert.addButton('Ok');
+          // alert.present();
           //Track Event 
           this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
           return this.navCtrl.pop();
