@@ -123,6 +123,24 @@ export class MyDayPage {
     this.tabBarElement.style.display = 'flex';
   }
 
+  //if another date is selected this will be triggered and called 
+  dateChanged() {
+    //initialize default values
+    //inititalize sleeptime with a default value of last night 22:00 
+    let time = new Date(this.date);
+    time.setDate(time.getDate() - 1);
+    time.setHours(23);
+    time.setMinutes(0);
+    this.sleepTime = time.toISOString();
+
+    //Initialize awake time in todays date at 08:00 
+    let time2 = new Date(this.date);
+    time2.setHours(9);
+    time2.setMinutes(0);
+    this.awakeTime = time2.toISOString();
+    
+  }
+
   showText() {
     if (this.selectedCard == false) {
       this.selectedCard = true;
