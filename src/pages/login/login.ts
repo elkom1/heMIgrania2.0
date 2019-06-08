@@ -19,7 +19,17 @@ import {
 import {
   MatomoTracker
 } from 'ngx-matomo';
+import {
+  OpenNativeSettings
+} from '@ionic-native/open-native-settings/ngx';
 
+import {
+  Storage
+} from '@ionic/storage';
+import {
+  OnBoarding
+} from '../onBoarding/onBoarding';
+import { MenuPage } from '../menu/menu';
 
 @IonicPage()
 @Component({
@@ -36,7 +46,10 @@ export class LoginPage {
     private midataService: MidataService,
     private platform: Platform,
     private alertCtrl: AlertController,
-    private matomoTracker: MatomoTracker) {}
+    private matomoTracker: MatomoTracker,
+    private openNativeSettings: OpenNativeSettings,
+    private storage: Storage
+  ) {}
 
   // register(){
   //   this.inAppBrowser.create('https://ch.midata.coop/#/portal/registration');
@@ -50,7 +63,7 @@ export class LoginPage {
     this.platform.ready().then(() => {
       this.midataService.openSession().then(success => {
         if (success) {
-          this.navCtrl.pop();
+          this.navCtrl.popToRoot();
 
           //Track event 
           this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
@@ -75,6 +88,14 @@ export class LoginPage {
   }
 
   ngOnInit() {
+    this.storage.get('isFistTime').then((val) => {
+      if (val || val == null) {
+        console.log("Already opened");
+        this.navCtrl.push(OnBoarding);
+      } 
+    });
+  
+
     //set user ID and document title 
     if (this.midataService.loggedIn()) {
       this.matomoTracker.setUserId(this.midataService.getUser().email);
@@ -108,14 +129,26 @@ export class LoginPage {
           // alert.present();
           //Track Event 
           this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
-          return this.navCtrl.pop();
+          return this.navCtrl.popToRoot();
         }
+
       })
       .then(() => {
         loading.dismiss().catch();
       })
       .catch((error) => {
         loading.dismiss().catch();
+        let alert2 = this.alertCtrl.create({
+          message: "Damit Sie diese App nutzen können, müssen Sie ein Passwort auf Ihrem Gerät festlegen."
+        })
+        alert2.setTitle('Gerät ohne Sicherheitscode');
+        alert2.addButton({
+          text: 'Ok',
+          handler: data => {
+            //this.openNativeSettings.open("settings");
+          }
+        });
+        alert2.present();
       })
   }
 }
