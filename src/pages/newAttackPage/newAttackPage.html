@@ -47,12 +47,12 @@
         <ion-item no-lines text-wrap>
           <ion-label>Von</ion-label>
           <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="{{maxDate}}" doneText="Weiter" cancelText="Abbrechen"
-            [(ngModel)]="fromDateTime" name="fromDateTime" formControlName="fromDateTime"></ion-datetime>
+            [(ngModel)]="fromDateTime" name="fromDateTime" formControlName="fromDateTime" monthShortNames="Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez" minuteValues="0,15,30,45"></ion-datetime>
         </ion-item>
         <ion-item no-lines text-wrap>
           <ion-label>Bis</ion-label>
           <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="{{maxDate}}" doneText="Weiter" cancelText="Abbrechen"
-            [(ngModel)]="untilDateTime" name="untilDateTime" formControlName="untilDateTime"></ion-datetime>
+            [(ngModel)]="untilDateTime" name="untilDateTime" formControlName="untilDateTime" monthShortNames="Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez" minuteValues="0,15,30,45"></ion-datetime>
         </ion-item>
       </ion-card-content>
     </ion-card>
