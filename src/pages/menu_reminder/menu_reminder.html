@@ -24,7 +24,7 @@
 
     <ion-item no-lines text-wrap>
       <ion-label>Zeit</ion-label>
-      <ion-datetime displayFormat="HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="myTime" (ionChange)="toggleLocalNotificatoin()"></ion-datetime>
+      <ion-datetime displayFormat="HH:mm" doneText="Bestätigen" cancelText="Abbrechen" [(ngModel)]="myTime" (ionChange)="toggleLocalNotificatoin()" minuteValues="0,15,30,45"></ion-datetime>
     </ion-item>
   </ion-card>
 
