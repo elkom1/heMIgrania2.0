@@ -1,11 +1,12 @@
 import {
-  Component
+  Component, ViewChild, trigger, state, style, transition, animate, keyframes
 } from '@angular/core';
 import {
   IonicPage,
   NavController,
   LoadingController,
-  Platform
+  Platform,
+  Slides
 } from 'ionic-angular';
 import {
   InAppBrowser
@@ -35,9 +36,12 @@ import { MenuPage } from '../menu/menu';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-})
+  })
 
 export class LoginPage {
+
+  @ViewChild(Slides) slides: Slides;
+  state: string = 'x';
 
   constructor(
     public navCtrl: NavController,
@@ -55,15 +59,15 @@ export class LoginPage {
   //   this.inAppBrowser.create('https://ch.midata.coop/#/portal/registration');
   // }
 
-  visitMidata() {
-    this.inAppBrowser.create('https://midata.coop');
-  }
+  // visitMidata() {
+  //   this.inAppBrowser.create('https://midata.coop');
+  // }
 
   ngAfterViewInit() {
     this.platform.ready().then(() => {
       this.midataService.openSession().then(success => {
         if (success) {
-          this.navCtrl.popToRoot();
+          this.navCtrl.pop();
 
           //Track event 
           this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
@@ -88,14 +92,13 @@ export class LoginPage {
   }
 
   ngOnInit() {
-    this.storage.get('isFistTime').then((val) => {
-      if (val || val == null) {
-        console.log("Already opened");
-        this.navCtrl.push(OnBoarding);
-      } 
-    });
+    // this.storage.get('isFistTime').then((val) => {
+    //   if (val || val == null) {
+    //     console.log("Already opened");
+    //     this.navCtrl.push(OnBoarding);
+    //   } 
+    // });
   
-
     //set user ID and document title 
     if (this.midataService.loggedIn()) {
       this.matomoTracker.setUserId(this.midataService.getUser().email);
@@ -129,7 +132,7 @@ export class LoginPage {
           // alert.present();
           //Track Event 
           this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
-          return this.navCtrl.popToRoot();
+          return this.navCtrl.pop();
         }
 
       })
@@ -151,4 +154,7 @@ export class LoginPage {
         alert2.present();
       })
   }
+
+
+ 
 }

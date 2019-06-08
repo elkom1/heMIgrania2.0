@@ -1,23 +1,65 @@
-<ion-content class="login-style">
-  <div id="midataLogoWrapper">
-    <span class="helper"></span>
-    <ion-img class="img-midata" alt="MIDATA logo" src="assets/imgs/logo-midata-full.png" id="logoMidata" (click)="visitMidata()"></ion-img>
-  </div>
-  <div id="blockHeader">
-  </div>
+<ion-content padding>
+  
 
-   <br />
-   <br />
-  <h1 text-center style="font-weight: bold; font-size: 38px; color: white">Willkommen bei <br /> he<a
-      style="color: green">MI</a>grania</h1> 
-  <br />
+  <ion-slides pager>
+    <ion-slide>
+      <div class="diag" style="background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));">
+        <br />
+        <br />
+        <img class="img-centered" src="assets/imgs/icon.png" alt="heMIgrania logo">
+      </div>
+      <div>
+        <h2>Willkommen bei he<a style="color: green">MI</a>grania</h2>
+        <p>heMIgrania unterstützt dich dabei etwas gegen deine Kopfschmerzen zu machen</p>
+      </div>
+    </ion-slide>
 
-  <img class="img-centered" src="assets/imgs/icon.png" alt="heMIgrania">
+    <ion-slide>
+      <div class="diag" style="background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));">
+        <img src="assets/imgs/Tagebuch.png" alt="tagebuch">
+      </div>
+      <div>
+        <h2>he<a style="color: green">MI</a>grania Tagebuch</h2>
+        <p>Das Tagebuch entsteht aus <br /> <a style="font-weight: bold">MEIN TAG</a> und <a
+            style="font-weight: bold">NEUER EINTRAG</a>. <br /> Dort trägst du - am besten täglich - die
+          Faktoren ein die du in Bezug auf deine Kopfschmerzen für wichtig hältst.</p>
+      </div>
+    </ion-slide>
 
-  <div id="btnZone">
-    <div class="wrapper default" id="btnLogin" (click)="login()">
-      Anmelden
-    </div>
+    <ion-slide>
+      <div class="diag" style="background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));">
+        <img src="assets/imgs/sdata.png" alt="analysis">
+      </div>
+      <div>
+        <h2>Analyse: anakoda Dashboard</h2>
+        <p>Die Analyse zeigt dir deinen Kopfschmerzverlauf an und gibt dir Aufschlüsse darüber, welche Faktoren einen
+          Einfluss auf deine Kopfschmerzen haben.</p>
+      </div>
+    </ion-slide>
 
-    </div>
+    <ion-slide>
+      <div class="diag" style="background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));">
+        <img src="assets/imgs/reminder.png" alt="reminder">
+      </div>
+      <div>
+        <h2>Erinnerungen</h2>
+        <p>Erinnerungen helfen dir, täglich deine Tageseinträge zu machen. Du findest die Erinnerungen im Menü. Dort
+          kannst du sie an und ausstellen sowie Erinnerungszeiten verändern.</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="diag" style="background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));">
+        <img src="assets/imgs/Forschung.png" alt="forschung">
+      </div>
+      <div>
+        <h2>Deine Daten gehen anonymisiert <br /> in die Forschung</h2>
+        <p>Falls du noch Fragen hast, dann kann dir das Team von heMIgrania auch persönlich weiterhelfen.</p>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+    <button ion-button full text-uppercase (click)="login()">Anmelden</button>
+
+
 </ion-content>
