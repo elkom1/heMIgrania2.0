@@ -1,0 +1,68 @@
+<ion-header no-border>
+
+</ion-header>
+
+<ion-content>
+  <ion-slides pager (ionSlideDidChange)="slideChanged()" (ionSlideDrag)="slideMoved()">
+    <ion-slide>
+      <div class="diag" style="background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));">
+        <br />
+        <br />
+        <br />
+        <img class="img-centered" src="assets/imgs/icon.png" alt="heMIgrania logo" [@bounce]='state'
+          (@bounce.done)="animationDone()">
+      </div>
+      <div [@bounce]='state'>
+        <h2>Willkommen bei he<a style="color: green">MI</a>grania</h2>
+        <p>heMIgrania unterstützt dich dabei etwas gegen deine Kopfschmerzen zu machen</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="diag" style="background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));">
+        <img src="assets/imgs/Tagebuch.png" alt="tagebuch" [@bounce]='state'>
+      </div>
+      <div [@bounce]='state'>
+        <h2>he<a style="color: green">MI</a>grania Tagebuch</h2>
+        <p>Das Tagebuch entsteht aus <br/> <a style="font-weight: bold">MEIN TAG</a> und <a
+            style="font-weight: bold">NEUER EINTRAG</a>. <br /> Dort trägst du - am besten täglich - die
+          Faktoren ein die du in Bezug auf deine Kopfschmerzen für wichtig hältst.</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="diag" style="background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));">
+        <img src="assets/imgs/sdata.png" alt="analysis" [@bounce]='state'>
+      </div>
+      <div [@bounce]='state'>
+        <h2>Analyse: anakoda Dashboard</h2>
+        <p>Die Analyse zeigt dir deinen Kopfschmerzverlauf an und gibt dir Aufschlüsse darüber, welche Faktoren einen
+          Einfluss auf deine Kopfschmerzen haben.</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="diag" style="background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));">
+        <img src="assets/imgs/reminder.png" alt="reminder" [@bounce]='state'>
+      </div>
+      <div [@bounce]='state'>
+        <h2>Erinnerungen</h2>
+        <p>Erinnerungen helfen dir, täglich deine Tageseinträge zu machen. Du findest die Erinnerungen im Menü. Dort
+          kannst du sie an und ausstellen sowie Erinnerungszeiten verändern.</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="diag" style="background: linear-gradient(120deg, rgb(52, 90, 146), rgb(40, 98, 235));">
+        <img src="assets/imgs/Forschung.png" alt="forschung" [@bounce]='state'>
+      </div>
+      <div [@bounce]='state'>
+        <h2>Deine Daten gehen anonymisiert <br/> in die Forschung</h2>
+        <p>Falls du noch Fragen hast, dann kann dir das Team von heMIgrania auch persönlich weiterhelfen.</p>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+  <button (click)="skip()" id="skip">{{ skipMsg }}</button>
+
+</ion-content>
