@@ -7,6 +7,7 @@ import { MenuPage } from '../pages/menu/menu';
 
 import { MatomoInjector } from 'ngx-matomo';
 import { LoginPage } from '../pages/login/login';
+import { OnBoarding } from '../pages/onBoarding/onBoarding';
 
 
 @Component({
