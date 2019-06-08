@@ -23,7 +23,7 @@
       <ion-item text-wrap>
         <ion-label>Bitte Datum angeben</ion-label>
         <ion-datetime displayFormat="MMM DD, YYYY" min="2019" max="{{maxDate}}" doneText="Weiter" (ionChange)="dateChanged()"
-          cancelText="Abbrechen" [(ngModel)]="date" name="date" formControlName="date"></ion-datetime>
+          cancelText="Abbrechen" [(ngModel)]="date" name="date" formControlName="date" monthShortNames="Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez"></ion-datetime>
       </ion-item>
     </ion-card>
 
@@ -57,7 +57,7 @@
         <div class="ion-text-end">
           <ion-item text-wrap>
             <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="{{maxDate}}" doneText="Weiter"
-              cancelText="Abbrechen" [(ngModel)]="sleepTime" name="sleepTime" formControlName="sleepTime">
+              cancelText="Abbrechen" [(ngModel)]="sleepTime" name="sleepTime" formControlName="sleepTime" monthShortNames="Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez" minuteValues="0,15,30,45">
             </ion-datetime>
           </ion-item>
         </div>
@@ -67,7 +67,7 @@
         <div class="ion-text-end">
           <ion-item text-wrap>
             <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="{{maxDate}}" doneText="Weiter"
-              cancelText="Abbrechen" [(ngModel)]="awakeTime" name="awakeTime" formControlName="awakeTime">
+              cancelText="Abbrechen" [(ngModel)]="awakeTime" name="awakeTime" formControlName="awakeTime" monthShortNames="Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez" minuteValues="0,15,30,45">
             </ion-datetime>
           </ion-item>
         </div>
