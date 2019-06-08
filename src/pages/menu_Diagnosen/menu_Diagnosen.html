@@ -20,7 +20,7 @@
       </ion-card-header>
       <ion-item text-wrap>
         <ion-label>Datum der Diagnose</ion-label>
-        <ion-datetime displayFormat="MMM DD, YYYY" min="2010" max="{{maxDate}}" doneText="Weiter" cancelText="Abbrechen" [(ngModel)]="date">
+        <ion-datetime displayFormat="MMM DD, YYYY" min="2010" max="{{maxDate}}" doneText="Weiter" cancelText="Abbrechen" [(ngModel)]="date" monthShortNames="Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez">
         </ion-datetime>
       </ion-item>
 
