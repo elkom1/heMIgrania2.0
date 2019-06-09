@@ -67,11 +67,12 @@ export class Reminder {
 
       //tracking event
       this.matomoTracker.trackEvent("Page: Reminder", "Reminder set")
-      let time = this.myTime.split(":");
+      let time = new Date(this.myTime);
       let date = new Date(new Date().getTime() + 3600);
-      date.setHours(Number(time[0]));
-      date.setMinutes(Number(time[1]));
-      console.log(date.getTime());
+      date.setHours(Number(time.getHours()-2));
+      date.setMinutes(Number(time.getMinutes()));
+      date.setDate(date.getDay() -1)
+      console.log(date);
       this.localNotifications.schedule({
         id: 1,
         icon: 'file://assets/imgs/icon.png',
