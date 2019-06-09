@@ -45,6 +45,8 @@ import {
 })
 export class NewAttackPage {
   @ViewChild(Content) content: Content;
+  @ViewChild('searchMedicament') searchMedicament: any;
+
 
   //-------------------------------------START INITIALIZE ITEMS -------------------------------------------------
   situation: string;
@@ -60,7 +62,7 @@ export class NewAttackPage {
   menge: number = 0;
   medEffect: string;
 
-  maxDate: string; 
+  maxDate: string;
 
   required = false;
 
@@ -149,7 +151,14 @@ export class NewAttackPage {
   }
   //-------------------------------------END CONSTRUCTOR ----------------------------------------------------
 
-  ngAfterViewInit() {}
+
+  focusButton(): void {
+    //Scroll up after click 
+    this.content.scrollToBottom();
+    this.content.scrollTo(0, 1000);
+    //this.content.setElementStyle("margin-bottom", "50%")
+    this.content.setScrollElementStyle("margin-bottom", "10%")
+  }
 
   ngOnInit() {
     //set user ID and document title 
@@ -266,6 +275,9 @@ export class NewAttackPage {
   }
 
   chooseMedicament(item) {
+    this.content.scrollToBottom();
+    this.content.scrollTo(0, 1000);
+
     this.medicament = item;
     //hide 
     this.items.splice(item)
@@ -289,6 +301,8 @@ export class NewAttackPage {
 
       // Show the results
       this.showList = true;
+      this.content.scrollToBottom();
+      this.content.scrollTo(0, 1000);
     } else {
 
       // hide the results when the query is empty
@@ -464,8 +478,7 @@ export class NewAttackPage {
         message: "Zeitrahmen stimmt nicht: Startdatum ist grösser als Enddatum",
         buttons: ['OK']
       }).present()
-    }
-    else if (this.situation == null) {
+    } else if (this.situation == null) {
       this.alertCtrl.create({
         message: "Bitte erfasse das erste Eingabefeld",
         buttons: ['OK']
@@ -482,7 +495,7 @@ export class NewAttackPage {
         message: "Bitte gib eine Zahl von 1-15",
         buttons: ['OK']
       }).present()
-    } 
+    }
 
     //Start methods for persistence the whole form when logged in 
     else if (this.midataService.loggedIn()) {
@@ -536,7 +549,7 @@ export class NewAttackPage {
             start: chosenFromDate.toISOString(),
             end: chosenUntilDate.toISOString()
           });
-        } 
+        }
 
         entry1.addProperty("valueCodeableConcept", {
           coding: [{

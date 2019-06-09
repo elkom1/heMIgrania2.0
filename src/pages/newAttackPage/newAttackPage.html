@@ -332,8 +332,8 @@
           </div>
 
           <div class="Column">
-            <ion-searchbar (ionInput)="getItems($event)" [(ngModel)]="medicament" name="medicament"
-              formControlName="medicament"></ion-searchbar>
+            <ion-searchbar (ionInput)="getItems($event)" [(ngModel)]="medicament" id="searchMedicament"
+            (click)="focusButton()"  formControlName="medicament"></ion-searchbar>
             <ion-list *ngIf="showList">
               <ion-item text-wrap *ngFor="let item of items" (click)="chooseMedicament(item)">
                 {{ item }}
