@@ -1,5 +1,12 @@
 import {
-  Component, ViewChild, trigger, state, style, transition, animate, keyframes
+  Component,
+  ViewChild,
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  keyframes
 } from '@angular/core';
 import {
   IonicPage,
@@ -30,13 +37,15 @@ import {
 import {
   OnBoarding
 } from '../onBoarding/onBoarding';
-import { MenuPage } from '../menu/menu';
+import {
+  MenuPage
+} from '../menu/menu';
 
 @IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  })
+})
 
 export class LoginPage {
 
@@ -64,31 +73,33 @@ export class LoginPage {
   // }
 
   ngAfterViewInit() {
-    this.platform.ready().then(() => {
-      this.midataService.openSession().then(success => {
-        if (success) {
-          this.navCtrl.pop();
+    // this.platform.ready().then(() => {
+    //   this.midataService.openSession().then(success => {
+    //     if (success) {
+    //       // this.navCtrl.pop();
 
-          //Track event 
-          this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
+    //       //Track event 
+    //       this.matomoTracker.trackEvent("Login Succes", "MIDATA Login success")
 
-          // let alert = this.alertCtrl.create();
-          // alert.setTitle("Du bist bereits angemeldet");
-          // alert.addButton('Ok');
-          // alert.present();
-        } else {
-          console.warn('Anmeldung erforderlich');
-        }
-      });
-      // Disable back button of the android HW device 
-      document.addEventListener('backbutton', () => {
-        if (this.navCtrl.canGoBack()) {
-          this.platform.exitApp()
-          return;
-        }
-        this.navCtrl.pop()
-      }, false);
-    });
+    //       // let alert = this.alertCtrl.create();
+    //       // alert.setTitle("Du bist bereits angemeldet");
+    //       // alert.addButton('Ok');
+    //       // alert.present();
+    //     } else {
+    //       console.warn('Anmeldung erforderlich');
+    //     }
+    //   });
+
+    // Disable back button of the android HW device 
+    document.addEventListener('backbutton', () => {
+      if (this.navCtrl.canGoBack()) {
+        this.platform.exitApp()
+        return;
+      }
+      this.navCtrl.pop()
+    }, false);
+
+    // });
   }
 
   ngOnInit() {
@@ -98,7 +109,7 @@ export class LoginPage {
     //     this.navCtrl.push(OnBoarding);
     //   } 
     // });
-  
+
     //set user ID and document title 
     if (this.midataService.loggedIn()) {
       this.matomoTracker.setUserId(this.midataService.getUser().email);
@@ -156,5 +167,5 @@ export class LoginPage {
   }
 
 
- 
+
 }
