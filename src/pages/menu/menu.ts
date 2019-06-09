@@ -35,9 +35,18 @@ import {
 import {
   MatomoTracker
 } from 'ngx-matomo';
-import { Nutzungsbedingungen } from '../menu_Nutzungsbedingungen/menu_Nutzungsbedingungen';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { MidataProfile } from '../menu_midataProfile/menu_midataProfile';
+import {
+  Nutzungsbedingungen
+} from '../menu_Nutzungsbedingungen/menu_Nutzungsbedingungen';
+import {
+  InAppBrowser
+} from '@ionic-native/in-app-browser';
+import {
+  MidataProfile
+} from '../menu_midataProfile/menu_midataProfile';
+import {
+  LocalNotifications
+} from '@ionic-native/local-notifications';
 
 
 export interface PageInterface {
@@ -117,21 +126,24 @@ export class MenuPage {
 
   private midataService: MidataService;
 
-  userStatus: string; 
+  userStatus: string;
 
   constructor(public navCtrl: NavController, midataService: MidataService, private matomoTracker: MatomoTracker, private platform: Platform,
-    private alertCtrl: AlertController, private inAppBrowser: InAppBrowser) {
+    private alertCtrl: AlertController, private inAppBrowser: InAppBrowser,
+    public localNotifications: LocalNotifications
+  ) {
     this.midataService = midataService;
   }
 
   ngOnInit() {
+
     //set user ID and document title
     if (this.midataService.loggedIn()) {
       this.matomoTracker.setUserId(this.midataService.getUser().email);
       this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking');
 
       this.userStatus = this.midataService.getUser().email;
-      
+
       console.log(this.matomoTracker.setUserId(this.midataService.getUser().email))
       console.log(this.matomoTracker.setDocumentTitle('Bachelorthesis START Tracking'))
     } else {
@@ -141,18 +153,41 @@ export class MenuPage {
     this.matomoTracker.trackEvent("Page: Menu", "Menu list klick");
   }
 
-  // ngAfterViewInit() {
-  //   this.platform.ready().then(() => {
-  //     this.midataService.openSession().then(success => {
-  //       if (success) {
-  //        this.userStatus = this.midataService.getUser().email; 
-  //       } else {
-  //         console.warn('Anmeldung erforderlich');
-  //         this.userStatus = "Offline"
-  //       }
-  //     });
-  //   });
-  // }
+
+  ngAfterViewInit() {
+
+    // this.platform.ready().then(() => {
+    //   this.midataService.openSession().then(success => {
+    //     if (success) {
+    //       this.userStatus = this.midataService.getUser().email;
+    //     } else {
+    //       console.warn('Anmeldung erforderlich');
+    //       this.userStatus = "Offline"
+    //     }
+    //   }).catch(() => {
+    //     console.log("catch activity status error")
+    //     this.userStatus = this.midataService.getUser().email;
+
+    //   })
+    // });
+
+    this.setReminder();
+  }
+
+  //Set Push Reminder after two Days not entering the App 
+  setReminder() {
+    let date = new Date(new Date().getTime() + 3600);
+    date.setDate(date.getDay() + 2);
+    this.localNotifications.schedule({
+      id: 2,
+      icon: 'file://assets/imgs/icon.png',
+      text: 'Du hast heMIgrania bereits seit 2 Tagen nicht mehr benutzt. Achte Darauf, dass du regelmässig Einträge machst.',
+      trigger: {
+        firstAt: date,
+        count: 500
+      }
+    });
+  }
 
   openPage(page: PageInterface) {
     let params = {};
@@ -167,7 +202,7 @@ export class MenuPage {
       this.nav.getActiveChildNavs()[0].select(page.index);
     } else {
 
-      if(page.pageName == 'Dashboard') {
+      if (page.pageName == 'Dashboard') {
         this.inAppBrowser.create('https://anakoda.ch/app');
       }
 
