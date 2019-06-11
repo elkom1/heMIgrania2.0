@@ -1,4 +1,4 @@
-import { Component, ViewChild, trigger, transition, style, state, animate, keyframes, ChangeDetectionStrategy, SkipSelf } from '@angular/core';
+import { Component, ViewChild, trigger, transition, style, state, animate, keyframes, ChangeDetectionStrategy } from '@angular/core';
 import {
   NavController, Slides
 } from 'ionic-angular';

@@ -4,10 +4,7 @@ import {
 } from '@angular/core';
 import {
   Platform,
-  Nav,
-  NavController,
-  LoadingController,
-  AlertController
+  Nav
 } from 'ionic-angular';
 import {
   StatusBar
@@ -28,14 +25,8 @@ import {
   LoginPage
 } from '../pages/login/login';
 import {
-  OnBoarding
-} from '../pages/onBoarding/onBoarding';
-import {
   MidataService
 } from '../services/midataService';
-import {
-  OpenNativeSettings
-} from '@ionic-native/open-native-settings/ngx';
 
 
 @Component({
@@ -49,10 +40,8 @@ export class MyApp {
   constructor(
     statusBar: StatusBar,
     splashScreen: SplashScreen, private matomoInjector: MatomoInjector,
-    private loadingCtrl: LoadingController,
     private midataService: MidataService,
     private platform: Platform,
-    private alertCtrl: AlertController,
     private matomoTracker: MatomoTracker) {
 
     platform.ready().then(() => {

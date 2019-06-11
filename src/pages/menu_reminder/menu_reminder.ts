@@ -72,7 +72,7 @@ export class Reminder {
       date.setHours(Number(time.getHours()-2));
       date.setMinutes(Number(time.getMinutes()));
       date.setDate(date.getDay() -1)
-      console.log(date);
+      
       this.localNotifications.schedule({
         id: 1,
         icon: 'file://assets/imgs/icon.png',

@@ -1,12 +1,6 @@
 import {
   Component,
-  ViewChild,
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-  keyframes
+  ViewChild
 } from '@angular/core';
 import {
   IonicPage,
@@ -15,9 +9,7 @@ import {
   Platform,
   Slides
 } from 'ionic-angular';
-import {
-  InAppBrowser
-} from '@ionic-native/in-app-browser';
+
 import {
   MidataService
 } from '../../services/midataService';
@@ -27,19 +19,7 @@ import {
 import {
   MatomoTracker
 } from 'ngx-matomo';
-import {
-  OpenNativeSettings
-} from '@ionic-native/open-native-settings/ngx';
 
-import {
-  Storage
-} from '@ionic/storage';
-import {
-  OnBoarding
-} from '../onBoarding/onBoarding';
-import {
-  MenuPage
-} from '../menu/menu';
 
 @IonicPage()
 @Component({
@@ -55,13 +35,10 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     private loadingCtrl: LoadingController,
-    private inAppBrowser: InAppBrowser,
     private midataService: MidataService,
     private platform: Platform,
     private alertCtrl: AlertController,
-    private matomoTracker: MatomoTracker,
-    private openNativeSettings: OpenNativeSettings,
-    private storage: Storage
+    private matomoTracker: MatomoTracker
   ) {}
 
   // register(){
