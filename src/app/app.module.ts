@@ -8,7 +8,6 @@ import { Network } from '@ionic-native/network';
 import { SecureStorage} from '@ionic-native/secure-storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-import { OpenNativeSettings } from '@ionic-native/open-native-settings/ngx';
 
 
 import { OnBoarding } from '../pages/onBoarding/onBoarding';
@@ -38,7 +37,6 @@ import { LoginPage } from "../pages/login/login";
 import { LogoutPage } from "../pages/logout/logout";
 import { MidataService} from "../services/midataService";
 import { MenuService } from '../services/menuService';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatomoModule } from 'ngx-matomo';
 
@@ -68,7 +66,6 @@ import { MatomoModule } from 'ngx-matomo';
     BrowserModule,
     IonicModule.forRoot(MyApp), 
     MatomoModule,
-    BrowserAnimationsModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -103,8 +100,6 @@ import { MatomoModule } from 'ngx-matomo';
     BarcodeScanner,
     LocalNotifications,
     MenuService,
-    OpenNativeSettings,
-    BrowserAnimationsModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
