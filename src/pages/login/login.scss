@@ -8,11 +8,19 @@ page-login {
   //   contain: none;
   // }
 
-  // img.img-centered {
-  //   margin: auto; 
-  //   align-items: center;
-  //   display: block;
-  // }
+  img.img-centered {
+    margin: auto;
+    margin-top: 40%;  
+    align-items: center;
+    display: block;
+  }
+
+  img.img-centered2 {
+    margin: auto;
+    margin-top: 20%;  
+    align-items: center;
+    display: block;
+  }
   
   // #midataLogoWrapper {
   //   position: fixed;
@@ -115,7 +123,7 @@ page-login {
   p {
     display:block;
     margin: auto;
-    font-size:.8em;
+    font-size: 1em;
   }
   
   .swiper-pagination-bullet-active {
